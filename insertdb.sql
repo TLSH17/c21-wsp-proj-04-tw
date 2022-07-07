@@ -9,6 +9,19 @@
 -- INSERT INTO hobby (content) values ('movie');
 -- INSERT INTO user_hobby (user_id, hobby_id) values (1, 1);
 -- INSERT INTO user_hobby (user_id, hobby_id) values (1, 2);
+<<<<<<< HEAD
+-- INSERT INTO user_hobby (user_id, hobby_id) values (1, 3);
+-- INSERT INTO user_hobby (user_id, hobby_id) values (1, 4);
+-- INSERT INTO user_hobby (user_id, hobby_id) values (1, 5);
+-- INSERT INTO user_hobby (user_id, hobby_id) values (1, 6);
+-- INSERT INTO user_hobby (user_id, hobby_id) values (1, 7);
+-- AlTER TABLE user_photo ADD COLUMN file_name VARCHAR(255) not null;
+-- AlTER Table friendship_level ADD COLUMN created_at Timestamp;
+-- INSERT INTO user_photo (user_id, file_name)
+-- values (1, '1.jpeg');
+-- INSERT INTO user_photo (user_id, file_name)
+-- values (1, '2.jpeg');
+=======
  --INSERT INTO user_hobby (user_id, hobby_id) values (1, 3);
  --INSERT INTO user_hobby (user_id, hobby_id) values (1, 4);
  --INSERT INTO user_hobby (user_id, hobby_id) values (1, 5);
@@ -17,3 +30,4 @@
 
  
  
+>>>>>>> 228ca9840a60da1f5cb8b1d23f4ad7704849437f

@@ -7,7 +7,7 @@ import { dbUser } from "../server";
 export const userRoutes = express.Router();
 export const newUserRoutes = express.Router();
 
-// method: POST, path pattern: /login
+// method: POST, path pattern: /login & /newUser
 userRoutes.post("/login", login);
 newUserRoutes.post("/newUser", newUser);
 

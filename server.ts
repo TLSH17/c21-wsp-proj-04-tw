@@ -1,6 +1,6 @@
 import express from 'express'
 import path from 'path';
-import expressSession from 'express-session'
+import expressSession from 'express-session';
 import { isLoggedInStatic } from "./guards";
 import pg from "pg";
 import dotenv from "dotenv";
@@ -42,6 +42,7 @@ app.use((req, res, next) => {
 // Route Handlers
 
 app.use(userRoutes);
+app.use(newUserRoutes);
 app.use(profileRoutes);
 app.use(newUserRoutes);
 

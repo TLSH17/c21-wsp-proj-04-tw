@@ -11,6 +11,7 @@ npm install \
     @types/express \
     @types/express-session \
     @types/pg \
+    @types/dotenv \
 
 
 npm install -D \
@@ -57,8 +58,8 @@ require("./server")
 echo '
 SESSION_SECRET=
 DB_NAME=
-DB_USERNANEM=
+DB_USERNAME=
 DB_PASSSWORD=
-'
+' > .env
 
 

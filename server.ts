@@ -6,7 +6,7 @@ import pg from "pg";
 import dotenv from "dotenv";
 dotenv.config();
 import { userRoutes } from "./routers/userRoutes";
-import { newUserRoutes } from "./routers/userRoutes";
+import { profileRoutes } from "./routers/profileRoutes";
 
 export const dbUser = new pg.Client({
     database: process.env.DB_NAME,
@@ -41,7 +41,7 @@ app.use((req, res, next) => {
 // Route Handlers
 
 app.use(userRoutes);
-app.use(newUserRoutes);
+app.use(profileRoutes);
 
 const PORT = 8080
 

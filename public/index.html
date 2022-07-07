@@ -31,16 +31,18 @@
                 <div class="login_title">Log in</div>
 
                 <label for="email">Username:</label><br />
-                <input type="text" id="fname" name="username" placeholder="Username" /><br />
+                <input type="text" id="fname" name="username" placeholder="Username" class="inputbox" /><br />
 
                 <label for="password">Password:</label><br />
-                <input type="password" id="lname" name="password" placeholder="Password" /><br />
+                <input type="password" id="lname" name="password" placeholder="Password" class="inputbox" /><br />
 
                 <a href="/login/google">Login via Google</a><br />
                 <input type="submit" value="Submit" />
             </form>
 
         </div>
+
+
         <!-- Trigger/Open The Modal -->
         <button id="myBtn">Register Here</button>
 
@@ -51,8 +53,9 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
 
-                <div class="reg_title">
-                    <div>fields marked ** are required</div>
+                <div class="reg_header">
+                    <div class="reg_title">Registraion</div>
+                    <div class="reg_title_1">Fields marked ** are required</div>
                 </div>
 
 
@@ -61,71 +64,91 @@
                         <div class="essential_items">
                             <div class="regItem col-sm-2">
                                 <label for="email">Username: **</label><br />
-                                <input type="text" name="NewUserName" placeholder="Username" /><br />
+                                <input type="text" name="NewUserName" placeholder="Username" class="inputbox" /><br />
                             </div>
 
                             <div class="regItem col-sm-2">
                                 <label for="password">Password: **</label><br />
-                                <input type="password" name="NewUserPassword" placeholder="Password" /><br />
+                                <input type="password" name="NewUserPassword" placeholder="Password"
+                                    class="inputbox" /><br />
+                            </div>
+
+                            <div class="regItem col-sm-2">
+                                <label for="password">Nick Name: **</label><br />
+                                <input type="password" name="NewNickName" placeholder=" Nick Name" class="inputbox"
+                                    required /><br />
                             </div>
 
                             <div class="regItem col-sm-2">
                                 <label for="password">Gender: **</label><br />
-                                <input type="password" name="NewGender" placeholder="Gender" /><br />
+                                <!-- <input type="password" name="NewGender" placeholder="Gender" /><br /> -->
+                                <select name="NewGender" id="gender" class="inputbox" required>
+                                    <option disabled selected value="">--Please choose an option--</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="neutral">Neutral</option>
+                                </select>
                             </div>
 
                             <div class="regItem col-sm-2">
                                 <label for="password">Interested in gender: **</label><br />
-                                <input type="password" name="NewInterestedGender" /><br />
+                                <!-- <input type="password" name="NewInterestedGender" /><br /> -->
+                                <select name="NewInterestedGender" id="interested_gender" class="inputbox" required>
+                                    <option disabled selected value="">--Please choose an option--</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="neutral">Neutral</option>
+                                </select>
                             </div>
 
 
                             <div class="regItem col-sm-2">
                                 <label for="password">date of birth: **</label><br />
-                                <input type="password" placeholder="date of birth" name="NewBirth" /><br />
+                                <input type="date" name="NewBirth" class="inputbox" required /><br />
                             </div>
 
                             <div class="regItem col-sm-2">
                                 <label for="password">description: **</label><br />
-                                <input type="password" placeholder="description" name="NewDescription" /><br />
+                                <input type="password" placeholder="description" name="NewDescription" class="inputbox"
+                                    required /><br />
                             </div>
 
 
                             <div class="regItem col-sm-2">
-                                <label for="password">Nationality: **</label><br />
-                                <input type="password" placeholder="Nationality" name="NewNationality" /><br />
-                            </div>
-
-                            <div class="regItem col-sm-2">
-                                <label for="password">Zodiac Signs: **</label><br />
-                                <input type="password" placeholder="Zodiac Signs" name="NewZodiac" /><br />
+                                <label for="password">Nationality **: </label><br />
+                                <input type="password" placeholder="Nationality" name="NewNationality" class="inputbox"
+                                    required /><br />
                             </div>
 
                             <div class="regItem col-sm-2">
                                 <label for="myfile">Select photos: **</label><br />
                                 <input type="file" name="image" /><br />
                             </div>
+
                         </div>
 
 
                         <div class="optional_items">
-                            <div class="regItem col-sm-2">
-                                <label for="password">Nick Name:</label><br />
-                                <input type="password" name="NewNickName" placeholder=" Nick Name" /><br />
-                            </div>
 
                             <div class="regItem col-sm-2"> <label for="password">Email:</label><br />
-                                <input type="password" name="NewUserEmail" placeholder="Email" /><br />
+                                <input type="password" name="NewUserEmail" placeholder="Email" class="inputbox" /><br />
                             </div>
 
                             <div class="regItem col-sm-2">
                                 <label for="password">Interested in type:</label><br />
-                                <input type="password" name="NewInterestedType" /><br />
+                                <input type="password" name="NewInterestedType" class="inputbox" /><br />
                             </div>
 
                             <div class="regItem col-sm-2">
                                 <label for="password">Height (cm):</label><br />
-                                <input type="password" placeholder="Height (cm)" name="NewHeight" /><br />
+                                <input type="password" placeholder="Height (cm)" name="NewHeight"
+                                    class="inputbox" /><br />
+                            </div>
+
+                            <div class="regItem col-sm-2">
+                                <label for="password">Zodiac Signs: </label><br />
+                                <input type="password" placeholder="Zodiac Signs" name="NewZodiac"
+                                    class="inputbox" /><br />
                             </div>
                         </div>
                     </div>
@@ -138,10 +161,10 @@
             </div>
         </div>
     </div>
-    <!-- 
-    <div id="fotter">
-        This is the bottom of the page.
-    </div> -->
+
+    <div id="footer">
+        Tel : 2360 0000
+    </div>
 
 
 

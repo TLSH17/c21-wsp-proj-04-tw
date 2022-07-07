@@ -14,3 +14,9 @@
 -- INSERT INTO user_hobby (user_id, hobby_id) values (1, 5);
 -- INSERT INTO user_hobby (user_id, hobby_id) values (1, 6);
 -- INSERT INTO user_hobby (user_id, hobby_id) values (1, 7);
+-- AlTER TABLE user_photo ADD COLUMN file_name VARCHAR(255) not null;
+-- AlTER Table friendship_level ADD COLUMN created_at Timestamp;
+-- INSERT INTO user_photo (user_id, file_name)
+-- values (1, '1.jpeg');
+-- INSERT INTO user_photo (user_id, file_name)
+-- values (1, '2.jpeg');

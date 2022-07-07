@@ -82,5 +82,7 @@
 --     distance INTEGER
 -- );
 --create user demo_admin with encrypted password 'demo_admin';
+-- Testing 1 by Tommy:
+-- INSERT INTO users (username,password,gender,interested_in_gender,date_of_birth,description) Values ('Tommy',1234,'M','F','2002-12-08','haha');
 SELECT *
 FROM users;

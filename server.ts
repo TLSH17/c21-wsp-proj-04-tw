@@ -1,12 +1,12 @@
 import express from 'express'
-import { Request, Response } from 'express'
 import path from 'path';
 import expressSession from 'express-session'
 import { isLoggedInStatic } from "./guards";
 import pg from "pg";
 import dotenv from "dotenv";
 dotenv.config();
-
+import { userRoutes } from "./routers/userRoutes";
+import { newUserRoutes } from "./routers/userRoutes";
 
 export const dbUser = new pg.Client({
     database: process.env.DB_NAME,
@@ -40,8 +40,8 @@ app.use((req, res, next) => {
 
 // Route Handlers
 
-import { userRoutes } from "./routers/userRoutes";
 app.use(userRoutes);
+app.use(newUserRoutes);
 
 const PORT = 8080
 

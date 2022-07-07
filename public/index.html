@@ -5,31 +5,153 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+    </style>
     <title>WSP Project</title>
 </head>
 
 <body>
-    <h1>Hello! testing</h1>
-    <div class="subtitle">Testing - Bootstrap is ready</div>
+    <div class="container">
+        <div class="title col-sm-4">
+            LAVA
+        </div>
 
-    <form id="form-login">
-        <h3 class="admin-title">Log in</h3>
+        <div class="banner">
+            <div class="quote">
+                <p>You are too good to be true</p>
+            </div>
+        </div>
 
-        <label for="email">Username:</label><br />
-        <input type="text" id="fname" name="username" placeholder="Username" /><br />
+        <div class="login-card col-sm-4">
+            <form id="form-login">
+                <div class="login_title">Log in</div>
 
-        <label for="password">Password:</label><br />
-        <input type="password" id="lname" name="password" placeholder="Password" /><br />
+                <label for="email">Username:</label><br />
+                <input type="text" id="fname" name="username" placeholder="Username" /><br />
 
-        <a href="/login/google">Login via Google</a><br />
-        <input type="submit" value="Submit" />
-    </form>
+                <label for="password">Password:</label><br />
+                <input type="password" id="lname" name="password" placeholder="Password" /><br />
+
+                <a href="/login/google">Login via Google</a><br />
+                <input type="submit" value="Submit" />
+            </form>
+
+        </div>
+        <!-- Trigger/Open The Modal -->
+        <button id="myBtn">Register Here</button>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+
+                <div class="reg_title">
+                    <div>fields marked ** are required</div>
+                </div>
+
+
+                <form id="form-register">
+                    <div class="input_area">
+                        <div class="essential_items">
+                            <div class="regItem col-sm-2">
+                                <label for="email">Username: **</label><br />
+                                <input type="text" name="NewUserName" placeholder="Username" /><br />
+                            </div>
+
+                            <div class="regItem col-sm-2">
+                                <label for="password">Password: **</label><br />
+                                <input type="password" name="NewUserPassword" placeholder="Password" /><br />
+                            </div>
+
+                            <div class="regItem col-sm-2">
+                                <label for="password">Gender: **</label><br />
+                                <input type="password" name="NewGender" placeholder="Gender" /><br />
+                            </div>
+
+                            <div class="regItem col-sm-2">
+                                <label for="password">Interested in gender: **</label><br />
+                                <input type="password" name="NewInterestedGender" /><br />
+                            </div>
+
+
+                            <div class="regItem col-sm-2">
+                                <label for="password">date of birth: **</label><br />
+                                <input type="password" placeholder="date of birth" name="NewBirth" /><br />
+                            </div>
+
+                            <div class="regItem col-sm-2">
+                                <label for="password">description: **</label><br />
+                                <input type="password" placeholder="description" name="NewDescription" /><br />
+                            </div>
+
+
+                            <div class="regItem col-sm-2">
+                                <label for="password">Nationality: **</label><br />
+                                <input type="password" placeholder="Nationality" name="NewNationality" /><br />
+                            </div>
+
+                            <div class="regItem col-sm-2">
+                                <label for="password">Zodiac Signs: **</label><br />
+                                <input type="password" placeholder="Zodiac Signs" name="NewZodiac" /><br />
+                            </div>
+
+                            <div class="regItem col-sm-2">
+                                <label for="myfile">Select photos: **</label><br />
+                                <input type="file" name="image" /><br />
+                            </div>
+                        </div>
+
+
+                        <div class="optional_items">
+                            <div class="regItem col-sm-2">
+                                <label for="password">Nick Name:</label><br />
+                                <input type="password" name="NewNickName" placeholder=" Nick Name" /><br />
+                            </div>
+
+                            <div class="regItem col-sm-2"> <label for="password">Email:</label><br />
+                                <input type="password" name="NewUserEmail" placeholder="Email" /><br />
+                            </div>
+
+                            <div class="regItem col-sm-2">
+                                <label for="password">Interested in type:</label><br />
+                                <input type="password" name="NewInterestedType" /><br />
+                            </div>
+
+                            <div class="regItem col-sm-2">
+                                <label for="password">Height (cm):</label><br />
+                                <input type="password" placeholder="Height (cm)" name="NewHeight" /><br />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="submit_button col-sm-6">
+                        <input type="submit" value="Submit" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- 
+    <div id="fotter">
+        This is the bottom of the page.
+    </div> -->
+
+
+
+
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
 <script type="module" src="index.js"></script>
+<script type="module" src="popupWindow.js"></script>
 
 </html>

@@ -28,6 +28,7 @@ async function getProfile(req: Request, res: Response) {
     try {
 
     let page = parseInt(req.query.page as string, 10);
+    
 
     if (isNaN(page)) {
         page = 1;
@@ -35,6 +36,9 @@ async function getProfile(req: Request, res: Response) {
     const totalPageNum = (await dbUser.query('select * from users')).rows.length
     if (page > totalPageNum) {
         page = 1;
+      }
+    if (page === 0) {
+        page = totalPageNum;
       }
 
       

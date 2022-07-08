@@ -1,12 +1,19 @@
-// Create interface to define
+// Create interface to define\\
 
-export interface Memo {
-    id: number;
-    content: string;
-    image: string;
-}
 
-export interface User {
+export interface Useraccount {
     username: string;
     password: string;
+    id: any;
+    nickname: string;
+    email: string;
+}
+
+
+declare module 'express-session' {
+    export interface SessionData {
+        user: { [key: string]: any };
+        newUser: { [key: string]: any };
+        form: { [key: string]: any };
+    }
 }

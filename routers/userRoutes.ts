@@ -13,12 +13,6 @@ export const newUserRoutes = express.Router();
 userRoutes.post("/login", login);
 newUserRoutes.post("/newUser", formidableMiddleware, newUser);
 
-// userRoutes.get("/users/info", isLoggedInAPI, getUserInfo);
-//async function processHashPassword (req: Request, res: Response) {
-//  const {username} = req.body;
-//  const result = (await dbUser.query('select password from users')).rows
-//}
-
 async function login(req: Request, res: Response, next: NextFunction) {
   const { username, password } = req.body;
   console.log(username, password);
@@ -27,20 +21,6 @@ async function login(req: Request, res: Response, next: NextFunction) {
     return;
   }
 
-  // const user = (
-  //   await dbUser.query<Useraccount>(
-  //     /*sql */ `
-  // SELECT * FROM users
-  // WHERE username = $1 AND password = $2`,
-  //     [username, password]
-  //   )
-  // ).rows[0];
-
-  // if (!user) {
-  // res.status(400).json({ success: false, message: "invalid username/password" });
-  // console.log("Wrong!")
-  //   return;
-  // }
   // hashing login
   const users = (await dbUser.query(`SELECT * FROM users WHERE users.username = $1`, [username])).rows;
   const user = users[0];
@@ -63,11 +43,6 @@ async function login(req: Request, res: Response, next: NextFunction) {
     console.log("Wrong!")
   }
 
-  // req.session["user"] = { id: user.id, username: user.username };
-  // console.log(req.session["user"])
-  // res.json({ success: true });
-  // console.log("OK now!");
-  // next();
 }
 
 async function newUser(req: Request, res: Response, next: NextFunction) {

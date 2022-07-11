@@ -4,11 +4,22 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    /* border-color: black;
-    border-style: solid;
-    border-width: 10px; */
     height: 100vh;
-    /* padding: 20px; */
+
+    animation: fadeInAnimation ease 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+
+    0% {
+        opacity: 0.1;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .container {
@@ -18,21 +29,19 @@ body {
     flex-direction: column;
     align-items: center;
     height: 90vh;
+    /* margin: 20px; */
 }
 
 .title {
     display: flex;
     justify-content: center;
     font-size: 100px;
-    /* background-color: yellow; */
     font-family: 'Indie Flower', cursive;
     color: rgb(255, 46, 46);
     margin: 10px;
-    /* border-style: double;
-    border-color: rgb(27, 88, 255);
-    border-width: 10px; */
     text-shadow: 4px 4px 3px black;
     height: 10vh;
+
 }
 
 .banner {
@@ -50,10 +59,11 @@ body {
     font-size: 50px;
     color: rgba(0, 0, 0, 0.568);
     /* padding-left: 20px; */
-    border-left: 10px solid #fff;
+    border-left: 5px solid #fff;
     text-shadow: 2px 2px 3px black;
     text-align: center;
     font-size: 30px;
+    padding: 5px;
 }
 
 .login_title {
@@ -79,7 +89,33 @@ body {
 
 .inputbox {
     width: 25vw;
-    border-radius: 7px;
+    /* border-radius: 7px; */
+    /* display: block; */
+    /* width: 100%; */
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 10px;
+    /* line-height: 1.5; */
+    color: #495057;
+    background-color: #fff;
+    /* background-clip: padding-box; */
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+}
+
+.google_button {
+    color: white;
+}
+
+.login_submit {
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.inputbox:hover {
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 /* The Modal (background) */
@@ -133,7 +169,7 @@ body {
 #myBtn {
     border-radius: 5px;
     margin: 30px;
-    background-color: orange;
+    background-color: rgba(252, 153, 3, 0.7);
     font-size: 30px;
     font-family: 'Indie Flower', cursive;
     padding: 10px;
@@ -202,4 +238,199 @@ body {
     /* border-color: black; */
     /* border-width: 10px; */
     padding: 5px;
+}
+
+#map {
+    height: 180px;
+    width: 180px;
+    border-style: solid;
+    border-color: black;
+    border-width: 10px;
+}
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 960px) {
+    .container {
+        display: flex;
+        /* flex-wrap: wrap; */
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        height: 95vh;
+        /* margin: 20px; */
+    }
+
+    .title {
+        display: flex;
+        justify-content: center;
+        font-size: 50px;
+        /* background-color: yellow; */
+        font-family: 'Indie Flower', cursive;
+        color: rgb(255, 46, 46);
+        /* margin: 10px; */
+        /* border-style: double;
+        border-color: rgb(27, 88, 255);
+        border-width: 10px; */
+        text-shadow: 4px 4px 3px black;
+        /* height: 10vh; */
+    }
+
+    .banner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        /* width: auto; */
+        /* height: auto; */
+    }
+
+    .quote {
+        display: flex;
+        width: auto;
+        /* margin: 0 auto; */
+        color: rgba(255, 0, 0, 0.568);
+        /* padding-left: 20px; */
+        /* border-left: 10px solid #fff; */
+        text-shadow: 2px 2px 3px black;
+        text-align: center;
+        font-size: 25px;
+    }
+
+
+    #myBtn {
+        /* border-radius: 5px; */
+        /* margin: 30px; */
+        background-color: rgba(252, 153, 3, 0.7);
+        font-size: 40px;
+        font-family: 'Indie Flower', cursive;
+        padding: 10px;
+    }
+
+    .login-card {
+        /* display: flex; */
+        /* justify-content: center;
+        border-style: solid;
+        border-radius: 20px;
+        border-width: 5px;
+        border-color: black;
+        font-size: 20px;
+        background-color: rgba(19, 188, 214, 0.8); */
+        /* padding: 5px; */
+        /* height: auto; */
+        /* text-align: center; */
+        /* margin: 50px; */
+        width: 70vw;
+    }
+
+    .inputbox {
+        width: 45vw;
+        border-radius: 7px;
+    }
+
+    .input_area {
+        display: flex;
+        /* justify-content: space-between; */
+        flex-wrap: wrap;
+    }
+
+    .essential_items {
+        width: 59.5vw;
+        text-align: center;
+        /* background-color: burlywood; */
+    }
+
+    .optional_items {
+        width: 70vw;
+        text-align: center;
+        /* background-color: rgba(19, 188, 214, 0.693); */
+    }
+
+
+}
+
+
+
+
+@media only screen and (max-height: 800px) {
+    .container {
+        display: flex;
+        /* flex-wrap: wrap; */
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        height: 95vh;
+        /* margin: 20px; */
+    }
+
+    .title {
+        display: flex;
+        justify-content: center;
+        font-size: 50px;
+        /* background-color: yellow; */
+        font-family: 'Indie Flower', cursive;
+        color: rgb(255, 46, 46);
+        /* margin: 10px; */
+        /* border-style: double;
+        border-color: rgb(27, 88, 255);
+        border-width: 10px; */
+        text-shadow: 4px 4px 3px black;
+        /* height: 10vh; */
+    }
+
+    .banner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        /* width: auto; */
+        /* height: auto; */
+    }
+
+    .quote {
+        display: flex;
+        width: auto;
+        /* margin: 0 auto; */
+        color: rgb(234, 255, 8);
+        /* padding-left: 20px; */
+        /* border-left: 10px solid #fff; */
+        text-shadow: 2px 2px 3px black;
+        text-align: center;
+        font-size: 25px;
+    }
+
+
+    #myBtn {
+        /* border-radius: 5px; */
+        /* margin: 30px; */
+        background-color: rgba(252, 153, 3, 0.7);
+        font-size: 40px;
+        font-family: 'Indie Flower', cursive;
+        padding: 10px;
+    }
+
+    .login-card {
+        /* display: flex; */
+        /* justify-content: center;
+        border-style: solid;
+        border-radius: 20px;
+        border-width: 5px;
+        border-color: black;
+        font-size: 20px;
+        background-color: rgba(19, 188, 214, 0.8); */
+        /* padding: 5px; */
+        /* height: auto; */
+        /* text-align: center; */
+        margin: 20px;
+        width: 70vw;
+    }
+
+    .inputbox {
+        width: 25vw;
+        border-radius: 7px;
+    }
 }

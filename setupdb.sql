@@ -1,3 +1,9 @@
+-- SELECT *
+-- FROM user_photo;
+SELECT *
+FROM users;
+-- SELECT *
+-- FROM user_hobby;
 -- CREATE DATABASE wspproject;
 -- \ c wspproject;
 -- CREATE TABLE users(
@@ -84,5 +90,10 @@
 --create user demo_admin with encrypted password 'demo_admin';
 -- Testing 1 by Tommy:
 -- INSERT INTO users (username,password,gender,interested_in_gender,date_of_birth,description) Values ('Tommy',1234,'M','F','2002-12-08','haha');
-SELECT *
-FROM users;
+-- INSERT INTO user_photo (user_id, file_name) Values ('1','testing');
+-- DELETE FROM user_photo;
+-- DELETE FROM users;
+-- Truncate table user_hobby;
+-- Truncate table user_photo;
+-- Truncate table users;
+-- ALTER TABLE users AUTO_INCREMENT = 1;

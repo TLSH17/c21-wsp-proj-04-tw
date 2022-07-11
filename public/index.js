@@ -2,6 +2,7 @@
 window.onload = async () => {
     initLoginForm();
     registerForm();
+    // upLoadPic();
     console.log("on load!")
 };
 
@@ -36,31 +37,42 @@ function registerForm() {
         console.log("Register!")
         e.preventDefault();
         const form = e.target;
-        const username = form.NewUserName.value;
-        const password = form.NewUserPassword.value;
-        const gender = form.NewGender.value;
-        const interested_in_gender = form.NewInterestedGender.value;
-        const date_of_birth = form.NewBirth.value;
-        const description = form.NewDescription.value;
+        const formData = new FormData();
 
-        console.log(username, password, gender, interested_in_gender, date_of_birth, description)
+        formData.append("username", form.NewUserName.value);
+        formData.append("password", form.NewUserPassword.value);
+        formData.append("nickName", form.NewNickName.value);
+        formData.append("gender", form.NewGender.value);
+        formData.append("interested_in_gender", form.NewInterestedGender.value);
+        formData.append("date_of_birth", form.NewBirth.value);
+        formData.append("description", form.NewDescription.value);
+        formData.append("nationality", form.NewNationality.value);
+        formData.append("email", form.NewUserEmail.value);
+        formData.append("interestedType", form.NewInterestedType.value);
+        formData.append("height", form.NewHeight.value);
+        formData.append("zodiac_signs", form.NewZodiac.value);
+
+        formData.append("image", form.image.files[0]);
+
+        console.log("formdata" + formData);
+        console.log("form" + form)
 
         const resp = await fetch("/newUser", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username, password, gender, interested_in_gender, date_of_birth, description }),
-        });
-        // console.log(resp);
-        const result = await resp.json();
-        // console.log(result);
+            body: formData,
 
-        // if (result.success) {
-        //     alert("Success !!!");
-        //     //   form.reset();
-        // } else {
-        //     alert(result.message);
-        // }
+        });
+
+        const result = await resp.json();
+
+        if (result.success) {
+            console.log("Success Register");
+            alert("Success. You can log in now.");
+            window.location.href = "/"
+        } else if (!result.success) {
+            console.log("The account has been registered");
+            alert("The account has been registered. Please choose another name.");
+        }
+
     });
 }

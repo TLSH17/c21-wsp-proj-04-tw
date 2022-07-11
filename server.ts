@@ -50,6 +50,7 @@ const PORT = 8080
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(isLoggedInStatic, express.static(path.join(__dirname, "private"))); // for all users
+app.use("/image", express.static(path.join(__dirname, "uploads"))); // for upload pic
 
 
 app.use((req, res) => {

@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 //import { logger } from "../logger";
 import path from "path";
 //import { Product } from "../models";
-import {dbUser} from "../server"
+import { dbUser } from "../server"
 import { userInfo } from "os";
 import { Useraccount } from "../models";
 
@@ -22,23 +22,23 @@ profileRoutes.post("/edit", editMyProfile);
 async function getMyProfile(req: Request, res: Response) {
   try {
     const user = req.session["user"]
-  const result = (await dbUser.query('select * from users where id = $1', [user?.id])).rows
-  res.json(result)
-} catch (err) {
-  console.log(err);
-  res.status(400).json({ message: "internal server error" });
-}
+    const result = (await dbUser.query('select * from users where id = $1', [user?.id])).rows
+    res.json(result)
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ message: "internal server error" });
+  }
 }
 
 //edit and change my profile
 //need further develop
 async function editMyProfile(req: Request, res: Response) {
   try {
-    const {id, username, gender} = req.body
+    const { id, username, gender } = req.body
     const result = (await dbUser.query('update users set username = $1, gender = $2 where id = $3', [username, gender, id]))
     console.log(result)
-    res.json({success:true})
-    
+    res.json({ success: true })
+
 
   } catch (err) {
     console.log(err);
@@ -54,50 +54,50 @@ async function filter(req: Request, res: Response) {
     const { gender } = req.body
     console.log(gender)
     let page = parseInt(req.query.page as string, 10);
-    
+
 
     if (isNaN(page)) {
-        page = 1;
-      }
+      page = 1;
+    }
     const totalPageNum = (await dbUser.query('select * from users where gender = $1', [`${gender}`])).rows.length
     if (page > totalPageNum) {
-        page = 1;
-      }
+      page = 1;
+    }
     if (page === 0) {
-        page = totalPageNum;
-      }
+      page = totalPageNum;
+    }
 
-          //Provide info
-          const userInfo = (await dbUser.query('select * from users where gender = $1', [`${gender}`])).rows[page-1]
-          console.log(userInfo)
-    
-          const result = (await dbUser.query('select * from users where gender = $1', [`${gender}`])).rows[page-1].id
-    
-          //Provide hobby
-          const hobby_id = (await dbUser.query(`select hobby_id from user_hobby where user_id = '${result}'`)).rows;
-          let hobbyArr: object[]  = []
-          for(let i of hobby_id) {
-          let a = (await dbUser.query(`select * from hobby where id = ${i.hobby_id}`)).rows[0];
-          //console.log(a)
-          hobbyArr.push(a)
-        }
-          console.log(hobbyArr)
-    
-    
-          //Provide image
-          
-          
-        //const result = (await dbUser.query(`select id from users where username = '${page}'`)).rows[0].id;
-        const image_arr = (await dbUser.query(`select file_name from user_photo where user_id = '${result}'`)).rows;
-        console.log(image_arr)
-    
-        res.json({ current_page: page, total_page: totalPageNum, image: image_arr, user_info: userInfo, hobby: hobbyArr})
-    
- 
-} catch (err) {
-  console.log(err);
-  res.status(400).json({ message: "internal server error" });
-}
+    //Provide info
+    const userInfo = (await dbUser.query('select * from users where gender = $1', [`${gender}`])).rows[page - 1]
+    console.log(userInfo)
+
+    const result = (await dbUser.query('select * from users where gender = $1', [`${gender}`])).rows[page - 1].id
+
+    //Provide hobby
+    const hobby_id = (await dbUser.query(`select hobby_id from user_hobby where user_id = '${result}'`)).rows;
+    let hobbyArr: object[] = []
+    for (let i of hobby_id) {
+      let a = (await dbUser.query(`select * from hobby where id = ${i.hobby_id}`)).rows[0];
+      //console.log(a)
+      hobbyArr.push(a)
+    }
+    console.log(hobbyArr)
+
+
+    //Provide image
+
+
+    //const result = (await dbUser.query(`select id from users where username = '${page}'`)).rows[0].id;
+    const image_arr = (await dbUser.query(`select file_name from user_photo where user_id = '${result}'`)).rows;
+    console.log(image_arr)
+
+    res.json({ current_page: page, total_page: totalPageNum, image: image_arr, user_info: userInfo, hobby: hobbyArr })
+
+
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ message: "internal server error" });
+  }
 }
 
 
@@ -106,58 +106,58 @@ async function filter(req: Request, res: Response) {
 
 
 async function getProfile(req: Request, res: Response) {
-    
-    
-    
-    //const { username} = req.body;
-    //console.log(username)
 
-    try {
+
+
+  //const { username} = req.body;
+  //console.log(username)
+
+  try {
 
     let page = parseInt(req.query.page as string, 10);
-    
+
 
     if (isNaN(page)) {
-        page = 1;
-      }
+      page = 1;
+    }
     const totalPageNum = (await dbUser.query('select * from users')).rows.length
     if (page > totalPageNum) {
-        page = 1;
-      }
+      page = 1;
+    }
     if (page === 0) {
-        page = totalPageNum;
-      }
+      page = totalPageNum;
+    }
 
-      
 
-      //Provide info
-      const userInfo = (await dbUser.query('select * from users')).rows[page-1]
-      console.log(userInfo)
 
-      const result = (await dbUser.query('select * from users')).rows[page-1].id
+    //Provide info
+    const userInfo = (await dbUser.query('select * from users')).rows[page - 1]
+    console.log(userInfo)
 
-      //Provide hobby
-      const hobby_id = (await dbUser.query(`select hobby_id from user_hobby where user_id = '${result}'`)).rows;
-      let hobbyArr: object[]  = []
-      for(let i of hobby_id) {
+    const result = (await dbUser.query('select * from users')).rows[page - 1].id
+
+    //Provide hobby
+    const hobby_id = (await dbUser.query(`select hobby_id from user_hobby where user_id = '${result}'`)).rows;
+    let hobbyArr: object[] = []
+    for (let i of hobby_id) {
       let a = (await dbUser.query(`select * from hobby where id = ${i.hobby_id}`)).rows[0];
       //console.log(a)
       hobbyArr.push(a)
     }
-      console.log(hobbyArr)
+    console.log(hobbyArr)
 
 
-      //Provide image
-      
-      
+    //Provide image
+
+
     //const result = (await dbUser.query(`select id from users where username = '${page}'`)).rows[0].id;
     const image_arr = (await dbUser.query(`select file_name from user_photo where user_id = '${result}'`)).rows;
     console.log(image_arr)
 
-    res.json({ current_page: page, total_page: totalPageNum, image: image_arr, user_info: userInfo, hobby: hobbyArr})
+    res.json({ current_page: page, total_page: totalPageNum, image: image_arr, user_info: userInfo, hobby: hobbyArr })
     //res.json({success: true})
-    } catch (err) {
-        
-        res.status(500).json({ success: false, message: "internal server error" });
-      }
+  } catch (err) {
+
+    res.status(500).json({ success: false, message: "internal server error" });
+  }
 }

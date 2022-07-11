@@ -4,7 +4,7 @@ import { Useraccount } from "../models";
 // import { isLoggedInAPI } from "../guards";
 import { dbUser } from "../server";
 import { formidableMiddleware } from "../formidable";
-import { hashPassword, checkPassword } from "..//hash";
+import { hashPassword, checkPassword } from "../hash";
 
 export const userRoutes = express.Router();
 export const newUserRoutes = express.Router();
@@ -46,7 +46,7 @@ async function login(req: Request, res: Response, next: NextFunction) {
   const user = users[0];
 
   if (!user) {
-    return res.status(400).json({ sucess: false, message: "wrong account name" });
+    return res.status(400).json({ success: false, message: "wrong account name" });
   };
 
   const match = await checkPassword(password, user.password);
@@ -63,10 +63,10 @@ async function login(req: Request, res: Response, next: NextFunction) {
     console.log("Wrong!")
   }
 
-  req.session["user"] = { id: user.id, username: user.username };
-  console.log(req.session["user"])
-  res.json({ success: true });
-  console.log("OK now!");
+  // req.session["user"] = { id: user.id, username: user.username };
+  // console.log(req.session["user"])
+  // res.json({ success: true });
+  // console.log("OK now!");
   // next();
 }
 

@@ -6,7 +6,15 @@ export interface Useraccount {
     password: string;
     id: number;
     nickname: string;
+    gender: string;
+    interested_in_gender: string;
+    date_of_birth: string;
+    description: string;
+    nationality: string;
     email: string;
+    interestedType: string;
+    height: string;
+    zodiac_signs: string;
 }
 
 

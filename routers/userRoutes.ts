@@ -11,6 +11,8 @@ export const newUserRoutes = express.Router();
 
 // method: POST, path pattern: /login & /newUser
 userRoutes.post("/login", login);
+//userRoutes.post("/hash", processHashPassword);
+
 newUserRoutes.post("/newUser", formidableMiddleware, newUser);
 
 async function login(req: Request, res: Response, next: NextFunction) {

@@ -1,6 +1,11 @@
 * {
     box-sizing: border-box;
 }
+
+#messages { list-style-type: none; margin: 0; padding: 0; background: #efefef; z-index: 100; width: 500px; height: 500px;}
+      #messages > li { padding: 0.5rem 1rem; }
+      #messages > li:nth-child(odd) { background: #efefef; }
+
 .title {
     font-family:'indie Flower', cursive;
     color:#fd2670;

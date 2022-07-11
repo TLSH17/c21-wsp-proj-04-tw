@@ -39,6 +39,7 @@ async function login(req: Request, res: Response, next: NextFunction) {
   }
 
   req.session["user"] = { id: user.id, username: user.username };
+  console.log(req.session["user"])
   res.json({ success: true });
   console.log("OK now!");
   // next();

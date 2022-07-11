@@ -44,7 +44,7 @@ app.use((req, res, next) => {
 app.use(userRoutes);
 app.use(newUserRoutes);
 app.use(profileRoutes);
-app.use(newUserRoutes);
+//app.use(newUserRoutes);
 
 const PORT = 8080
 

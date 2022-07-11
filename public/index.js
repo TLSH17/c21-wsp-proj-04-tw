@@ -25,7 +25,7 @@ function initLoginForm() {
             console.log("result.Not.success");
             alert("Invalid Username or Password. Please try again.");
         } else {
-            window.location.href = "/homepage.html";
+            window.location.href = "/member.html";
         }
     });
 }

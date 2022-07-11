@@ -11,13 +11,21 @@ export const newUserRoutes = express.Router();
 
 // method: POST, path pattern: /login & /newUser
 userRoutes.post("/login", login);
+userRoutes.post("/hash", processHashPassword);
+
 newUserRoutes.post("/newUser", formidableMiddleware, newUser);
 
 // userRoutes.get("/users/info", isLoggedInAPI, getUserInfo);
-//async function processHashPassword (req: Request, res: Response) {
-//  const {username} = req.body;
-//  const result = (await dbUser.query('select password from users')).rows
-//}
+async function processHashPassword (req: Request, res: Response) {
+  const {username} = req.body;
+  console.log(username)
+  const result = (await dbUser.query(`SELECT * FROM users WHERE users.username = $1`, [username])).rows[0].password;
+  console.log(result)
+  const a = await hashPassword(result)
+  console.log(a)
+  await dbUser.query(`Update users set password = $1 where username = $2`, [a, username])
+  res.json({success:true})
+}
 
 async function login(req: Request, res: Response, next: NextFunction) {
   const { username, password } = req.body;
@@ -63,10 +71,10 @@ async function login(req: Request, res: Response, next: NextFunction) {
     console.log("Wrong!")
   }
 
-  req.session["user"] = { id: user.id, username: user.username };
-  console.log(req.session["user"])
-  res.json({ success: true });
-  console.log("OK now!");
+  //req.session["user"] = { id: user.id, username: user.username };
+  //console.log(req.session["user"])
+  //res.json({ success: true });
+  //console.log("OK now!");
   // next();
 }
 

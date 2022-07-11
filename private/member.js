@@ -13,7 +13,7 @@ let counter = 1;
 async function loadProfile(page) {
  
 
-  const resp = await fetch(`/profiles?page=${page}`, {
+  const resp = await fetch(`/member/profiles?page=${page}`, {
     method: "GET",
   });
   const result = await resp.json();

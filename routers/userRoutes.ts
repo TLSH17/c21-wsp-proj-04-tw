@@ -14,6 +14,10 @@ userRoutes.post("/login", login);
 newUserRoutes.post("/newUser", formidableMiddleware, newUser);
 
 // userRoutes.get("/users/info", isLoggedInAPI, getUserInfo);
+//async function processHashPassword (req: Request, res: Response) {
+//  const {username} = req.body;
+//  const result = (await dbUser.query('select password from users')).rows
+//}
 
 async function login(req: Request, res: Response, next: NextFunction) {
   const { username, password } = req.body;

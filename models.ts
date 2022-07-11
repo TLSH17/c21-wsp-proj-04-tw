@@ -23,5 +23,13 @@ declare module 'express-session' {
         user: { [key: string]: any };
         newUser: { [key: string]: any };
         form: { [key: string]: any };
+        
     }
 }
+
+declare module "express" { 
+    export interface Request {
+      session: any
+    }
+  }
+

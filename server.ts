@@ -1,7 +1,7 @@
 import express from 'express'
 import path from 'path';
 import expressSession from 'express-session';
-import { isLoggedInStatic } from "./guards";
+import { isLoggedInStatic} from "./guards";
 import pg from "pg";
 import dotenv from "dotenv";
 dotenv.config();
@@ -43,7 +43,7 @@ app.use((req, res, next) => {
 
 app.use(userRoutes);
 app.use(newUserRoutes);
-app.use(profileRoutes);
+//app.use("/member", isLoggedInAPI, profileRoutes);
 //app.use(newUserRoutes);
 
 const PORT = 8080

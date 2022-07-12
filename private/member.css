@@ -2,13 +2,27 @@
     box-sizing: border-box;
 }
 
-#messages { list-style-type: none; margin: 0; padding: 0; background: #efefef; z-index: 100; width: 500px; height: 500px;}
-      #messages > li { padding: 0.5rem 1rem; }
-      #messages > li:nth-child(odd) { background: #efefef; }
+#messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background: #efefef;
+    z-index: 100;
+    width: 500px;
+    height: 500px;
+}
+
+#messages>li {
+    padding: 0.5rem 1rem;
+}
+
+#messages>li:nth-child(odd) {
+    background: #efefef;
+}
 
 .title {
-    font-family:'indie Flower', cursive;
-    color:#fd2670;
+    font-family: 'indie Flower', cursive;
+    color: #fd2670;
     font-size: 20px;
 }
 
@@ -19,7 +33,12 @@ body {
 }
 
 .container {
+    width: 100%;
     display: flex;
+
+    /* border-style: solid; */
+    /* border-width: 5px;
+    border-color: black; */
 }
 
 .side {
@@ -28,7 +47,8 @@ body {
     background-color: #fff;
     height: 100%;
     min-height: 100vh;
-    border-right: 1px solid #eeeeee;
+    border-right: 2px solid #eeeeee;
+    padding: 5px;
 }
 
 .side .header {
@@ -62,32 +82,37 @@ body {
 
 .side .menu ul li {
     list-style: none;
-    margin: 0 10px; 
+    margin: 0 10px;
     font-weight: 700;
     font-size: 15px;
     letter-spacing: 0.5px;
 }
+
 .side .menu .active {
     border-bottom: 3px solid #fd5068;
     padding: 2px;
 }
-.side .messages{
+
+.side .messages {
     padding: 10px 20px;
     display: flex;
     align-items: center;
     transition: 0.2 box-shadow
 }
+
 .side .messages .avatar img {
     width: 70px;
     height: 70px;
     border-radius: 70px;
 }
+
 .side .messages .user {
     padding: 0 10px;
     font-weight: 500;
     letter-spacing: 0.5px;
     font-size: 18px;
 }
+
 .side .messages .text {
     width: 200px;
     white-space: nowrap;
@@ -98,10 +123,20 @@ body {
     font-size: 15px;
     opacity: 0.8;
 }
+
+.acceptFriend {
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+}
+
+
+
 .side .messages:hover {
     box-shadow: 0 0 15px 0 rgba(43, 78, 78, 0.1);
     border-right: 5px solid #fd5068;
 }
+
 .content {
     width: 100%;
     display: flex;
@@ -109,10 +144,12 @@ body {
     align-items: center;
     flex-direction: column;
 }
+
 .content .card {
     position: relative;
     height: 500px;
 }
+
 .content .card .user {
     width: 380px;
     height: 450px;
@@ -120,60 +157,71 @@ body {
     border-radius: 10px;
     box-shadow: 0 1px 10px 0 rgba(0, 20, 0.5);
 }
+
 .content .card .user .profile {
     position: absolute;
     bottom: 100;
     left: 20px;
 }
+
 .content .card .user .name {
     color: #fff;
     font-size: 32px;
     font-weight: 700;
     letter-spacing: 0.5px;
     text-shadow: 1px 1px 3px #444;
-    position: relative; 
+    position: relative;
     top: -50px;
-    
+
 }
+
 .content .card .user .name span {
     font-size: 26px;
-    
+
 }
+
 .content .card .local {
     display: flex;
     align-items: center;
     padding: 0 0 20px 0;
 }
+
 .content .card .local i {
     margin: 5px;
     color: #fff;
-    position: relative; 
+    position: relative;
     top: -60px;
 }
+
 .content .card .local span {
     color: #fff;
     padding: 0 10px;
     text-shadow: 1px 1px 3px #444;
-    position: relative; 
+    position: relative;
     top: -60px;
 }
+
 .content .buttons {
     margin-top: 10px;
     display: flex;
     align-items: center;
 }
+
 .content .buttons .no i {
     color: #fd2e79;
     font-size: 33px;
 }
+
 .content .buttons .star i {
     color: #2bb1ff;
     font-size: 22px;
 }
+
 .content .buttons .heart i {
     color: #11e298;
     font-size: 32px;
 }
+
 .no,
 .star,
 .heart {
@@ -188,14 +236,24 @@ body {
     margin: 20px;
     transition: 0.2s transform;
 }
+
 .no:hover,
 .star:hover,
 .heart:hover {
     transform: scale(1.1);
 }
+
 .content .buttons .star {
     width: 60px;
     height: 60px;
+}
+
+
+.leaflet-container {
+    height: 400px;
+    width: 600px;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 

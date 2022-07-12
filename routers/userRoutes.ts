@@ -8,12 +8,18 @@ import { hashPassword, checkPassword } from "../hash";
 
 export const userRoutes = express.Router();
 export const newUserRoutes = express.Router();
+export const showUser = express.Router();
 
 // method: POST, path pattern: /login & /newUser
 userRoutes.post("/login", login);
-//userRoutes.post("/hash", processHashPassword);
 
+//userRoutes.post("/hash", processHashPassword);
 newUserRoutes.post("/newUser", formidableMiddleware, newUser);
+
+//loadother profiles
+showUser.post("/member/likeProfile", likeProfile);
+
+
 
 async function login(req: Request, res: Response, next: NextFunction) {
   const { username, password } = req.body;
@@ -34,11 +40,13 @@ async function login(req: Request, res: Response, next: NextFunction) {
   const match = await checkPassword(password, user.password);
 
   if (match) {
-    if (req.session) {
-      req.session['user'] = {
-        id: user.id
-      };
-    }
+    // if (req.session) {
+    req.session['user'] = {
+      id: user.id,
+      name: user.name,
+    };
+    // console.log(req.session["user"]);
+    // }
     res.json({ success: true });
   } else {
     res.status(400).json({ success: false, message: "invalid username/password" });
@@ -63,7 +71,8 @@ async function newUser(req: Request, res: Response, next: NextFunction) {
   const interestedType = form.fields.interestedType as String;
   const height = form.fields.height as String;
   const zodiac_signs = form.fields.zodiac_signs as String;
-  const image = form.files.image;
+  const image = form.files.image?.["newFilename"];
+
 
   //hashing
   let hashedPassword = await hashPassword(password);
@@ -74,9 +83,8 @@ async function newUser(req: Request, res: Response, next: NextFunction) {
   if (checkUserExist !== -1) {
     console.log("Already exists!!!!");
     return res.status(400).json({ success: false, message: "Already exists!!!!" });
-  } else {
-    next();
   }
+
 
   // console.log(checkUserExist);
 
@@ -86,16 +94,28 @@ async function newUser(req: Request, res: Response, next: NextFunction) {
       let newlyCreatedUserid = result.rows[0].id;
       dbUser.query(/*sql */`INSERT INTO user_photo (user_id, file_name) Values ($1, $2)`,
         [newlyCreatedUserid, image]);
+    });
 
-
-    }
-  );
-  res.json({ success: true });
-
+  res.json({ success: true, message: "Account successfully created" });
+  return;
 }
 
 
+async function likeProfile(req: Request, res: Response, next: NextFunction) {
+  const { like } = req.body;
+  // const like = req.body.like
+  // console.log("display!" + username, password);
 
+  const my_self = req.session["user"]
+  const my_id = my_self.id;
+  console.log(my_id)
+
+  await dbUser.query(/*sql*/`INSERT INTO friendship_level (user_id_given, friendship_level) Values ($1,$2)`,
+    [my_id, 1]);
+  // res.status(200).json({...})
+  // res.json({ success: true, message: "input friendship_level" });
+  return;
+}
 
 
 

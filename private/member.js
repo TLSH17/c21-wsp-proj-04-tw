@@ -2,16 +2,15 @@
 
 window.onload = async () => {
   loadProfile();
-};
+  likeProfile();
 
+  console.log("On load")
+};
 
 let page = 1;
 let counter = 1;
 
-
-
 async function loadProfile(page) {
- 
 
   const resp = await fetch(`/member/profiles?page=${page}`, {
     method: "GET",
@@ -39,17 +38,22 @@ async function loadProfile(page) {
   console.log(hobbyStr);
 
   //process image
+
   const imageArr = result.image;
+  const imageResult = imageArr[0].file_name;
+  console.log("REsult!!:" + imageResult);
   console.log(imageArr);
+
+
   let imageStr = `<div class="carousel-item active">
-    <img src="../image/${imageArr[0].file_name}" class="d-block w-100" alt="..."/>
+    <img src="./image/${imageResult}" class="d-block w-100" alt="..."/>
   </div>`;
   if (imageArr.length === 1) {
     return;
   }
   for (let i = 1; i < imageArr.length; i++) {
     imageStr += `<div class="carousel-item">
-        <img src="../image/${imageArr[i].file_name}" class="d-block w-100" alt="..."/>
+        <img src="./image/${imageArr[i].file_name}" class="d-block w-100" alt="..."/>
       </div>`;
   }
   console.log(imageStr);
@@ -60,9 +64,8 @@ async function loadProfile(page) {
     return;
   }
   for (let i = 1; i < imageArr.length; i++) {
-    indicatorStr += `<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}" aria-label="Slide ${
-      i + 1
-    }"></button>`;
+    indicatorStr += `<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}" aria-label="Slide ${i + 1
+      }"></button>`;
   }
 
   let htmlStr = `
@@ -92,13 +95,13 @@ async function loadProfile(page) {
   document
     .querySelector(".carousel-control-next")
     .addEventListener("click", () => {
-      if(PAGE === 1){
+      if (PAGE === 1) {
         counter = 1
       }
-    
+
       counter += 1
-     
-      
+
+
       console.log("counter: ", counter)
       loadProfile(counter);
     });
@@ -106,16 +109,16 @@ async function loadProfile(page) {
   document
     .querySelector(".carousel-control-prev")
     .addEventListener("click", () => {
-      if(PAGE === totalPage) {
+      if (PAGE === totalPage) {
         counter = totalPage
       }
-     
+
       counter -= 1
-      
+
       console.log("counter: ", counter)
       loadProfile(counter);
     });
-  
+
   //console.log(`page: ${page}`)
 }
 
@@ -125,3 +128,30 @@ async function loadProfile(page) {
 //  item.innerHTML =     `<ul id="messages"></ul>`;
 //  invisible.appendChild(item);
 //  })
+
+
+
+async function likeProfile() {
+  document.querySelectorAll("#heart").forEach((ele) =>
+    ele.addEventListener("click", async (e) => {
+      const id = e.target.parentElement.dataset.id;
+      const like = true;
+      // const resp = await fetch(`/member/likeProfile`, { method: "POST" });
+      const resp = await fetch(`/member/likeProfile`, {
+        method: "POST",
+        handler: { "Content-Type": "application/json", },
+        body: JSON.stringify({ like }),
+      })
+      const result = await resp.json
+
+      if (resp.status === 400) {
+        const result = await resp.json();
+        alert(result.message);
+      }
+    })
+  )
+};
+
+
+// const resultFromFE = req.body
+// resultFromFE.like -> ture

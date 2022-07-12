@@ -5,6 +5,7 @@ import { Useraccount } from "../models";
 import { dbUser } from "../server";
 import { formidableMiddleware } from "../formidable";
 import { hashPassword, checkPassword } from "../hash";
+import formidable from "formidable";
 
 export const userRoutes = express.Router();
 export const newUserRoutes = express.Router();
@@ -71,7 +72,7 @@ async function newUser(req: Request, res: Response, next: NextFunction) {
   const interestedType = form.fields.interestedType as String;
   const height = form.fields.height as String;
   const zodiac_signs = form.fields.zodiac_signs as String;
-  const image = form.files.image?.["newFilename"];
+  const image = (form.files.image as formidable.File)?.["newFilename"];
 
 
   //hashing
@@ -116,6 +117,23 @@ async function likeProfile(req: Request, res: Response, next: NextFunction) {
   // res.json({ success: true, message: "input friendship_level" });
   return;
 }
+
+async function dislikeProfile(req: Request, res: Response, next: NextFunction) {
+  const { like } = req.body;
+  // const like = req.body.like
+  // console.log("display!" + username, password);
+
+  const my_self = req.session["user"]
+  const my_id = my_self.id;
+  console.log(my_id)
+
+  await dbUser.query(/*sql*/`INSERT INTO friendship_level (user_id_given, friendship_level) Values ($1,$2)`,
+    [my_id, -1]);
+  // res.status(200).json({...})
+  // res.json({ success: true, message: "input friendship_level" });
+  return;
+}
+
 
 
 

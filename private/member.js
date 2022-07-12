@@ -3,7 +3,7 @@
 window.onload = async () => {
   loadProfile();
   likeProfile();
-
+  disLikeProfile();
   console.log("On load")
 };
 
@@ -152,6 +152,27 @@ async function likeProfile() {
   )
 };
 
+
+async function disLikeProfile() {
+  document.querySelectorAll("#cross").forEach((ele) =>
+    ele.addEventListener("click", async (e) => {
+      const id = e.target.parentElement.dataset.id;
+      const disLike = true;
+      // const resp = await fetch(`/member/likeProfile`, { method: "POST" });
+      const resp = await fetch(`/member/dislikeProfile`, {
+        method: "POST",
+        handler: { "Content-Type": "application/json", },
+        body: JSON.stringify({ disLike }),
+      })
+      const result = await resp.json
+
+      if (resp.status === 400) {
+        const result = await resp.json();
+        alert(result.message);
+      }
+    })
+  )
+};
 
 // const resultFromFE = req.body
 // resultFromFE.like -> ture

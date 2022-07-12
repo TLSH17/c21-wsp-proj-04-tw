@@ -13,18 +13,6 @@
         @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
     </style>
 
-    <!-- map function -->
-
-    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
-        crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
-        integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
-        crossorigin=""></script>
-
-
     <title>WSP Project</title>
 </head>
 
@@ -33,18 +21,6 @@
         <div class="title col-sm-4">
             LAVA
         </div>
-
-        <div id="map" style="width: 600px; height: 400px;"></div>
-
-        <div class="GPS Board">
-            <p>Click the button to get your current location.</p>
-            <div id="currentLocation"></div>
-        </div>
-
-
-        <button onclick="getLocation()">Try It</button>
-
-        <!-- <div id="map"></div> -->
 
         <div class="banner">
             <div class="quote">
@@ -203,67 +179,5 @@
     crossorigin="anonymous"></script>
 <script type="module" src="index.js"></script>
 <script type="module" src="popupWindow.js"></script>
-<!-- map function -->
-<script>
-    var x = document.getElementById("currentLocation");
-
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
-        }
-    }
-
-    function showPosition(position) {
-        x.innerHTML = "Latitude: " + position.coords.latitude +
-            "<br>Longitude: " + position.coords.longitude;
-    }
-</script>
-<!-- leaflet gps-->
-<script>
-
-    var map = L.map('map').setView([51.505, -0.09], 13);
-
-    var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-
-    var marker = L.marker([51.5, -0.09]).addTo(map)
-        .bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
-
-    var circle = L.circle([51.508, -0.11], {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5,
-        radius: 500
-    }).addTo(map).bindPopup('I am a circle.');
-
-    var polygon = L.polygon([
-        [51.509, -0.08],
-        [51.503, -0.06],
-        [51.51, -0.047]
-    ]).addTo(map).bindPopup('I am a polygon.');
-
-
-    var popup = L.popup()
-        .setLatLng([51.513, -0.09])
-        .setContent('I am a standalone popup.')
-        .openOn(map);
-
-    function onMapClick(e) {
-        popup
-            .setLatLng(e.latlng)
-            .setContent('You clicked the map at ' + e.latlng.toString())
-            .openOn(map);
-    }
-
-    map.on('click', onMapClick);
-
-</script>
-
-
-
 
 </html>

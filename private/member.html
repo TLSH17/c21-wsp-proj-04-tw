@@ -14,16 +14,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        
+
     <!--<link rel="stylesheet" href="index.css">-->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
     </style>
+
+    <!-- map function -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+        integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+        crossorigin=""></script>
+
     <title>LAVA</title>
+
 </head>
 
 <body>
-    <div class="title">LAVA</div>
+    <!-- <div class="title">LAVA</div> -->
     <div class="container">
         <div class="side">
             <div class="header">
@@ -54,6 +67,18 @@
 
             
 
+
+            <!-- MAP -->
+            <div id="map" style="width: 600px; height: 400px;"></div>
+            <div id="currentLocation"></div>
+
+            <div class="GPS Board">
+                <p>Click the button to get your current location.</p>
+                <button id="getLocationButton">Try It</button>
+            </div>
+
+            <!-- map -->
+
         </div>
 
         <div class="content">
@@ -62,7 +87,9 @@
 
             </div>
         </div>
-        <!-- <div class="subtitle">Testing - Bootstrap is ready</div>
+    </div>
+    </div>
+    <!-- <div class="subtitle">Testing - Bootstrap is ready</div>
 
     <form id="form-login">
         <h3 class="admin-title">Log in</h3>
@@ -75,10 +102,17 @@
     </form> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+<<<<<<< HEAD
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
 <script type="module" src="member.js"></script>
+=======
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script type="module" src="member.js"></script>
+    <script type="module" src="getlocation.js"></script>
+>>>>>>> e7b37d4a22c792677704feda2267251ee3242ced
 </body>
 
 

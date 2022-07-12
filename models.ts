@@ -15,6 +15,7 @@ export interface Useraccount {
     interestedType: string;
     height: string;
     zodiac_signs: string;
+    image: string;
 }
 
 
@@ -23,15 +24,15 @@ declare module 'express-session' {
         user: { [key: string]: any };
         newUser: { [key: string]: any };
         form: { [key: string]: any };
-        
+
     }
 }
 
-declare module "express" { 
+declare module "express" {
     export interface Request {
-      session: any
+        session: any
     }
-  }
+}
 
   export interface Chatroom {
     id: number;

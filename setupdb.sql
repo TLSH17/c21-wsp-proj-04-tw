@@ -1,9 +1,11 @@
--- SELECT *
--- FROM user_photo;
 SELECT *
-FROM users;
+FROM user_photo;
+-- SELECT *
+-- FROM users;
 -- SELECT *
 -- FROM user_hobby;
+-- SELECT *
+-- FROM friendship_level;
 -- CREATE DATABASE wspproject;
 -- \ c wspproject;
 -- CREATE TABLE users(
@@ -31,7 +33,8 @@ FROM users;
 --     FOREIGN KEY (user_id) REFERENCES users (id),
 --     created_at DATE,
 --     updated_at DATE,
---     active BOOLEAN
+--     active BOOLEAN,
+--     file_name VARCHAR(255) NOT NULL
 -- );
 -- CREATE TABLE hobby(
 --     id SERIAL PRIMARY KEY,
@@ -100,3 +103,4 @@ FROM users;
 -- Truncate table user_photo;
 -- Truncate table users;
 -- ALTER TABLE users AUTO_INCREMENT = 1;
+-- drop table user_photo;

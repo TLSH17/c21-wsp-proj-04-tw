@@ -15,9 +15,10 @@ export const isLoggedInAPI = (req: Request, res: Response, next: NextFunction) =
         console.log("hihi")
         res.json("unauthorized");
         return;
-        
+
     }
     next();
-  };
+};
+
 
 

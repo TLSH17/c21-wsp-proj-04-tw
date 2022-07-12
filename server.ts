@@ -7,8 +7,8 @@ import { Server as SocketIO } from "socket.io";
 import pg from "pg";
 import dotenv from "dotenv";
 dotenv.config();
-import { userRoutes } from "./routers/userRoutes";
-import { newUserRoutes } from "./routers/userRoutes";
+import { userRoutes, newUserRoutes, showUser } from "./routers/userRoutes";
+// import { newUserRoutes } from "./routers/userRoutes";
 import { profileRoutes } from "./routers/profileRoutes";
 import { chatroomRoutes } from "./routers/chatroomRoutes";
 
@@ -71,6 +71,7 @@ app.use((req, res, next) => {
 
 app.use(userRoutes);
 app.use(newUserRoutes);
+app.use(showUser);
 app.use("/member", isLoggedInAPI, profileRoutes);
 app.use("/api/chatroom", isLoggedInAPI, chatroomRoutes);
 //app.use(newUserRoutes);
@@ -79,7 +80,7 @@ const PORT = 8080
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(isLoggedInStatic, express.static(path.join(__dirname, "private"))); // for all users
-app.use("/image", express.static(path.join(__dirname, "uploads"))); // for upload pic
+app.use("/image", express.static(path.join(__dirname, "private/image"))); // for upload pic
 
 
 app.use((req, res) => {

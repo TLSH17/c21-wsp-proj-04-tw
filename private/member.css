@@ -114,7 +114,7 @@ body {
 }
 .side .menu .active {
     border-bottom: 3px solid #fd5068;
-    padding: 2px;
+    padding: 15px;
 }
 .side .messages{
     padding: 10px 20px;
@@ -154,6 +154,7 @@ body {
     padding: 260px 0;
     align-items: center;
     flex-direction: column;
+    justify-content: space-between;
 }
 .content .card {
     position: relative;

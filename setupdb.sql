@@ -58,15 +58,18 @@ FROM users;
 --     FOREIGN KEY (user_id) REFERENCES users(id),
 --     is_vip BOOLEAN
 -- );
+-- DROP TABLE IF EXISTS chatroom;
 -- CREATE TABLE chatroom(
 --     id SERIAL PRIMARY KEY,
+--     name VARCHAR,
 --     user_id_left integer,
 --     user_id_right integer,
 --     FOREIGN KEY (user_id_left) REFERENCES users(id),
 --     FOREIGN KEY (user_id_right) REFERENCES users(id),
---     time_started TIMESTAMP,
+--     time_started TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
 --     time_closed TIMESTAMP
 -- );
+-- DROP TABLE IF EXISTS messages;
 -- CREATE TABLE message(
 --     id SERIAL PRIMARY KEY,
 --     chatroom_id integer,
@@ -76,7 +79,7 @@ FROM users;
 --     FOREIGN KEY (sender) REFERENCES users(id),
 --     FOREIGN KEY (receiver) REFERENCES users(id),
 --     content text not NULL,
---     time_started TIMESTAMP,
+--     time_started TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
 --     time_closed TIMESTAMP
 -- );
 -- CREATE TABLE find_nearby(

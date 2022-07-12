@@ -1,7 +1,34 @@
-
+//import {load} from "./load.js"
+import {loadChatroomArr} from "./chatroom.js"
 
 window.onload = async () => {
   loadProfile();
+  loadChatroomArr();
+
+  const socket = io.connect(); // You can pass in an optional parameter like "http://localhost:8080"
+  socket.on("message", (data) => {
+
+    //receive message from server
+    const msg = data.content
+  
+    //insert message number in chatroom
+    const chatroomId = data.chatroom_id;
+    //console.log(chatroomId)
+    const ele = document.querySelector(`#item-${chatroomId} > span`);
+    if (!ele) {
+      const spanEle = document.createElement("span");
+      spanEle.classList.add("badge");
+      spanEle.classList.add("bg-primary");
+      spanEle.classList.add("rounded-pill");
+      spanEle.innerHTML = "1";
+      document.querySelector(`#item-${chatroomId}`).appendChild(spanEle);
+    } else {
+      const count = parseInt(ele.textContent, 10);
+      ele.innerHTML = String(count + 1);
+    }
+
+   
+  });
 };
 
 
@@ -66,28 +93,60 @@ async function loadProfile(page) {
   }
 
   let htmlStr = `
-    <div id=${page}>
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-  <div class="carousel-indicators">
-   ${indicatorStr}
+  <div class="card">
+                
+  <div id=${page}>
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+    <div class="carousel-indicators">
+     ${indicatorStr}
+    </div>
+    <div class="carousel-inner">
+     ${imageStr}
+    </div>
+    <button class="carousel-control-prev" type="button"  data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button"  data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
   </div>
-  <div class="carousel-inner">
-   ${imageStr}
+  <div id = "info${page}"></div>
+  <div class = "hobby">${hobbyStr}</div>
   </div>
-  <button class="carousel-control-prev" type="button"  data-bs-slide="prev">
-  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  <span class="visually-hidden">Previous</span>
-</button>
-<button class="carousel-control-next" type="button"  data-bs-slide="next">
-  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  <span class="visually-hidden">Next</span>
-</button>
-</div>
-<div id = "info${page}">${result.user_info.username}${age}</div>
-<div class = "hobby">${hobbyStr}</div>
-</div>`;
 
-  document.querySelector("#memo-board").innerHTML = htmlStr;
+  <div class="user">
+      <!--<img class="user" src="https://i.pinimg.com/564x/b4/4b/18/b44b18fc8ad2904b87d577ab4d957055.jpg"
+          alt="Solar">-->
+      <div class="profile"></div>
+      <div class="name">${result.user_info.username} <span>${age}</span></div>
+      <div class="local">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>18 kilometers</span>
+      </div>
+  </div>
+
+</div><!--card-->
+
+<div class="buttons">
+      <div class="no">
+      <i class="fas fa-times"></i>
+      </div>
+      <div class="star">
+          <i class="fas fa-star fa"></i>
+      </div>
+      <div class="heart">
+          <i class="fas fa-heart"></i>
+      </div>
+  </div>
+
+</div><!--button-->`;
+
+  document.querySelector(".content").innerHTML = htmlStr;
+  document.querySelector("#home").addEventListener(("click"), () =>{
+    loadProfile(counter);})
+  
 
   document
     .querySelector(".carousel-control-next")
@@ -117,6 +176,7 @@ async function loadProfile(page) {
     });
   
   //console.log(`page: ${page}`)
+ 
 }
 
 //var invisible = document.getElementById('invisible');

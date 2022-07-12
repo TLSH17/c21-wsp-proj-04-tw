@@ -33,3 +33,10 @@ declare module "express" {
     }
   }
 
+  export interface Chatroom {
+    id: number;
+    name: string;
+    user_id_left: number;
+    user_id_right: number;
+  }
+

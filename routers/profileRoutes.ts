@@ -5,7 +5,8 @@ import { Request, Response } from "express";
 import path from "path";
 //import { Product } from "../models";
 import { dbUser } from "../server"
-import { userInfo } from "os";
+import { formidableMiddleware } from "../formidable";
+import formidable from "formidable";
 import { Useraccount } from "../models";
 
 
@@ -16,7 +17,7 @@ profileRoutes.get("/profiles", getProfile);
 profileRoutes.post("/filter", filter);
 profileRoutes.get("/", getMyProfile);
 profileRoutes.get("/friendlsit", getfriendList);
-profileRoutes.post("/edit", editMyProfile);
+profileRoutes.post("/edit", formidableMiddleware, editMyProfile);
 
 
 // see my profile
@@ -37,10 +38,35 @@ async function getMyProfile(req: Request, res: Response) {
 //need further develop
 async function editMyProfile(req: Request, res: Response) {
   try {
-    const { id, username, gender } = req.body
-    const result = (await dbUser.query('update users set username = $1, gender = $2 where id = $3', [username, gender, id]))
-    console.log(result)
-    res.json({ success: true })
+    const form = req.form!;
+    const id = parseInt(req.session["user"].id)
+    const stringId = form.fields.id as String;
+    //const id = parseInt(stringId)
+    //const password = form.fields.password as string;
+    const nickName = form.fields.nick_name as String;
+    const gender = form.fields.gender as String;
+    const interested_in_gender = form.fields.interested_in_gender as String;
+    const date_of_birth = form.fields.date_of_birth;
+    const description = form.fields.description as String;
+    const nationality = form.fields.nationality as String;
+    const email = form.fields.email as String;
+    const interestedType = form.fields.interestedType as String;
+    //const strHeight = (form.fields.height) as String;
+    //const height = parseInt(strHeight)
+
+    const zodiac_signs = form.fields.zodiac_signs as String;
+    const image = (form.files.image as formidable.File)?.["newFilename"];
+    console.log(typeof id)
+    console.log(gender)
+
+    await dbUser.query(`UPDATE users SET nick_name = $1, gender = $2, interested_in_gender = $3, date_of_birth = $4, description = $5, nationality = $6, email = $7, interested_in_type = $8, zodiac_signs = $9 WHERE id = $10`,[nickName, gender, interested_in_gender, date_of_birth, description, nationality, email, interestedType, zodiac_signs, id])
+
+    await dbUser.query(/*sql */`INSERT INTO user_photo (user_id, file_name) Values ($1, $2)`,
+        [id, image]);
+    //const { id, username, gender } = req.body
+    //const result = (await dbUser.query('update users set username = $1, gender = $2 where id = $3', [username, gender, id]))
+    //console.log(result)
+    res.json({ success: true, message: "Account successfully created" });
 
 
   } catch (err) {

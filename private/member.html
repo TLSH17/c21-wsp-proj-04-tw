@@ -79,7 +79,7 @@
                 <span class="close">&times;</span>
 
                 <div class="reg_header">
-                    <div class="reg_title">Registraion</div>
+                    <div class="reg_title" id="hey"></div>
                     <div class="reg_title_1">Fields marked * are required</div>
                 </div>
 
@@ -101,7 +101,7 @@
 
                             <div class="regItem col-sm-2">
                                 <label for="NewNickName">Nick Name: *</label><br />
-                                <input type="text" name="NewNickName" placeholder="Nick Name" class="inputbox"
+                                <input type="text" name="NewNickName" placeholder="Nick Name" id="nickname" class="inputbox"
                                     required /><br />
                             </div>
 
@@ -111,7 +111,7 @@
                                     <option disabled selected value="">--Please choose an option--</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
-                                    <option value="neutral" selected>Neutral</option>
+                                    <option value="neutral">Neutral</option>
                                 </select>
                             </div>
 
@@ -119,8 +119,8 @@
                                 <label for="NewInterestedGender">Interested in gender: *</label><br />
                                 <select name="NewInterestedGender" id="interested_gender" class="inputbox" required>
                                     <option disabled selected value="">--Please choose an option--</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    <option value="m">M</option>
+                                    <option value="f">F</option>
                                     <option value="neutral">Neutral</option>
                                 </select>
                             </div>
@@ -133,14 +133,14 @@
 
                             <div class="regItem col-sm-2">
                                 <label for="NewDescription">Description: *</label><br />
-                                <input type="text" placeholder="description" name="description" id="description" class="inputbox"
+                                <input type="text" placeholder="description" name="NewDescription" id="description" class="inputbox"
                                     required /><br />
                             </div>
 
 
                             <div class="regItem col-sm-2">
                                 <label for="NewNationality">Nationality *: </label><br />
-                                <input type="text" placeholder="Nationality" name="NewNationality" class="inputbox"
+                                <input type="text" placeholder="Nationality" name="NewNationality" id="nationality" class="inputbox"
                                     required /><br />
                             </div>
 
@@ -155,23 +155,23 @@
                         <div class="optional_items">
 
                             <div class="regItem col-sm-2"> <label for="NewUserEmail">Email:</label><br />
-                                <input type="text" name="NewUserEmail" placeholder="Email" class="inputbox" /><br />
+                                <input type="text" name="NewUserEmail" placeholder="Email" id="email" class="inputbox" /><br />
                             </div>
 
                             <div class="regItem col-sm-2">
                                 <label for="NewInterestedType">Interested in type:</label><br />
-                                <input type="text" name="NewInterestedType" class="inputbox" /><br />
+                                <input type="text" name="NewInterestedType" placeholder="Interested In Type" id="interestedInType" class="inputbox" /><br />
                             </div>
 
-                            <div class="regItem col-sm-2">
+                            <!--<div class="regItem col-sm-2">
                                 <label for="NewHeight">Height (cm):</label><br />
-                                <input type="number" placeholder="Height (cm)" name="NewHeight"
+                                <input type="number" placeholder="Height (cm)" id="height" name="NewHeight"
                                     class="inputbox" /><br />
-                            </div>
+                            </div>-->
 
                             <div class="regItem col-sm-2">
                                 <label for="NewZodiac">Zodiac Signs: </label><br />
-                                <input type="text" placeholder="Zodiac Signs" name="NewZodiac" class="inputbox" /><br />
+                                <input type="text" placeholder="Zodiac Signs" name="NewZodiac" id="zodiacSigns" class="inputbox" /><br />
                             </div>
                         </div>
                     </div>

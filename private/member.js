@@ -1,20 +1,19 @@
 //import {load} from "./load.js"
-import { loadChatroomArr } from "./chatroom.js"
+import { loadChatroomArr } from "./chatroom.js";
+//import { filter } from "./filter.js"
 
 window.onload = async () => {
+  loadmyProfile();
+  loadfriendlist();
   loadProfile();
   loadChatroomArr();
-  loadfriendlist();
-  loadmyProfile();
 
-
-  console.log("On load")
+  console.log("On load");
 
   const socket = io.connect(); // You can pass in an optional parameter like "http://localhost:8080"
   socket.on("message", (data) => {
-
     //receive message from server
-    const msg = data.content
+    const msg = data.content;
 
     //insert message number in chatroom
     const chatroomId = data.chatroom_id;
@@ -31,8 +30,6 @@ window.onload = async () => {
       const count = parseInt(ele.textContent, 10);
       ele.innerHTML = String(count + 1);
     }
-
-
   });
 };
 
@@ -40,24 +37,27 @@ let page = 1;
 let counter = 1;
 
 async function loadProfile(page) {
-
   const resp = await fetch(`/member/profiles?page=${page}`, {
     method: "GET",
   });
   const result = await resp.json();
   //const age = new Date().getFullYear - result.user_info.date_of_birth.getFullYear()
+  // console.log("showresult")
+  // console.log(result);
 
   //process page
-  const PAGE = result.current_page
-  console.log("PAGE", PAGE)
-  const totalPage = result.total_page
+  const PAGE = result.current_page;
+  // console.log("PAGE", PAGE)
+  const totalPage = result.total_page;
 
   //process age
   const jsonDate = result.user_info.date_of_birth;
+  // console.log(jsonDate.getUTCHours())
   const age =
     parseInt(new Date().getFullYear()) -
     parseInt(new Date(jsonDate).getFullYear());
 
+  // console.log("age" + age)
   //process hobby
   const hobbyArr = result.hobby;
   let hobbyStr = "";
@@ -72,7 +72,6 @@ async function loadProfile(page) {
   const imageResult = imageArr[0].file_name;
   // console.log("REsult!!:" + imageResult);
   // console.log("heheheheh :" + imageArr);
-
 
   let imageStr = `<div class="carousel-item active">
     <img src="./image/${imageResult}" class="d-block w-100" alt="..."/>
@@ -96,42 +95,49 @@ async function loadProfile(page) {
   //   return;
   // }
   for (let i = 1; i < imageArr.length; i++) {
-    indicatorStr += `<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}" aria-label="Slide ${i + 1
-      }"></button>`;
+    indicatorStr += `<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}" aria-label="Slide ${
+      i + 1
+    }"></button>`;
   }
 
   let htmlStr = `
-  <form id="form-register">
+  <form id="filter">
   <div class="input_area">
       <!-- <div class="regItem col-sm-2"> -->
           <label for="age-select">Choose age:</label>
-          <!-- <input type="text" placeholder="Age" class="inputbox1" required /> -->
-          <select id="age-select">
-              <option value="17-27">17-27</option>
-              <option value="28-38">28-38</option>
-              <option value="39-49">39-49</option>
-              <option value="50-60">50-60</option>
-
-          </select>
+          <!-- <input type="text" placeholder="Age" class="inputbox1" name="age-select" id ="age-select" required /> -->
+          <select id="age">
+          
+          <option value="17-27">17-27</option>
+          <option value="28-38">28-38</option>
+          <option value="39-49">39-49</option>
+          <option value="50-60">50-60</option>
+        </select>
           
           
       <!-- </div> -->
 
       <!-- <div class="regItem col-sm-2"> -->
-          <label for="Hobbie">Hobbies:   </label>
+          <label for="hobby">Hobbies:   </label>
           <!-- <input type="text" placeholder="Hobbies" class="inputbox2" required /> -->
-          <select id="hobbies-select">
-              <option value="coffee">coffee</option>
-              <option value="workout">workout</option>
-              <option value="staycation">staycation</option>
-              <option value="netflix">netflix</option>
-              <option value="hiking">hiking</option>
+          <select id="hobby">
+              <option value="party">party</option>
+              <option value="outdoor">outdoor</option>
+              <option value="yoga">yoga</option>
+              <option value="dining">dining</option>
+              <option value="foodie">foodie</option>
+              <option value="tennis">tennis</option>
+              <option value="movie">movie</option>
 
           </select>
       <!-- </div> -->
 
   </div>
+  <div class="submit_button col-sm-6">
+  <input type="submit" value="Submit" />
+</div>
 </form>
+
   <div class="card">
                 
   <div id=${page}>
@@ -159,10 +165,10 @@ async function loadProfile(page) {
       <!--<img class="user" src="https://i.pinimg.com/564x/b4/4b/18/b44b18fc8ad2904b87d577ab4d957055.jpg"
           alt="Solar">-->
       <div class="profile"></div>
-      <div class="name">${result.user_info.username} </br><span>${age}</span></div>
+      <div class="name">${result.user_info.username}</div></br>
+      <div class="name profileAge">AGE : ${age}</div>
       <div class="local">
           <i class="fas fa-map-marker-alt"></i>
-          <span>18 kilometers</span>
       </div>
   </div>
 
@@ -180,7 +186,7 @@ async function loadProfile(page) {
   <i class="fas fa-star fa"></i>
   </div>
 
-  <form id="like">
+  <form id="like" onClick="location.href=location.href">
     <div type="submit" id="heart" class="heart" data-id="${result.user_info.id}">
         <i class="fas fa-heart"></i>
     </div>
@@ -188,10 +194,12 @@ async function loadProfile(page) {
 
 </div>`;
 
+
   document.querySelector(".content").innerHTML = htmlStr;
 
-  document.querySelector("#home").addEventListener(("click"), () => {
+  document.querySelector("#home").addEventListener("click", () => {
     loadProfile(counter);
+// <<<<<<< HEAD
   })
   document.querySelector("#logout").addEventListener(("click"), async () => {
     // window.location.href = "/index.html";
@@ -207,23 +215,41 @@ async function loadProfile(page) {
   }
 
   )
+;
 
+  document.querySelector("#filter").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    console.log("Register!");
+    const form = e.target;
+    const formData = new FormData();
 
+    console.log(form["age"]["value"]);
+    console.log(form["age"]["value"]);
 
+    formData.append("age", form["age"]["value"]);
+    formData.append("hobby", form["hobby"]["value"]);
 
+    const resp = await fetch("/member/filter", {
+      method: "POST",
+      body: formData,
 
+  });
+
+  const result = await resp.json();
+    
+  });
+// >>>>>>> 76d8dcbb0484fdcf6a569d4b5b8641697d1f3128
 
   document
     .querySelector(".carousel-control-next")
     .addEventListener("click", () => {
       if (PAGE === 1) {
-        counter = 1
+        counter = 1;
       }
 
-      counter += 1
+      counter += 1;
 
-
-      console.log("counter: ", counter)
+      console.log("counter: ", counter);
       loadProfile(counter);
     });
 
@@ -231,12 +257,12 @@ async function loadProfile(page) {
     .querySelector(".carousel-control-prev")
     .addEventListener("click", () => {
       if (PAGE === totalPage) {
-        counter = totalPage
+        counter = totalPage;
       }
 
-      counter -= 1
+      counter -= 1;
 
-      console.log("counter: ", counter)
+      console.log("counter: ", counter);
       loadProfile(counter);
     });
 
@@ -244,23 +270,26 @@ async function loadProfile(page) {
 
   //console.log(`page: ${page}`)
 
+  //console.log(`page: ${page}`)
 
+
+  //console.log(result.friendlist.length);
+  const friendListLength = result.friendlist.length;
 
 
   //list friend list//
 
-
-
-
-
-
-
-
-  // Click the heart icon, friendship_level become 1
+  // Click the heart icon, friendship_level  +1
   document.querySelectorAll("#heart").forEach((ele) =>
     ele.addEventListener("click", async (e) => {
       e.preventDefault();
       // console.log(`Enter into like`)
+
+      if (friendListLength >= 4) {
+        window.alert("已達4個朋友上限。早鳥休惠 $1000 HKD 即多100位朋友上限");
+        return;
+      }
+
 
 
       const targetid = e.currentTarget.dataset["id"];
@@ -273,7 +302,7 @@ async function loadProfile(page) {
       // const resp = await fetch(`/member/likeProfile`, { method: "POST" });
       const resp = await fetch(`/member/likeProfile`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ like, targetid }),
       });
 
@@ -284,17 +313,16 @@ async function loadProfile(page) {
 
       // console.log("user.info.username: " + result.user_info.username);
 
-
       if (resp.status === 400) {
         const result = await resp.json();
         alert(result.message);
       }
-    })
-  )
 
+    })
+  );
 
   //
-  // Click the cross icon, friendship_level become 1
+  // Click the cross icon, friendship_level  -1
   document.querySelectorAll("#no").forEach((ele) =>
     ele.addEventListener("click", async (e) => {
       // e.preventDefault();
@@ -306,9 +334,9 @@ async function loadProfile(page) {
       // const resp = await fetch(`/member/likeProfile`, { method: "POST" });
       const resp = await fetch(`/member/dislikeProfile`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ disLike, targetid }),
-      })
+      });
       // const result = await resp.json
 
       if (resp.status === 400) {
@@ -316,7 +344,7 @@ async function loadProfile(page) {
         alert(result.message);
       }
     })
-  )
+  );
 }
 
 async function loadfriendlist() {
@@ -325,26 +353,38 @@ async function loadfriendlist() {
   // console.log("passthefetch");
   // console.log("passthefetch");
   const friendlist = await resp.json();
-  // console.log(friendlist);
-
+  // console.log(friendlist.friendphoto[0].file_name);
+  // console.log("hihi")
   const friendlistNum = (friendlist.friendlist).length;
   // console.log(friendlistNum);
+  console.log(friendlistNum);
+
+  // if (friendlistNum >= 4) {
+  //   console.log("Oh no!")
+  //   window.alert("已達4個朋友上限。早鳥休惠 $1000 HKD 即多100位朋友上限");
+  //   return;
+  //   // window.location.href = ("/index.html")
+  //   // loadfriendlist();
+  // }
 
   // console.log(friendlist.friendlist[0].user_id_received);
   // console.log("finish_friendlist");
   let htmlStr = "";
 
   for (let i = 0; i < friendlistNum; i++) {
-    console.log(friendlist.friendlist[i].username);
+    // console.log(friendlist.friendphoto[i].file_name);
     htmlStr += `
     <div class="messages">
       <div class="friend">
         <div class="user">${friendlist.friendlist[i].username}</div>
+        <img src="image/${friendlist.friendphoto[i].file_name}" class= "friendpic" ></img>
       </div>
     </div>
     `;
     document.querySelector(".friendInput").innerHTML = htmlStr;
   }
+
+
 
   // let htmlStr = "";
   // for (let friends in friendlistObj) {
@@ -356,36 +396,32 @@ async function loadfriendlist() {
   // }
 }
 
-
 async function loadmyProfile() {
-  const resp = await fetch("/member/profiles", { method: "GET" });
+  const resp = await fetch("/member", { method: "GET" });
   // console.log("passthefetch");
   const myinfo = await resp.json();
   // console.log(myinfo);
 
-  const myname = myinfo.user_info.username;
-  // console.log(myname);
+  const myname = myinfo.result[0].username;
+  console.log("My username is : " + myname);
 
-  const myPicLocation = myinfo.image[0].file_name
+  const myPicLocation = myinfo.result[0].file_name;
   // console.log(myPicLocation);
 
-  const myid = myinfo.user_info.id;
+  const myid = myinfo.result[0].id;
 
-
-  //my name
+  //my name & id
   const myUserName = `
-  <div style="font-size: 20px">${myname}<div><br/>
-  <div>Your User id is : ${myid}</div>`;
+  <div style="font-size: 20px; margin :10px">Greetings. ${myname}. What are you thinking right now? <div>
+  `;
   document.querySelector(".myProfile").innerHTML = myUserName;
 
-  // my profile photo
+  // // my profile photo
   const myPic = `<img src="image/${myPicLocation}">`;
   document.querySelector(".myPic").innerHTML = myPic;
 
-  // my user id
-
-
-
+  // myimage = myinfo.myimage;
+  // console.log(myimage);
 }
 
 //var invisible = document.getElementById('invisible');
@@ -406,6 +442,18 @@ var animateButton = function (e) {
   }, 700);
 };
 
+// var animateButton = function (e) {
+
+//   e.preventDefault;
+//   //reset animation
+//   e.target.classList.remove('animate');
+
+//   e.target.classList.add('animate');
+//   setTimeout(function () {
+//     e.target.classList.remove('animate');
+//   }, 700);
+// };
+
 // var bubblyButtons = document.getElementsByClassName("bubbly-button");
 
 // for (var i = 0; i < bubblyButtons.length; i++) {
@@ -414,4 +462,3 @@ var animateButton = function (e) {
 
 // const resultFromFE = req.body
 // resultFromFE.like -> ture
-

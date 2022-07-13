@@ -32,10 +32,27 @@ body {
     margin: 0;
 }
 
+.friendpic {
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 1px 8px 0 rgba(0, 20, 0.2);
+}
+
 .bubbly-button {
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    font-size: 30px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    background-image: linear-gradient(to right, #e052a0, #f15c41) !important;
+    border-radius: 3px;
+    padding: 16px 18px 15px;
+    white-space: nowrap;
+}
 
-   
-
+.editProfile {
     display: inline-block;
     outline: 0;
     border: 0;
@@ -43,19 +60,37 @@ body {
     font-weight: 500;
     color: #fff;
     cursor: pointer;
-    background-image: linear-gradient(to right,#e052a0,#f15c41)!important;
+    background-image: linear-gradient(to right, #e052a0, #f15c41) !important;
     border-radius: 3px;
     padding: 16px 18px 15px;
     white-space: nowrap;
-
-    :hover {
-        background-color: #e6375a;
-        background-image: none!important;
-    }
-    
-    
 }
-    
+
+.friendListTitle {
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(185, 185, 185);
+    /* border-radius: 3px; */
+
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.friendInput {
+    background-color: rgb(246, 237, 237);
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 5px;
+    border-color: rgb(129, 129, 166)
+}
+
+.bubbly-button:hover {
+    /* background-color: #e6375a;
+     */
+    background-image: none !important;
+    background-color: rgba(252, 153, 3, 0.7);
+}
+
 
 .container {
     width: 100%;
@@ -67,6 +102,8 @@ body {
 }
 
 .side {
+    display: flex;
+    flex-direction: column;
     min-width: 320px;
     height: 200px;
     background-color: #fff;
@@ -87,8 +124,9 @@ body {
 }
 
 .side .header .avatar img {
-    width: 40px;
-    height: 40px;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
     border-radius: 20px;
     border: 2px solid #fff;
     box-shadow: 0 1px 8px 0 rgba(0, 20, 0.2);
@@ -168,6 +206,7 @@ body {
 
 .side .messages {
     padding: 10px 20px;
+    width: 100%;
     display: flex;
     align-items: center;
     transition: 0.2 box-shadow
@@ -179,8 +218,8 @@ body {
     border-radius: 70px;
 }
 
-.user{
-    flex:1;
+.user {
+    flex: 1;
 }
 
 .side .messages .user {
@@ -233,18 +272,19 @@ body {
     height: 500px;
 }
 
-.content .card .user {
-    width: 380px;
-    height: 550px;
+.card {
+    width: 500px;
+    height: 500px;
     object-fit: cover;
     border-radius: 10px;
-    box-shadow: 0 1px 10px 0 rgba(0, 20, 0.5);
+    box-shadow: 0 1px 20px 0 rgba(0, 20, 0.5);
+    padding: 20px;
 }
 
 .content .card .user .profile {
     position: absolute;
     bottom: 100;
-    left: 20px;
+    left: 20px
 }
 
 .content .card .user .name {
@@ -254,7 +294,9 @@ body {
     letter-spacing: 0.5px;
     text-shadow: 1px 1px 3px #444;
     position: relative;
-    top: -50px;
+    top: 20px;
+    display: flex;
+    justify-content: center;
 
 }
 
@@ -349,6 +391,11 @@ body {
 
 /*css start with x, indicate usage in chatroom*/
 
+.myProfile {
+    /* background-color: white; */
+    width: 70%;
+    text-align: center;
+}
 
 
 .xcontainer {
@@ -361,7 +408,7 @@ body {
 
 img {
     max-width: 100%;
-    border-radius: 50%;
+    border-radius: 80%;
 }
 
 .xmsg-header {

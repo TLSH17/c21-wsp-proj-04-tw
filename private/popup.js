@@ -9,16 +9,17 @@ document.querySelector("#myBtn").addEventListener(("click"), async()=>{
         METHOD: "GET"
     })
     const result = await resp.json();
-    console.log(result)
-    const username = result[0].username
-    const id = result[0].id
-    const nationality = !result[0].nationality?"Nationality":result[0].nationality
-    const nickName = !result[0].nick_name?"Nick Name":result[0].nick_name
-    const description = !result[0].description?"Description":result[0].description
-    const email = !result[0].email?"Email":result[0].email
-    const interestedInType = !result[0].interested_in_type?"Interested In Type":result[0].interested_in_type
+    
+    
+    const username = result.resultInfo.username
+    const id = result.resultInfo.id
+    const nationality = !result.resultInfo.nationality?"Nationality":result.resultInfo.nationality
+    const nickName = !result.resultInfo.nick_name?"Nick Name":result.resultInfo.nick_name
+    const description = !result.resultInfo.description?"Description":result.resultInfo.description
+    const email = !result.resultInfo.email?"Email":result.resultInfo.email
+    const interestedInType = !result.resultInfo.interested_in_type?"Interested In Type":result.resultInfo.interested_in_type
     //const height = !result[0].height?"Height":result[0].height
-    const zodiacSign = !result[0].zodiac_signs?"Zodiac Sign":result[0].zodiac_signs
+    const zodiacSign = !result.resultInfo.zodiac_signs?"Zodiac Sign":result.resultInfo.zodiac_signs
     console.log(nationality)
     console.log(description)
 
@@ -29,6 +30,7 @@ document.querySelector("#myBtn").addEventListener(("click"), async()=>{
     document.getElementById("description").placeholder = description
     document.getElementById("nickname").placeholder = nickName
     document.getElementById("nationality").placeholder = nationality
+
     document.getElementById("email").placeholder = email
     document.getElementById("interestedInType").placeholder = interestedInType
     //document.getElementById("height").placeholder = height

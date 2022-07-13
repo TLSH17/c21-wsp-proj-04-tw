@@ -46,18 +46,23 @@ async function loadProfile(page) {
   });
   const result = await resp.json();
   //const age = new Date().getFullYear - result.user_info.date_of_birth.getFullYear()
+  // console.log("showresult")
+  // console.log(result);
+
 
   //process page
   const PAGE = result.current_page
-  console.log("PAGE", PAGE)
+  // console.log("PAGE", PAGE)
   const totalPage = result.total_page
 
   //process age
   const jsonDate = result.user_info.date_of_birth;
+  // console.log(jsonDate.getUTCHours())
   const age =
     parseInt(new Date().getFullYear()) -
     parseInt(new Date(jsonDate).getFullYear());
 
+  // console.log("age" + age)
   //process hobby
   const hobbyArr = result.hobby;
   let hobbyStr = "";
@@ -159,10 +164,10 @@ async function loadProfile(page) {
       <!--<img class="user" src="https://i.pinimg.com/564x/b4/4b/18/b44b18fc8ad2904b87d577ab4d957055.jpg"
           alt="Solar">-->
       <div class="profile"></div>
-      <div class="name">${result.user_info.username} </br><span>${age}</span></div>
+      <div class="name">${result.user_info.username}</div></br>
+      <div class="name profileAge">AGE : ${age}</div>
       <div class="local">
           <i class="fas fa-map-marker-alt"></i>
-          <span>18 kilometers</span>
       </div>
   </div>
 
@@ -223,22 +228,18 @@ async function loadProfile(page) {
 
 
 
+  //console.log(`page: ${page}`)
+
+
+
 
   //list friend list//
 
-
-
-
-
-
-
-
-  // Click the heart icon, friendship_level become 1
+  // Click the heart icon, friendship_level  +1
   document.querySelectorAll("#heart").forEach((ele) =>
     ele.addEventListener("click", async (e) => {
       e.preventDefault();
       // console.log(`Enter into like`)
-
 
       const targetid = e.currentTarget.dataset["id"];
       console.log("Here is the target id: " + targetid);
@@ -271,7 +272,7 @@ async function loadProfile(page) {
 
 
   //
-  // Click the cross icon, friendship_level become 1
+  // Click the cross icon, friendship_level  -1
   document.querySelectorAll("#no").forEach((ele) =>
     ele.addEventListener("click", async (e) => {
       // e.preventDefault();
@@ -312,7 +313,7 @@ async function loadfriendlist() {
   let htmlStr = "";
 
   for (let i = 0; i < friendlistNum; i++) {
-    console.log(friendlist.friendlist[i].username);
+    // console.log(friendlist.friendlist[i].username);
     htmlStr += `
     <div class="messages">
       <div class="friend">
@@ -335,31 +336,34 @@ async function loadfriendlist() {
 
 
 async function loadmyProfile() {
-  const resp = await fetch("/member/profiles", { method: "GET" });
+  const resp = await fetch("/member", { method: "GET" });
   // console.log("passthefetch");
   const myinfo = await resp.json();
-  // console.log(myinfo);
+  console.log(myinfo);
 
-  const myname = myinfo.user_info.username;
-  // console.log(myname);
+  const myname = myinfo.result[0].username;
+  console.log("My username is : " + myname);
 
-  const myPicLocation = myinfo.image[0].file_name
+  const myPicLocation = myinfo.result[0].file_name;
   // console.log(myPicLocation);
 
-  const myid = myinfo.user_info.id;
+  const myid = myinfo.result[0].id;
 
 
-  //my name
+  //my name & id
   const myUserName = `
-  <div style="font-size: 20px">${myname}<div><br/>
-  <div>Your User id is : ${myid}</div>`;
+  <div style="font-size: 20px; margin :10px">User Name : ${myname}<div>
+  <div style="font-size: 15px; margin :10px">Your ID : ${myid}<div><br/>
+  `;
   document.querySelector(".myProfile").innerHTML = myUserName;
 
-  // my profile photo
+  // // my profile photo
   const myPic = `<img src="image/${myPicLocation}">`;
   document.querySelector(".myPic").innerHTML = myPic;
 
-  // my user id
+  // myimage = myinfo.myimage;
+  // console.log(myimage);
+
 
 
 
@@ -372,6 +376,30 @@ async function loadmyProfile() {
 //  invisible.appendChild(item);
 //  })
 
+
+
+
+
+
+
+
+// var animateButton = function (e) {
+
+//   e.preventDefault;
+//   //reset animation
+//   e.target.classList.remove('animate');
+
+//   e.target.classList.add('animate');
+//   setTimeout(function () {
+//     e.target.classList.remove('animate');
+//   }, 700);
+// };
+
+// var bubblyButtons = document.getElementsByClassName("bubbly-button");
+
+// for (var i = 0; i < bubblyButtons.length; i++) {
+//   bubblyButtons[i].addEventListener('click', animateButton, false);
+// }
 
 // const resultFromFE = req.body
 // resultFromFE.like -> ture

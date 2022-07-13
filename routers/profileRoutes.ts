@@ -25,9 +25,16 @@ profileRoutes.post("/edit", formidableMiddleware, editMyProfile);
 async function getMyProfile(req: Request, res: Response) {
   try {
     const user = req.session["user"]
-    console.log(user);
-    const result = (await dbUser.query('select * from users where id = $1', [user?.id])).rows
-    res.json(result)
+    const result = (await dbUser.query('select users.id as id, users.username as username, user_photo.file_name as file_name FROM users, user_photo WHERE users.id = user_photo.user_id AND users.id = $1;'
+      , [user?.id])).rows;
+    const resultInfo = (await dbUser.query('select * from users where id = $1', [user.id])).rows[0]
+
+    // //Provide "MY" image
+    // const myimage = (await dbUser.query(`
+    // SELECT file_name FROM user_photo WHERE user_id IN (SELECT id FROM users WHERE id = $1`, [user.id]));
+
+    // const result = (await dbUser.query('select * from users where'))
+    res.json({ result, resultInfo });
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: "internal server error" });
@@ -152,8 +159,6 @@ async function getProfile(req: Request, res: Response) {
       page = totalPageNum;
     }
 
-
-
     //Provide info
     const userInfo = (await dbUser.query('select * from users')).rows[page - 1]
     console.log(userInfo)
@@ -169,7 +174,6 @@ async function getProfile(req: Request, res: Response) {
       hobbyArr.push(a)
     }
     console.log(hobbyArr)
-
 
     //Provide image
 
@@ -202,3 +206,4 @@ async function getfriendList(req: Request, res: Response) {
 
   res.json({ friendlist });
 }
+

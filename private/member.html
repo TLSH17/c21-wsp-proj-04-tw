@@ -9,6 +9,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="member.css" />
     <link rel="stylesheet" href="chat.css" />
+    <link rel="stylesheet" href="popUpWindow.css" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet" />
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -40,33 +41,165 @@
     <div class="container">
         <div class="side">
             <div class="header">
-                
 
-                <div class="avatar">
-                    <img src="https://i.pinimg.com/564x/e8/d7/4f/e8d74f016005c6af2097ebb00494edb8.jpg" alt="ladies">
+                <div class="avatar myPic">
+                    <!-- <img src="https://i.pinimg.com/564x/e8/d7/4f/e8d74f016005c6af2097ebb00494edb8.jpg" alt="ladies"> -->
+                    <!-- <img src="image/a0269cbd36469c7901e719400.jpeg"> -->
                 </div>
-                <div class="title">ladies</div>
+                <!-- my information -->
+                <div class="myProfile"></div>
+
             </div>
+
+            
+
             <div class="menu">
                 <ul>
                     <li>Matches</li>
                     <li class="active">Massages</li>
-
-
-
                 </ul>
             </div>
 
             <button class="bubbly-button" id="home">home</button>
+            <div id="home">home</div>
+            
+            
+            
+
+            
+           
+
+             <!-- Trigger/Open The Modal -->
+        <button id="myBtn">Edit my profile</button>
+
+            <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+
+                <div class="reg_header">
+                    <div class="reg_title">Registraion</div>
+                    <div class="reg_title_1">Fields marked * are required</div>
+                </div>
+
+
+                
+                `<form id="form-register">
+                    <div class="input_area">
+                        <div class="essential_items">
+                            <!--<div class="regItem col-sm-2">
+                                <label for="username">Username: *</label><br />
+                                <input type="text" name="NewUserName" placeholder="Username" class="inputbox" /><br />
+                            </div>
+
+                            <div class="regItem col-sm-2">
+                                <label for="password">Password: *</label><br />
+                                <input type="password" name="NewUserPassword" placeholder="Password"
+                                    class="inputbox" /><br />
+                            </div>-->
+
+                            <div class="regItem col-sm-2">
+                                <label for="NewNickName">Nick Name: *</label><br />
+                                <input type="text" name="NewNickName" placeholder="Nick Name" class="inputbox"
+                                    required /><br />
+                            </div>
+
+                            <div class="regItem col-sm-2">
+                                <label for="gender">Gender: *</label><br />
+                                <select name="NewGender" id="gender" class="inputbox" required>
+                                    <option disabled selected value="">--Please choose an option--</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="neutral" selected>Neutral</option>
+                                </select>
+                            </div>
+
+                            <div class="regItem col-sm-2">
+                                <label for="NewInterestedGender">Interested in gender: *</label><br />
+                                <select name="NewInterestedGender" id="interested_gender" class="inputbox" required>
+                                    <option disabled selected value="">--Please choose an option--</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="neutral">Neutral</option>
+                                </select>
+                            </div>
+
+
+                            <div class="regItem col-sm-2">
+                                <label for="NewBirth">Date of birth (yyyy-MM-dd)</label><br />: *</label><br />
+                                <input type="date" name="NewBirth" class="inputbox" required /><br />
+                            </div>
+
+                            <div class="regItem col-sm-2">
+                                <label for="NewDescription">Description: *</label><br />
+                                <input type="text" placeholder="description" name="description" id="description" class="inputbox"
+                                    required /><br />
+                            </div>
+
+
+                            <div class="regItem col-sm-2">
+                                <label for="NewNationality">Nationality *: </label><br />
+                                <input type="text" placeholder="Nationality" name="NewNationality" class="inputbox"
+                                    required /><br />
+                            </div>
+
+                            <div class="regItem col-sm-2">
+                                <label for="image">Select Photos: *</label><br />
+                                <input type="file" name="image" required /><br />
+                            </div>
+
+                        </div>
+
+
+                        <div class="optional_items">
+
+                            <div class="regItem col-sm-2"> <label for="NewUserEmail">Email:</label><br />
+                                <input type="text" name="NewUserEmail" placeholder="Email" class="inputbox" /><br />
+                            </div>
+
+                            <div class="regItem col-sm-2">
+                                <label for="NewInterestedType">Interested in type:</label><br />
+                                <input type="text" name="NewInterestedType" class="inputbox" /><br />
+                            </div>
+
+                            <div class="regItem col-sm-2">
+                                <label for="NewHeight">Height (cm):</label><br />
+                                <input type="number" placeholder="Height (cm)" name="NewHeight"
+                                    class="inputbox" /><br />
+                            </div>
+
+                            <div class="regItem col-sm-2">
+                                <label for="NewZodiac">Zodiac Signs: </label><br />
+                                <input type="text" placeholder="Zodiac Signs" name="NewZodiac" class="inputbox" /><br />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="submit_button col-sm-6">
+                        <input type="submit" value="Submit" />
+                    </div>
+                </form>`
+            </div>
+        </div>
            
            
             
 
             <!--insert chatroom here-->
             <div class="list-group list-chat"></div>
+            <div class="friendInput">
 
 
-            
+
+            </div>
+            <!-- <div class="messages">
+                <div class="friend">
+                </div>
+            </div> -->
+
 
 
             <!-- MAP -->
@@ -81,43 +214,10 @@
             <!-- map -->
 
         </div>
-        <form id="form-register">
-            <div class="input_area">
-                <!-- <div class="regItem col-sm-2"> -->
-                    <label for="age-select">Choose age:</label>
-                    <!-- <input type="text" placeholder="Age" class="inputbox1" required /> -->
-                    <select id="age-select">
-                        <option value="17-27">17-27</option>
-                        <option value="28-38">28-38</option>
-                        <option value="39-49">39-49</option>
-                        <option value="50-60">50-60</option>
-        
-                    </select>
-                    
-                    
-                <!-- </div> -->
-
-                <!-- <div class="regItem col-sm-2"> -->
-                    <label for="Hobbie">Hobbies:   </label>
-                    <!-- <input type="text" placeholder="Hobbies" class="inputbox2" required /> -->
-                    <select id="hobbies-select">
-                        <option value="coffee">coffee</option>
-                        <option value="workout">workout</option>
-                        <option value="staycation">staycation</option>
-                        <option value="netflix">netflix</option>
-                        <option value="hiking">hiking</option>
-        
-                    </select>
-                <!-- </div> -->
-
-            </div>
-        </form>
+       
 
         <div class="content">
-            
-            
 
-            </div>
         </div>
     </div>
     </div>
@@ -134,17 +234,12 @@
     </form> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-<<<<<<< HEAD
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
-<script type="module" src="member.js"></script>
-=======
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+<script type="module" src="popup.js"></script>
     <script type="module" src="member.js"></script>
     <script type="module" src="getlocation.js"></script>
->>>>>>> e7b37d4a22c792677704feda2267251ee3242ced
 </body>
 
 

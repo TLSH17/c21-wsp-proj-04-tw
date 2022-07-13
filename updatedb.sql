@@ -61,3 +61,12 @@ WHERE id = 3;
 -- values (3, '5.jpeg');
 -- INSERT INTO user_photo (user_id, file_name)
 -- values (3, '6.jpeg');
+
+
+
+insert into friendship_level (user_id_given, user_id_received, friendship_level) values (3, 1, 1);
+insert into friendship_level (user_id_given, user_id_received, friendship_level) values (1, 3, 1);
+insert into friendship_level (user_id_given, user_id_received, friendship_level) values (1, 2, 1);
+insert into friendship_level (user_id_given, user_id_received, friendship_level) values (2, 1, 1);
+insert into friendship_level (user_id_given, user_id_received, friendship_level) values (3, 2, 1);
+insert into friendship_level (user_id_given, user_id_received, friendship_level) values (2, 3, 1);

@@ -24,8 +24,8 @@ profileRoutes.post("/edit", editMyProfile);
 async function getMyProfile(req: Request, res: Response) {
   try {
     const user = req.session["user"]
-    const result = (await dbUser.query('select * from users where id = $1', [user?.id])).rows
-    res.json(result)
+    const result = (await dbUser.query('select * from users where id = $1', [user?.id])).rows;
+    res.json({ result })
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: "internal server error" });
@@ -125,8 +125,6 @@ async function getProfile(req: Request, res: Response) {
       page = totalPageNum;
     }
 
-
-
     //Provide info
     const userInfo = (await dbUser.query('select * from users')).rows[page - 1]
     console.log(userInfo)
@@ -175,3 +173,4 @@ async function getfriendList(req: Request, res: Response) {
 
   res.json({ friendlist });
 }
+

@@ -192,19 +192,11 @@ async function loadProfile(page) {
 
   //list friend list//
 
-
-
-
-
-
-
-
-  // Click the heart icon, friendship_level become 1
+  // Click the heart icon, friendship_level  +1
   document.querySelectorAll("#heart").forEach((ele) =>
     ele.addEventListener("click", async (e) => {
       e.preventDefault();
       // console.log(`Enter into like`)
-
 
       const targetid = e.currentTarget.dataset["id"];
       console.log("Here is the target id: " + targetid);
@@ -237,7 +229,7 @@ async function loadProfile(page) {
 
 
   //
-  // Click the cross icon, friendship_level become 1
+  // Click the cross icon, friendship_level  -1
   document.querySelectorAll("#no").forEach((ele) =>
     ele.addEventListener("click", async (e) => {
       // e.preventDefault();
@@ -278,7 +270,7 @@ async function loadfriendlist() {
   let htmlStr = "";
 
   for (let i = 0; i < friendlistNum; i++) {
-    console.log(friendlist.friendlist[i].username);
+    // console.log(friendlist.friendlist[i].username);
     htmlStr += `
     <div class="messages">
       <div class="friend">
@@ -301,31 +293,30 @@ async function loadfriendlist() {
 
 
 async function loadmyProfile() {
-  const resp = await fetch("/member/profiles", { method: "GET" });
+  const resp = await fetch("/member", { method: "GET" });
   // console.log("passthefetch");
   const myinfo = await resp.json();
-  // console.log(myinfo);
+  console.log(myinfo);
 
-  const myname = myinfo.user_info.username;
-  // console.log(myname);
+  const myname = myinfo[0].username;
+  console.log(myname);
 
-  const myPicLocation = myinfo.image[0].file_name
+  // const myPicLocation = myinfo[0].id
   // console.log(myPicLocation);
 
-  const myid = myinfo.user_info.id;
+  const myid = myinfo[0].id;
 
 
-  //my name
+  //my name & id
   const myUserName = `
   <div style="font-size: 20px">${myname}<div><br/>
   <div>Your User id is : ${myid}</div>`;
   document.querySelector(".myProfile").innerHTML = myUserName;
 
-  // my profile photo
-  const myPic = `<img src="image/${myPicLocation}">`;
-  document.querySelector(".myPic").innerHTML = myPic;
+  // // my profile photo
+  // const myPic = `<img src="image/${myPicLocation}">`;
+  // document.querySelector(".myPic").innerHTML = myPic;
 
-  // my user id
 
 
 

@@ -6,8 +6,12 @@
 -- FROM user_hobby;
 -- SELECT *
 -- FROM friendship_level;
-SELECT *
-FROM user_photo;
+-- SELECT *
+-- FROM user_photo;
+SELECT username,
+    file_name
+FROM users
+    CROSS JOIN user_photo ON users.id = user_photo.user_id;
 -- SELECT username from users
 -- WHERE id IN (SELECT user_id_received FROM friendship_level
 -- WHERE user_id_given = 201

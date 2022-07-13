@@ -1,6 +1,6 @@
 import express from "express";
 import type { Request, Response, NextFunction } from "express";
-import { Useraccount } from "../models";
+// import { Useraccount } from "../models";
 // import { isLoggedInAPI } from "../guards";
 import { dbUser } from "../server";
 import { formidableMiddleware } from "../formidable";
@@ -93,11 +93,11 @@ async function newUser(req: Request, res: Response, next: NextFunction) {
   // console.log(checkUserExist);
 
   await dbUser.query(/*sql */`INSERT INTO users (username, password, nick_name, gender, interested_in_gender, date_of_birth, description, nationality, email, interested_in_type, height, zodiac_signs) Values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) RETURNING id`,
-    [username, hashedPassword, nickName, gender, interested_in_gender, date_of_birth, description, nationality, email, interestedType, height, zodiac_signs], function (err, result) {
+    [username, hashedPassword, nickName, gender, interested_in_gender, date_of_birth, description, nationality, email, interestedType, height, zodiac_signs], function () {
 
-      let newlyCreatedUserid = result.rows[0].id;
-      dbUser.query(/*sql */`INSERT INTO user_photo (user_id, file_name) Values ($1, $2)`,
-        [newlyCreatedUserid, image]);
+      // let newlyCreatedUserid = result.rows[0].id;
+      // dbUser.query(/*sql */`INSERT INTO user_photo (user_id, file_name) Values ($1, $2)`,
+      //   [newlyCreatedUserid, image]);
     });
 
   res.json({ success: true, message: "Account successfully created" });
@@ -156,6 +156,24 @@ async function dislikeProfile(req: Request, res: Response, next: NextFunction) {
   return;
 }
 
+// DELETE /api/auth/logout
+userRoutes.delete('/logout', async (req, res) => {
+  console.log("hihi")
+  if (req.session) {
+    console.log("===================session", req.session)
+    await req.session.destroy(err => {
+      if (err) {
+        res.clearCookie('connect.sid',{
+          path: '/'
+        });
+      } else {
+        res.send('Logout successful')
+      }
+    });
+  } else {
+    res.end()
+  }
+})
 
 
 

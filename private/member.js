@@ -193,6 +193,25 @@ async function loadProfile(page) {
   document.querySelector("#home").addEventListener(("click"), () => {
     loadProfile(counter);
   })
+  document.querySelector("#logout").addEventListener(("click"), async () => {
+    // window.location.href = "/index.html";
+    console.log("hihi")
+    const resp = await fetch("/logout", {
+      method: "DELETE",
+    })
+    console.log("yo")
+    console.log(resp)
+    if (resp.ok === true) {
+      window.location.href = "/"
+    }
+  }
+
+  )
+
+
+
+
+
 
   document
     .querySelector(".carousel-control-next")
@@ -221,10 +240,10 @@ async function loadProfile(page) {
       loadProfile(counter);
     });
 
-    
+
 
   //console.log(`page: ${page}`)
- 
+
 
 
 
@@ -375,16 +394,16 @@ async function loadmyProfile() {
 //  item.innerHTML =     `<ul id="messages"></ul>`;
 //  invisible.appendChild(item);
 //  })
-var animateButton = function(e) {
+var animateButton = function (e) {
 
   e.preventDefault;
   //reset animation
   e.target.classList.remove('animate');
-  
+
   e.target.classList.add('animate');
-  setTimeout(function(){
+  setTimeout(function () {
     e.target.classList.remove('animate');
-  },700);
+  }, 700);
 };
 
 // var bubblyButtons = document.getElementsByClassName("bubbly-button");

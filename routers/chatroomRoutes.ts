@@ -59,9 +59,10 @@ async function getUserAllChatroom(req: Request, res: Response, next: NextFunctio
 async function sendMessage(req: Request, res: Response, next: NextFunction) {
   try {
     const user = req.session["user"];
-    const { content } = req.body;
+    const { content, sentTime } = req.body;
     const chatroomId = parseInt(req.params.cid, 10);
     console.log(content)
+    console.log(sentTime)
     console.log("someone has joined", chatroomId)
     if (isNaN(chatroomId)) {
       res.status(400).json({ message: "invalid user id" });
@@ -80,16 +81,21 @@ async function sendMessage(req: Request, res: Response, next: NextFunction) {
     }
 
     await dbUser.query(
-      /*sql */ `INSERT INTO message (content, chatroom_id, sender) VALUES ($1, $2, $3);`,
-      [content, chatroomId, user.id]
+      /*sql */ `INSERT INTO message (content, chatroom_id, sender, time_started) VALUES ($1, $2, $3, $4);`,
+      [content, chatroomId, user.id, sentTime]
     );
+
+    const time = (await dbUser.query(
+      /*sql */ `SELECT time_started from message where content = $1 and chatroom_id = $2 and sender= $3 and time_started = $4;`,
+      [content, chatroomId, user.id, sentTime]
+    )).rows[0];
 
     const targetUserId = chatroom.user_id_left === user.id ? chatroom.user_id_right : chatroom.user_id_left;
 
     
    
    //target and myself
-    io.to(`room-${targetUserId}`).emit("message", { chatroom_id: chatroomId, content });
+    io.to(`room-${targetUserId}`).emit("message", { chatroom_id: chatroomId, content, time });
     //io.to(`room-${user.id}`).emit("message", { chatroom_id: chatroomId, content });
   
 

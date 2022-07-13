@@ -22,6 +22,7 @@ profileRoutes.post("/edit", editMyProfile);
 async function getMyProfile(req: Request, res: Response) {
   try {
     const user = req.session["user"]
+    console.log(user);
     const result = (await dbUser.query('select * from users where id = $1', [user?.id])).rows
     res.json(result)
   } catch (err) {

@@ -76,9 +76,9 @@ async function loadProfile(page) {
   let imageStr = `<div class="carousel-item active">
     <img src="./image/${imageResult}" class="d-block w-100" alt="..."/>
   </div>`;
-  if (imageArr.length === 1) {
-    return;
-  }
+  //if (imageArr.length === 1) {
+  //  return;
+  //}
   for (let i = 1; i < imageArr.length; i++) {
     imageStr += `<div class="carousel-item">
         <img src="./image/${imageArr[i].file_name}" class="d-block w-100" alt="..."/>
@@ -97,6 +97,37 @@ async function loadProfile(page) {
   }
 
   let htmlStr = `
+  <form id="form-register">
+  <div class="input_area">
+      <!-- <div class="regItem col-sm-2"> -->
+          <label for="age-select">Choose age:</label>
+          <!-- <input type="text" placeholder="Age" class="inputbox1" required /> -->
+          <select id="age-select">
+              <option value="17-27">17-27</option>
+              <option value="28-38">28-38</option>
+              <option value="39-49">39-49</option>
+              <option value="50-60">50-60</option>
+
+          </select>
+          
+          
+      <!-- </div> -->
+
+      <!-- <div class="regItem col-sm-2"> -->
+          <label for="Hobbie">Hobbies:   </label>
+          <!-- <input type="text" placeholder="Hobbies" class="inputbox2" required /> -->
+          <select id="hobbies-select">
+              <option value="coffee">coffee</option>
+              <option value="workout">workout</option>
+              <option value="staycation">staycation</option>
+              <option value="netflix">netflix</option>
+              <option value="hiking">hiking</option>
+
+          </select>
+      <!-- </div> -->
+
+  </div>
+</form>
   <div class="card">
                 
   <div id=${page}>

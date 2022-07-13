@@ -55,7 +55,6 @@ async function editMyProfile(req: Request, res: Response) {
   }
 }
 
-
 //filter profiles
 //only can filter by gender now, need fix
 async function filter(req: Request, res: Response) {
@@ -116,7 +115,12 @@ async function getProfile(req: Request, res: Response) {
   //const { username} = req.body;
   //console.log(username)
 
+
   try {
+
+
+    const user = req.session["user"]
+    const userid = user.id;
 
     let page = parseInt(req.query.page as string, 10);
 
@@ -124,7 +128,7 @@ async function getProfile(req: Request, res: Response) {
     if (isNaN(page)) {
       page = 1;
     }
-    const totalPageNum = (await dbUser.query('select * from users')).rows.length
+    const totalPageNum = (await dbUser.query(`select * from users WHERE id != '${userid}'`)).rows.length
     if (page > totalPageNum) {
       page = 1;
     }
@@ -133,10 +137,10 @@ async function getProfile(req: Request, res: Response) {
     }
 
     //Provide info
-    const userInfo = (await dbUser.query('select * from users')).rows[page - 1]
+    const userInfo = (await dbUser.query(`select * from users WHERE id != '${userid}'`)).rows[page - 1]
     console.log(userInfo)
 
-    const result = (await dbUser.query('select * from users')).rows[page - 1].id
+    const result = (await dbUser.query(`select * from users WHERE id != '${userid}'`)).rows[page - 1].id
 
     //Provide hobby
     const hobby_id = (await dbUser.query(`select hobby_id from user_hobby where user_id = '${result}'`)).rows;
@@ -151,11 +155,19 @@ async function getProfile(req: Request, res: Response) {
     //Provide image
 
 
+    //checkfriendlist
+    const friendlist = (
+      await dbUser.query(/*sql*/`SELECT username from users
+      WHERE id IN (SELECT user_id_received FROM friendship_level
+          WHERE user_id_given = $1 AND friendship_level >0 );`, [user.id])).rows;
+
+
+
     //const result = (await dbUser.query(`select id from users where username = '${page}'`)).rows[0].id;
-    const image_arr = (await dbUser.query(`select file_name from user_photo where user_id = '${result}'`)).rows;
+    const image_arr = (await dbUser.query(`select file_name from user_photo where user_id = '${result}' AND user_id != '${userid}'`)).rows;
     console.log(image_arr)
 
-    res.json({ current_page: page, total_page: totalPageNum, image: image_arr, user_info: userInfo, hobby: hobbyArr })
+    res.json({ current_page: page, total_page: totalPageNum, image: image_arr, user_info: userInfo, hobby: hobbyArr, friendlist: friendlist })
     //res.json({success: true})
   } catch (err) {
 
@@ -171,12 +183,11 @@ async function getfriendList(req: Request, res: Response) {
     WHERE id IN (SELECT user_id_received FROM friendship_level
         WHERE user_id_given = $1 AND friendship_level >0 );`, [user.id])).rows;
 
-  // const friendphoto = (
-  //   await dbUser.query(/*sql*/`SELECT filename FROM user_photo
-  //   WHERE id IN (SELECT user_id_received FROM friendship_level
-  //       WHERE user_id_given = $1 AND friendship_level >0 );`, [user.id])).rows;
+  const friendphoto = (
+    await dbUser.query(/*sql*/`SELECT file_name FROM user_photo
+    WHERE user_id IN (SELECT user_id_received FROM friendship_level
+        WHERE user_id_given = $1 AND friendship_level >0 );`, [user.id])).rows;
+  res.json({ friendlist, friendphoto });
 
-
-  res.json({ friendlist });
 }
 

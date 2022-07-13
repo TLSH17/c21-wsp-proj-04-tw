@@ -6,13 +6,12 @@
 -- FROM user_hobby;
 -- SELECT *
 -- FROM friendship_level;
+-- DELETE FROM friendship_level;
 -- SELECT file_name FROM user_photo WHERE user_id IN (SELECT id FROM users WHERE id = 209);
-select users.id as id,
-    users.username as username,
-    user_photo.file_name as file_name
-FROM users,
-    user_photo
-WHERE users.id = user_photo.user_id;
+-- select users.id as id, users.username as username, user_photo.file_name as file_name 
+-- FROM users, user_photo 
+-- WHERE users.id = user_photo.user_id AND users.id = 210;
+-- select file_name from user_photo where user_id = 210;
 -- SELECT *
 -- FROM user_photo;
 -- SELECT username, file_name FROM users CROSS JOIN user_photo ON users.id = user_photo.user_id;

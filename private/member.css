@@ -32,7 +32,27 @@ body {
     margin: 0;
 }
 
+.friendpic {
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 1px 8px 0 rgba(0, 20, 0.2);
+}
+
 .bubbly-button {
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    font-size: 30px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    background-image: linear-gradient(to right, #e052a0, #f15c41) !important;
+    border-radius: 3px;
+    padding: 16px 18px 15px;
+    white-space: nowrap;
+}
+
+.editProfile {
     display: inline-block;
     outline: 0;
     border: 0;
@@ -46,9 +66,29 @@ body {
     white-space: nowrap;
 }
 
+.friendListTitle {
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(185, 185, 185);
+    /* border-radius: 3px; */
+
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.friendInput {
+    background-color: rgb(246, 237, 237);
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 5px;
+    border-color: rgb(129, 129, 166)
+}
+
 .bubbly-button:hover {
-    background-color: #e6375a;
+    /* background-color: #e6375a;
+     */
     background-image: none !important;
+    background-color: rgba(252, 153, 3, 0.7);
 }
 
 
@@ -62,6 +102,8 @@ body {
 }
 
 .side {
+    display: flex;
+    flex-direction: column;
     min-width: 320px;
     height: 200px;
     background-color: #fff;
@@ -164,6 +206,7 @@ body {
 
 .side .messages {
     padding: 10px 20px;
+    width: 100%;
     display: flex;
     align-items: center;
     transition: 0.2 box-shadow
@@ -230,8 +273,8 @@ body {
 }
 
 .card {
-    width: 380px;
-    height: auto;
+    width: 500px;
+    height: 500px;
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 0 1px 20px 0 rgba(0, 20, 0.5);
@@ -365,7 +408,7 @@ body {
 
 img {
     max-width: 100%;
-    border-radius: 50%;
+    border-radius: 80%;
 }
 
 .xmsg-header {

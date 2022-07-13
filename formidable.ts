@@ -8,8 +8,8 @@ declare global {
         interface Request {
             form?: {
                 fields: Fields;
-                files: any;
-                // files: Files;
+                // files: any;
+                files: Files;
             };
         }
     }

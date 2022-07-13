@@ -13,9 +13,9 @@ import { profileRoutes } from "./routers/profileRoutes";
 import { chatroomRoutes } from "./routers/chatroomRoutes";
 
 export const dbUser = new pg.Client({
-    database: process.env.DB_NAME,
-    user: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
 });
 
 dbUser.connect();
@@ -30,39 +30,39 @@ app.use(express.json());
 
 //Session
 const sessionMiddleware = expressSession({
-    secret: "WSPPROJECT",
-    resave: true,
-    saveUninitialized: true,
-  });
+  secret: "WSPPROJECT",
+  resave: true,
+  saveUninitialized: true,
+});
 app.use(sessionMiddleware);
 
 io.use((socket, next) => {
-    let req = socket.request as express.Request;
-    let res = req.res as express.Response;
-    sessionMiddleware(req, res, next as express.NextFunction);
-  });
+  let req = socket.request as express.Request;
+  let res = req.res as express.Response;
+  sessionMiddleware(req, res, next as express.NextFunction);
+});
 
-  io.on("connection", function (socket) {
-    console.log(`${socket.id} is connected !!!`);
-    const req = socket.request as express.Request;
-    if (req.session["user"]) {
-      const userId = req.session["user"].id;
-      socket.join(`room-${userId}`);
-    }
-    socket.on('message', (msg: string) => {
-      console.log('message: ' + msg);
-  
-      
-      
-    });
-    //sendMessage(msg)
+io.on("connection", function (socket) {
+  console.log(`${socket.id} is connected !!!`);
+  const req = socket.request as express.Request;
+  if (req.session["user"]) {
+    const userId = req.session["user"].id;
+    socket.join(`room-${userId}`);
+  }
+  socket.on('message', (msg: string) => {
+    console.log('message: ' + msg);
+
+
+
   });
+  //sendMessage(msg)
+});
 
 ///////////
 
 app.use((req, res, next) => {
-    console.log(`req path: ${req.path}, method: ${req.method}`);
-    next();
+  console.log(`req path: ${req.path}, method: ${req.method}`);
+  next();
 });
 
 
@@ -84,10 +84,10 @@ app.use("/image", express.static(path.join(__dirname, "private/image"))); // for
 
 
 app.use((req, res) => {
-    res.sendFile(path.resolve("./public/404.html"));
+  res.sendFile(path.resolve("./public/404.html"));
 });
 
 server.listen(PORT, () => {
-    console.log(`listening to PORT: ${PORT}`);
-  });
-  
+  console.log(`listening to PORT: ${PORT}`);
+});
+

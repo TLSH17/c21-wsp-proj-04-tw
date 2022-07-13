@@ -15,7 +15,9 @@ export const profileRoutes = express.Router();
 profileRoutes.get("/profiles", getProfile);
 profileRoutes.post("/filter", filter);
 profileRoutes.get("/", getMyProfile);
+profileRoutes.get("/friendlsit", getfriendList);
 profileRoutes.post("/edit", editMyProfile);
+
 
 // see my profile
 //the getMyProfile route must be "/" such that right after login route we can assign a variable to catch req.session
@@ -101,14 +103,9 @@ async function filter(req: Request, res: Response) {
   }
 }
 
-
-
 //dbUser.connect()
 
-
 async function getProfile(req: Request, res: Response) {
-
-
 
   //const { username} = req.body;
   //console.log(username)
@@ -161,4 +158,21 @@ async function getProfile(req: Request, res: Response) {
 
     res.status(500).json({ success: false, message: "internal server error" });
   }
+}
+
+async function getfriendList(req: Request, res: Response) {
+  const user = req.session["user"]
+  console.log("getfriendList!!!")
+  const friendlist = (
+    await dbUser.query(/*sql*/`SELECT username from users
+    WHERE id IN (SELECT user_id_received FROM friendship_level
+        WHERE user_id_given = $1 AND friendship_level >0 );`, [user.id])).rows;
+
+  // const friendphoto = (
+  //   await dbUser.query(/*sql*/`SELECT filename FROM user_photo
+  //   WHERE id IN (SELECT user_id_received FROM friendship_level
+  //       WHERE user_id_given = $1 AND friendship_level >0 );`, [user.id])).rows;
+
+
+  res.json({ friendlist });
 }

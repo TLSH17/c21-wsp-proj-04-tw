@@ -46,18 +46,23 @@ async function loadProfile(page) {
   });
   const result = await resp.json();
   //const age = new Date().getFullYear - result.user_info.date_of_birth.getFullYear()
+  // console.log("showresult")
+  // console.log(result);
+
 
   //process page
   const PAGE = result.current_page
-  console.log("PAGE", PAGE)
+  // console.log("PAGE", PAGE)
   const totalPage = result.total_page
 
   //process age
   const jsonDate = result.user_info.date_of_birth;
+  // console.log(jsonDate.getUTCHours())
   const age =
     parseInt(new Date().getFullYear()) -
     parseInt(new Date(jsonDate).getFullYear());
 
+  // console.log("age" + age)
   //process hobby
   const hobbyArr = result.hobby;
   let hobbyStr = "";
@@ -77,6 +82,9 @@ async function loadProfile(page) {
   let imageStr = `<div class="carousel-item active">
     <img src="./image/${imageResult}" class="d-block w-100" alt="..."/>
   </div>`;
+  //if (imageArr.length === 1) {
+  //  return;
+  //}
   // if (imageArr.length === 1) {
   //   return;
   // }
@@ -98,6 +106,37 @@ async function loadProfile(page) {
   }
 
   let htmlStr = `
+  <form id="form-register">
+  <div class="input_area">
+      <!-- <div class="regItem col-sm-2"> -->
+          <label for="age-select">Choose age:</label>
+          <!-- <input type="text" placeholder="Age" class="inputbox1" required /> -->
+          <select id="age-select">
+              <option value="17-27">17-27</option>
+              <option value="28-38">28-38</option>
+              <option value="39-49">39-49</option>
+              <option value="50-60">50-60</option>
+
+          </select>
+          
+          
+      <!-- </div> -->
+
+      <!-- <div class="regItem col-sm-2"> -->
+          <label for="Hobbie">Hobbies:   </label>
+          <!-- <input type="text" placeholder="Hobbies" class="inputbox2" required /> -->
+          <select id="hobbies-select">
+              <option value="coffee">coffee</option>
+              <option value="workout">workout</option>
+              <option value="staycation">staycation</option>
+              <option value="netflix">netflix</option>
+              <option value="hiking">hiking</option>
+
+          </select>
+      <!-- </div> -->
+
+  </div>
+</form>
   <div class="card">
                 
   <div id=${page}>
@@ -125,10 +164,10 @@ async function loadProfile(page) {
       <!--<img class="user" src="https://i.pinimg.com/564x/b4/4b/18/b44b18fc8ad2904b87d577ab4d957055.jpg"
           alt="Solar">-->
       <div class="profile"></div>
-      <div class="name">${result.user_info.username} </br><span>${age}</span></div>
+      <div class="name">${result.user_info.username}</div></br>
+      <div class="name profileAge">AGE : ${age}</div>
       <div class="local">
           <i class="fas fa-map-marker-alt"></i>
-          <span>18 kilometers</span>
       </div>
   </div>
 
@@ -186,6 +225,10 @@ async function loadProfile(page) {
       console.log("counter: ", counter)
       loadProfile(counter);
     });
+
+
+
+  //console.log(`page: ${page}`)
 
 
 
@@ -298,24 +341,28 @@ async function loadmyProfile() {
   const myinfo = await resp.json();
   console.log(myinfo);
 
-  const myname = myinfo[0].username;
-  console.log(myname);
+  const myname = myinfo.result[0].username;
+  console.log("My username is : " + myname);
 
-  // const myPicLocation = myinfo[0].id
+  const myPicLocation = myinfo.result[0].file_name;
   // console.log(myPicLocation);
 
-  const myid = myinfo[0].id;
+  const myid = myinfo.result[0].id;
 
 
   //my name & id
   const myUserName = `
-  <div style="font-size: 20px">${myname}<div><br/>
-  <div>Your User id is : ${myid}</div>`;
+  <div style="font-size: 20px; margin :10px">User Name : ${myname}<div>
+  <div style="font-size: 15px; margin :10px">Your ID : ${myid}<div><br/>
+  `;
   document.querySelector(".myProfile").innerHTML = myUserName;
 
   // // my profile photo
-  // const myPic = `<img src="image/${myPicLocation}">`;
-  // document.querySelector(".myPic").innerHTML = myPic;
+  const myPic = `<img src="image/${myPicLocation}">`;
+  document.querySelector(".myPic").innerHTML = myPic;
+
+  // myimage = myinfo.myimage;
+  // console.log(myimage);
 
 
 
@@ -329,6 +376,30 @@ async function loadmyProfile() {
 //  invisible.appendChild(item);
 //  })
 
+
+
+
+
+
+
+
+// var animateButton = function (e) {
+
+//   e.preventDefault;
+//   //reset animation
+//   e.target.classList.remove('animate');
+
+//   e.target.classList.add('animate');
+//   setTimeout(function () {
+//     e.target.classList.remove('animate');
+//   }, 700);
+// };
+
+// var bubblyButtons = document.getElementsByClassName("bubbly-button");
+
+// for (var i = 0; i < bubblyButtons.length; i++) {
+//   bubblyButtons[i].addEventListener('click', animateButton, false);
+// }
 
 // const resultFromFE = req.body
 // resultFromFE.like -> ture

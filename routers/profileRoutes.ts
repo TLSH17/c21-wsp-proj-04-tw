@@ -24,8 +24,15 @@ profileRoutes.post("/edit", editMyProfile);
 async function getMyProfile(req: Request, res: Response) {
   try {
     const user = req.session["user"]
-    const result = (await dbUser.query('select * from users where id = $1', [user?.id])).rows;
-    res.json({ result })
+    const result = (await dbUser.query('select users.id as id, users.username as username, user_photo.file_name as file_name FROM users, user_photo WHERE users.id = user_photo.user_id AND users.id = $1;'
+      , [user?.id])).rows;
+
+    // //Provide "MY" image
+    // const myimage = (await dbUser.query(`
+    // SELECT file_name FROM user_photo WHERE user_id IN (SELECT id FROM users WHERE id = $1`, [user.id]));
+
+    // const result = (await dbUser.query('select * from users where'))
+    res.json({ result });
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: "internal server error" });
@@ -140,7 +147,6 @@ async function getProfile(req: Request, res: Response) {
       hobbyArr.push(a)
     }
     console.log(hobbyArr)
-
 
     //Provide image
 

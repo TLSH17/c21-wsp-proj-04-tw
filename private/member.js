@@ -3,10 +3,10 @@ import { loadChatroomArr } from "./chatroom.js";
 //import { filter } from "./filter.js"
 
 window.onload = async () => {
+  loadmyProfile();
+  loadfriendlist();
   loadProfile();
   loadChatroomArr();
-  loadfriendlist();
-  loadmyProfile();
 
   console.log("On load");
 
@@ -186,13 +186,14 @@ async function loadProfile(page) {
   <i class="fas fa-star fa"></i>
   </div>
 
-  <form id="like">
+  <form id="like" onClick="location.href=location.href">
     <div type="submit" id="heart" class="heart" data-id="${result.user_info.id}">
         <i class="fas fa-heart"></i>
     </div>
   </form> 
 
 </div>`;
+
 
   document.querySelector(".content").innerHTML = htmlStr;
 
@@ -250,6 +251,11 @@ async function loadProfile(page) {
 
   //console.log(`page: ${page}`)
 
+
+  //console.log(result.friendlist.length);
+  const friendListLength = result.friendlist.length;
+
+
   //list friend list//
 
   // Click the heart icon, friendship_level  +1
@@ -257,6 +263,13 @@ async function loadProfile(page) {
     ele.addEventListener("click", async (e) => {
       e.preventDefault();
       // console.log(`Enter into like`)
+
+      if (friendListLength >= 4) {
+        window.alert("已達4個朋友上限。早鳥休惠 $1000 HKD 即多100位朋友上限");
+        return;
+      }
+
+
 
       const targetid = e.currentTarget.dataset["id"];
       console.log("Here is the target id: " + targetid);
@@ -283,6 +296,7 @@ async function loadProfile(page) {
         const result = await resp.json();
         alert(result.message);
       }
+
     })
   );
 
@@ -318,26 +332,38 @@ async function loadfriendlist() {
   // console.log("passthefetch");
   // console.log("passthefetch");
   const friendlist = await resp.json();
-  // console.log(friendlist);
-
-  const friendlistNum = friendlist.friendlist.length;
+  // console.log(friendlist.friendphoto[0].file_name);
+  // console.log("hihi")
+  const friendlistNum = (friendlist.friendlist).length;
   // console.log(friendlistNum);
+  console.log(friendlistNum);
+
+  // if (friendlistNum >= 4) {
+  //   console.log("Oh no!")
+  //   window.alert("已達4個朋友上限。早鳥休惠 $1000 HKD 即多100位朋友上限");
+  //   return;
+  //   // window.location.href = ("/index.html")
+  //   // loadfriendlist();
+  // }
 
   // console.log(friendlist.friendlist[0].user_id_received);
   // console.log("finish_friendlist");
   let htmlStr = "";
 
   for (let i = 0; i < friendlistNum; i++) {
-    // console.log(friendlist.friendlist[i].username);
+    // console.log(friendlist.friendphoto[i].file_name);
     htmlStr += `
     <div class="messages">
       <div class="friend">
         <div class="user">${friendlist.friendlist[i].username}</div>
+        <img src="image/${friendlist.friendphoto[i].file_name}" class= "friendpic" ></img>
       </div>
     </div>
     `;
     document.querySelector(".friendInput").innerHTML = htmlStr;
   }
+
+
 
   // let htmlStr = "";
   // for (let friends in friendlistObj) {
@@ -353,7 +379,7 @@ async function loadmyProfile() {
   const resp = await fetch("/member", { method: "GET" });
   // console.log("passthefetch");
   const myinfo = await resp.json();
-  console.log(myinfo);
+  // console.log(myinfo);
 
   const myname = myinfo.result[0].username;
   console.log("My username is : " + myname);
@@ -365,8 +391,7 @@ async function loadmyProfile() {
 
   //my name & id
   const myUserName = `
-  <div style="font-size: 20px; margin :10px">User Name : ${myname}<div>
-  <div style="font-size: 15px; margin :10px">Your ID : ${myid}<div><br/>
+  <div style="font-size: 20px; margin :10px">Greetings. ${myname}. What are you thinking right now? <div>
   `;
   document.querySelector(".myProfile").innerHTML = myUserName;
 

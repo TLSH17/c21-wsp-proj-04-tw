@@ -1,5 +1,6 @@
 //import {load} from "./load.js"
-import { loadChatroomArr } from "./chatroom.js"
+import { loadChatroomArr } from "./chatroom.js";
+//import { filter } from "./filter.js"
 
 window.onload = async () => {
   loadProfile();
@@ -7,14 +8,12 @@ window.onload = async () => {
   loadfriendlist();
   loadmyProfile();
 
-
-  console.log("On load")
+  console.log("On load");
 
   const socket = io.connect(); // You can pass in an optional parameter like "http://localhost:8080"
   socket.on("message", (data) => {
-
     //receive message from server
-    const msg = data.content
+    const msg = data.content;
 
     //insert message number in chatroom
     const chatroomId = data.chatroom_id;
@@ -31,8 +30,6 @@ window.onload = async () => {
       const count = parseInt(ele.textContent, 10);
       ele.innerHTML = String(count + 1);
     }
-
-
   });
 };
 
@@ -40,7 +37,6 @@ let page = 1;
 let counter = 1;
 
 async function loadProfile(page) {
-
   const resp = await fetch(`/member/profiles?page=${page}`, {
     method: "GET",
   });
@@ -49,11 +45,10 @@ async function loadProfile(page) {
   // console.log("showresult")
   // console.log(result);
 
-
   //process page
-  const PAGE = result.current_page
+  const PAGE = result.current_page;
   // console.log("PAGE", PAGE)
-  const totalPage = result.total_page
+  const totalPage = result.total_page;
 
   //process age
   const jsonDate = result.user_info.date_of_birth;
@@ -78,7 +73,6 @@ async function loadProfile(page) {
   // console.log("REsult!!:" + imageResult);
   // console.log("heheheheh :" + imageArr);
 
-
   let imageStr = `<div class="carousel-item active">
     <img src="./image/${imageResult}" class="d-block w-100" alt="..."/>
   </div>`;
@@ -101,42 +95,49 @@ async function loadProfile(page) {
   //   return;
   // }
   for (let i = 1; i < imageArr.length; i++) {
-    indicatorStr += `<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}" aria-label="Slide ${i + 1
-      }"></button>`;
+    indicatorStr += `<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}" aria-label="Slide ${
+      i + 1
+    }"></button>`;
   }
 
   let htmlStr = `
-  <form id="form-register">
+  <form id="filter">
   <div class="input_area">
       <!-- <div class="regItem col-sm-2"> -->
           <label for="age-select">Choose age:</label>
-          <!-- <input type="text" placeholder="Age" class="inputbox1" required /> -->
-          <select id="age-select">
-              <option value="17-27">17-27</option>
-              <option value="28-38">28-38</option>
-              <option value="39-49">39-49</option>
-              <option value="50-60">50-60</option>
-
-          </select>
+          <!-- <input type="text" placeholder="Age" class="inputbox1" name="age-select" id ="age-select" required /> -->
+          <select id="age">
+          
+          <option value="17-27">17-27</option>
+          <option value="28-38">28-38</option>
+          <option value="39-49">39-49</option>
+          <option value="50-60">50-60</option>
+        </select>
           
           
       <!-- </div> -->
 
       <!-- <div class="regItem col-sm-2"> -->
-          <label for="Hobbie">Hobbies:   </label>
+          <label for="hobby">Hobbies:   </label>
           <!-- <input type="text" placeholder="Hobbies" class="inputbox2" required /> -->
-          <select id="hobbies-select">
-              <option value="coffee">coffee</option>
-              <option value="workout">workout</option>
-              <option value="staycation">staycation</option>
-              <option value="netflix">netflix</option>
-              <option value="hiking">hiking</option>
+          <select id="hobby">
+              <option value="party">party</option>
+              <option value="outdoor">outdoor</option>
+              <option value="yoga">yoga</option>
+              <option value="dining">dining</option>
+              <option value="foodie">foodie</option>
+              <option value="tennis">tennis</option>
+              <option value="movie">movie</option>
 
           </select>
       <!-- </div> -->
 
   </div>
+  <div class="submit_button col-sm-6">
+  <input type="submit" value="Submit" />
+</div>
 </form>
+
   <div class="card">
                 
   <div id=${page}>
@@ -195,21 +196,42 @@ async function loadProfile(page) {
 
   document.querySelector(".content").innerHTML = htmlStr;
 
-  document.querySelector("#home").addEventListener(("click"), () => {
+  document.querySelector("#home").addEventListener("click", () => {
     loadProfile(counter);
-  })
+  });
+
+  document.querySelector("#filter").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    console.log("Register!");
+    const form = e.target;
+    const formData = new FormData();
+
+    console.log(form["age"]["value"]);
+    console.log(form["age"]["value"]);
+
+    formData.append("age", form["age"]["value"]);
+    formData.append("hobby", form["hobby"]["value"]);
+
+    const resp = await fetch("/member/filter", {
+      method: "POST",
+      body: formData,
+
+  });
+
+  const result = await resp.json();
+    
+  });
 
   document
     .querySelector(".carousel-control-next")
     .addEventListener("click", () => {
       if (PAGE === 1) {
-        counter = 1
+        counter = 1;
       }
 
-      counter += 1
+      counter += 1;
 
-
-      console.log("counter: ", counter)
+      console.log("counter: ", counter);
       loadProfile(counter);
     });
 
@@ -217,21 +239,16 @@ async function loadProfile(page) {
     .querySelector(".carousel-control-prev")
     .addEventListener("click", () => {
       if (PAGE === totalPage) {
-        counter = totalPage
+        counter = totalPage;
       }
 
-      counter -= 1
+      counter -= 1;
 
-      console.log("counter: ", counter)
+      console.log("counter: ", counter);
       loadProfile(counter);
     });
 
-
-
   //console.log(`page: ${page}`)
-
-
-
 
   //list friend list//
 
@@ -251,7 +268,7 @@ async function loadProfile(page) {
       // const resp = await fetch(`/member/likeProfile`, { method: "POST" });
       const resp = await fetch(`/member/likeProfile`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ like, targetid }),
       });
 
@@ -262,14 +279,12 @@ async function loadProfile(page) {
 
       // console.log("user.info.username: " + result.user_info.username);
 
-
       if (resp.status === 400) {
         const result = await resp.json();
         alert(result.message);
       }
     })
-  )
-
+  );
 
   //
   // Click the cross icon, friendship_level  -1
@@ -284,9 +299,9 @@ async function loadProfile(page) {
       // const resp = await fetch(`/member/likeProfile`, { method: "POST" });
       const resp = await fetch(`/member/dislikeProfile`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ disLike, targetid }),
-      })
+      });
       // const result = await resp.json
 
       if (resp.status === 400) {
@@ -294,7 +309,7 @@ async function loadProfile(page) {
         alert(result.message);
       }
     })
-  )
+  );
 }
 
 async function loadfriendlist() {
@@ -305,7 +320,7 @@ async function loadfriendlist() {
   const friendlist = await resp.json();
   // console.log(friendlist);
 
-  const friendlistNum = (friendlist.friendlist).length;
+  const friendlistNum = friendlist.friendlist.length;
   // console.log(friendlistNum);
 
   // console.log(friendlist.friendlist[0].user_id_received);
@@ -334,7 +349,6 @@ async function loadfriendlist() {
   // }
 }
 
-
 async function loadmyProfile() {
   const resp = await fetch("/member", { method: "GET" });
   // console.log("passthefetch");
@@ -349,7 +363,6 @@ async function loadmyProfile() {
 
   const myid = myinfo.result[0].id;
 
-
   //my name & id
   const myUserName = `
   <div style="font-size: 20px; margin :10px">User Name : ${myname}<div>
@@ -363,10 +376,6 @@ async function loadmyProfile() {
 
   // myimage = myinfo.myimage;
   // console.log(myimage);
-
-
-
-
 }
 
 //var invisible = document.getElementById('invisible');
@@ -375,13 +384,6 @@ async function loadmyProfile() {
 //  item.innerHTML =     `<ul id="messages"></ul>`;
 //  invisible.appendChild(item);
 //  })
-
-
-
-
-
-
-
 
 // var animateButton = function (e) {
 
@@ -403,4 +405,3 @@ async function loadmyProfile() {
 
 // const resultFromFE = req.body
 // resultFromFE.like -> ture
-

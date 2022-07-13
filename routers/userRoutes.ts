@@ -17,8 +17,11 @@ userRoutes.post("/login", login);
 //userRoutes.post("/hash", processHashPassword);
 newUserRoutes.post("/newUser", formidableMiddleware, newUser);
 
-//loadother profiles
+//loadother profiles & like
 showUser.post("/member/likeProfile", likeProfile);
+
+//loadother profiles & dislik
+showUser.post("/member/dislikeProfile", dislikeProfile);
 
 
 
@@ -103,36 +106,57 @@ async function newUser(req: Request, res: Response, next: NextFunction) {
 
 
 async function likeProfile(req: Request, res: Response, next: NextFunction) {
-  const { like } = req.body;
-  // const like = req.body.like
-  // console.log("display!" + username, password);
+  const { like, targetid } = req.body;
 
   const my_self = req.session["user"]
   const my_id = my_self.id;
-  console.log(my_id)
 
-  await dbUser.query(/*sql*/`INSERT INTO friendship_level (user_id_given, friendship_level) Values ($1,$2)`,
-    [my_id, 1]);
-  // res.status(200).json({...})
-  // res.json({ success: true, message: "input friendship_level" });
-  return;
+
+  console.log("myid is : " + my_id)
+  console.log("targetid is : " + targetid)
+
+  // console.log("like by : " + my_id)
+  // console.log("like to : " + currentProfileresult)
+  const checkfriendisOnlist = await dbUser.query(`Select * from friendship_level WHERE user_id_given = $1 AND user_id_received = $2`,
+    [my_id, targetid]);
+
+  // console.log(checkfriendisOnlist.rows[0]);
+  if (!checkfriendisOnlist.rows[0]) {
+    await dbUser.query(/*sql*/`INSERT INTO friendship_level (user_id_given, user_id_received, friendship_level) Values ($1,$2,$3)`,
+      [my_id, targetid, 1]);
+    // res.status(200).json({...})
+    // res.json({ success: true, message: "input friendship_level" });
+    // return;
+  } else {
+    const newfriendshipLevel = checkfriendisOnlist.rows[0].friendship_level + 1;
+    await dbUser.query(/*sql*/`UPDATE friendship_level SET friendship_level =$1 WHERE user_id_given =$2 AND user_id_received =$3`, [newfriendshipLevel, my_id, targetid]);
+  }
+
 }
 
 async function dislikeProfile(req: Request, res: Response, next: NextFunction) {
-  const { like } = req.body;
+  const { disLike, targetid } = req.body;
   // const like = req.body.like
   // console.log("display!" + username, password);
 
+
   const my_self = req.session["user"]
   const my_id = my_self.id;
-  console.log(my_id)
 
-  await dbUser.query(/*sql*/`INSERT INTO friendship_level (user_id_given, friendship_level) Values ($1,$2)`,
-    [my_id, -1]);
+  console.log("myid is : " + my_id)
+  console.log("targetid is : " + targetid)
+
+
+  // console.log("dislike to : " + currentProfileresult)
+
+  await dbUser.query(/*sql*/`INSERT INTO friendship_level (user_id_given, user_id_received, friendship_level) Values ($1,$2,$3)`,
+    [my_id, targetid, -1]);
   // res.status(200).json({...})
   // res.json({ success: true, message: "input friendship_level" });
   return;
 }
+
+
 
 
 

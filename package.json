@@ -26,6 +26,7 @@
     "formidable": "^2.0.1",
     "jsonfile": "^6.1.0",
     "pg": "^8.7.3",
+    "socket.io": "^4.5.1",
     "ts-node": "^10.8.2",
     "typecript": "^0.0.1-security"
   },

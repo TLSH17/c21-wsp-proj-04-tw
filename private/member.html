@@ -40,11 +40,17 @@
         <div class="side">
             <div class="header">
 
-                <div class="avatar">
-                    <img src="https://i.pinimg.com/564x/e8/d7/4f/e8d74f016005c6af2097ebb00494edb8.jpg" alt="ladies">
+                <div class="avatar myPic">
+                    <!-- <img src="https://i.pinimg.com/564x/e8/d7/4f/e8d74f016005c6af2097ebb00494edb8.jpg" alt="ladies"> -->
+                    <!-- <img src="image/a0269cbd36469c7901e719400.jpeg"> -->
                 </div>
-                <div class="title">ladies</div>
+                <!-- my information -->
+                <div class="myProfile"></div>
+
             </div>
+
+            <div id="home">home</div>
+
             <div class="menu">
                 <ul>
                     <li>Matches</li>
@@ -81,6 +87,17 @@
                 </div>
             </div>
 
+            <div class="friendInput">
+
+
+
+            </div>
+            <!-- <div class="messages">
+                <div class="friend">
+                </div>
+            </div> -->
+
+
 
             <!-- MAP -->
             <div id="map" style="width: 600px; height: 400px;"></div>
@@ -97,45 +114,6 @@
 
         <div class="content">
 
-            <div class="card">
-                <div id="invisible"></div>
-                <div id="memo-board"></div>
-
-                <div class="user">
-                    <!--<img class="user" src="https://i.pinimg.com/564x/b4/4b/18/b44b18fc8ad2904b87d577ab4d957055.jpg"
-                        alt="Solar">-->
-                    <div class="profile"></div>
-                    <div class="name">Solar <span>20</span></div>
-                    <div class="local">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>18 kilometers</span>
-                    </div>
-                </div>
-            </div>
-            <div class="buttons">
-                <form id="dislike">
-                    <div type="submit" id="cross">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </form>
-
-
-                <div class="no">
-                    <i class="fas fa-times"></i>
-                </div>
-                <div class="star">
-                    <i class="fas fa-star fa"></i>
-                </div>
-
-                <form id="like">
-                    <div type="submit" id="heart">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </form>
-                <!-- <div class="heart" id="heart">
-                    <i class="fas fa-heart"></i>
-                </div> -->
-            </div>
         </div>
     </div>
     </div>
@@ -154,6 +132,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+
     <script type="module" src="member.js"></script>
     <script type="module" src="getlocation.js"></script>
 </body>

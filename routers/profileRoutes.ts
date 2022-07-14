@@ -14,7 +14,7 @@ export const profileRoutes = express.Router();
 
 
 profileRoutes.get("/profiles", getProfile);
-profileRoutes.post("/filter", formidableMiddleware, filter);
+// profileRoutes.post("/filter", formidableMiddleware, filter);
 profileRoutes.get("/", getMyProfile);
 profileRoutes.get("/friendlsit", getfriendList);
 profileRoutes.post("/edit", formidableMiddleware, editMyProfile);
@@ -84,64 +84,63 @@ async function editMyProfile(req: Request, res: Response) {
 
 //filter profiles
 //only can filter by gender now, need fix
-async function filter(req: Request, res: Response) {
-  try {
-    const id = parseInt(req.session["user"].id)
-    const form = req.form!;
-    const hobby = form.fields.hobby as String;
-    const sex = form.fields.sex as String;
-    console.log(id)
-    
-    //const SEX = sex != "ALL"? sex = `${sex}`
-    //const id = (await dbUser.query('select id from hobby where content = $1', [hobby])).rows
-    //console.log(id)
-    const result = (await dbUser.query('select * from hobby inner join user_hobby on hobby.id = user_hobby.hobby_id inner join users on users.id = user_hobby.user_id where hobby.content = $1 and users.gender = $2 and users.id != $3;', [hobby, sex, id])).rows
+// async function filter(req: Request, res: Response) {
+//   try {
+//     const form = req.form!;
+//     const age = form.fields.age as String;
+//     const hobby = form.fields.hobby as String;
+//     age
+//     console.log(age)
+//     console.log(hobby)
 
-    //console.log(result)
 
-    
-   let page = parseInt(req.query.page as string, 10)
-   if (isNaN(page)) {
-     page = 1;
-   }
-   const totalPageNum = result.length
-   if (page > totalPageNum) {
-     page = 1;
-   }
-   if (page === 0) {
-     page = totalPageNum;
-   }
-
-   //Provide info
-   const userInfo = result[page - 1]
-   //console.log(userInfo)
-   const user_id = result[page - 1].user_id
-   //console.log(user_id)
+//let page = parseInt(req.query.page as string, 10);
 //
-   //Provide hobby
-   const hobby_id = (await dbUser.query(`select hobby_id from user_hobby where user_id = '${user_id}'`)).rows;
-   let hobbyArr: object[] = []
-   for (let i of hobby_id) {
-     let a = (await dbUser.query(`select * from hobby where id = ${i.hobby_id}`)).rows[0];
-     //console.log(a)
-     hobbyArr.push(a)
-   }
-   console.log(hobbyArr)
+//
+//if (isNaN(page)) {
+//  page = 1;
+//}
+//const totalPageNum = (await dbUser.query('select * from users where gender = $1', [`${gender}`])).rows.length
+//if (page > totalPageNum) {
+//  page = 1;
+//}
+//if (page === 0) {
+//  page = totalPageNum;
+//}
+//
+////Provide info
+//const userInfo = (await dbUser.query('select * from users where gender = $1', [`${gender}`])).rows[page - 1]
+//console.log(userInfo)
+//
+//const result = (await dbUser.query('select * from users where gender = $1', [`${gender}`])).rows[page - 1].id
+//
+////Provide hobby
+//const hobby_id = (await dbUser.query(`select hobby_id from user_hobby where user_id = '${result}'`)).rows;
+//let hobbyArr: object[] = []
+//for (let i of hobby_id) {
+//  let a = (await dbUser.query(`select * from hobby where id = ${i.hobby_id}`)).rows[0];
+//  //console.log(a)
+//  hobbyArr.push(a)
+//}
+//console.log(hobbyArr)
+//
+//
+////Provide image
+//
+//
+////const result = (await dbUser.query(`select id from users where username = '${page}'`)).rows[0].id;
+//const image_arr = (await dbUser.query(`select file_name from user_photo where user_id = '${result}'`)).rows;
+//console.log(image_arr)
+//
+//res.json({ current_page: page, total_page: totalPageNum, image: image_arr, user_info: userInfo, hobby: hobbyArr })
+//     res.json(true)
 
 
-   //Provide imag
-   //const result = (await dbUser.query(`select id from users where username = '${page}'`)).rows[0].id;
-   const image_arr = (await dbUser.query(`select file_name from user_photo where user_id = '${user_id}'`)).rows;
-   console.log(image_arr)
-   res.json({ current_page: page, total_page: totalPageNum, image: image_arr, user_info: userInfo, hobby: hobbyArr })
-    //res.json(true)
-
-
-  } catch (err) {
-    console.log(err);
-    res.status(400).json({ message: "internal server error" });
-  }
-}
+//   } catch (err) {
+//     console.log(err);
+//     res.status(400).json({ message: "internal server error" });
+//   }
+// }
 
 //dbUser.connect()
 
@@ -150,16 +149,15 @@ async function getProfile(req: Request, res: Response) {
   const userid = user.id;
 
   try {
-    // const user = req.session["user"]
-    // const userid = user.id;
+    const user = req.session["user"]
+    const userid = user.id;
 
 
     let page = parseInt(req.query.page as string, 10);
-    console.log("page", page)
 
 
     // Not friend yet userID
-    const notFriendYetID =  (await dbUser.query(`Select user_id_received from friendship_level where friendship_level != 0 and user_id_given = ${userid};`)).rows;
+    const notFriendYetID = await (await dbUser.query(`Select user_id_received from friendship_level where friendship_level != 0 and user_id_given = ${userid};`)).rows;
 
 
     let notFriendArr = ""
@@ -186,7 +184,6 @@ async function getProfile(req: Request, res: Response) {
 
     //Provide info
     const userInfo = (await dbUser.query(`select * from users WHERE id != '${userid}' ${notFriendArr}`)).rows[page - 1]
-    console.log(123)
     console.log(userInfo)
 
     const result = (await dbUser.query(`select * from users WHERE id != '${userid}' ${notFriendArr}`)).rows[page - 1].id

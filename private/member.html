@@ -56,57 +56,71 @@
 
 
 
+
+
             <div class="menu">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <!--<li class="nav-item" role="presentation">
                         <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Home</button>
                       </li>-->
-                   
+
+
+                    <!-- chat icon & like List -->
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Chatroom</button>
+                        <button class="nav-link active" id="profile-tab" data-bs-toggle="tab"
+                            data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
+                            aria-selected="false">
+                            <i class="fa-solid fa-comment-dots"></i>
+                        </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Liked List</button>
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
+                            data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane"
+                            aria-selected="false">
+                            <i class="fa-solid fa-thumbs-up"></i>
+                        </button>
                     </li>
-                   
-                  </ul>
-                
+
+                </ul>
+
+            </div>
+
+            <button class="bubbly-button logout" style="font-family: 'Indie Flower', cursive;" id="logout">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                    class="bi bi-door-open" viewBox="0 0 16 16">
+                    <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z" />
+                    <path
+                        d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z" />
+                </svg>
+
+            </button>
+
+            <button class="bubbly-button" style="font-family: 'Indie Flower', cursive;" id="home">Home Page</button>
+
+            <!-- Trigger/Open The Modal -->
+            <button id="myBtn" style="margin: 0; font-size: 25px; border-radius:3px;" class="bubbly-button editProfile"
+                style="font-family: 'Indie Flower', cursive;">Edit my
+                profile</button>
+
+            <!-- <button class="bubbly-button" id="logout">logout</button> -->
+
+            <div class="tab-content" id="myTabContent">
+                <!--<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">a</div>-->
+                <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel"
+                    aria-labelledby="profile-tab" tabindex="0">
+                    <div class="list-group list-chat"></div>
+                </div>
+                <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
+                    tabindex="0">
+                    <div class="friendListTitle">Like List</div>
+                    <div class="friendInput"></div>
+                </div>
+
             </div>
 
 
-           
 
-             
-
-
-            <button class="bubbly-button" style="font-family: 'Indie Flower', cursive;" id="home">Home Page</button>
-            
-            <!--<button class="bubbly-button" style="font-family: 'Indie Flower', cursive;" id="home">Home Page</button>
-            <button class="bubbly-button" id="home">home</button>
-
-            <button class="bubbly-button" id="logout">logout</button>
-
-            <button class="bubbly-button" style="font-family: 'Indie Flower', cursive;" id="home">Home Page</button>-->
-
-
-
-            <!-- Trigger/Open The Modal -->
-            <button id="myBtn" style="margin: 0; font-size: 25px; border-radius:3px;"
-                class="bubbly-button editProfile" style="font-family: 'Indie Flower', cursive;">Edit my
-                profile</button>
-
-                <button class="bubbly-button" id="logout">logout</button>
-
-                <div class="tab-content" id="myTabContent">
-                    <!--<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">a</div>-->
-                    <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0"><div class="list-group list-chat"></div></div>
-                    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0"><div class="friendListTitle">Friend List</div>
-                    <div class="friendInput"></div></div>
-                    
-                  </div>
-
-                  
-                  
 
             <!-- The Modal -->
             <div id="myModal" class="modal">
@@ -249,10 +263,10 @@
 
 
             <!--insert chatroom here-->
-            
 
-            
-           <!-- <div class="friendListTitle">Like List</div>
+
+
+            <!-- <div class="friendListTitle">Like List</div>
             <div class="friendInput"></div>-->
             <!-- <div class="messages">
                 <div class="friend">
@@ -262,13 +276,13 @@
 
 
             <!-- MAP developing.... -->
-             <div id="map" style="width: 600px; height: 400px;"></div>
+            <!-- <div id="map" style="width: 600px; height: 400px;"></div>
             <div id="currentLocation"></div>
 
             <div class="GPS Board">
                 <p>Click the button to get your current location.</p>
                 <button id="getLocationButton">Try It</button>
-            </div>
+            </div> -->
 
             <!-- map -->
 

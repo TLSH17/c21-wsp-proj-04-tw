@@ -71,18 +71,20 @@ body {
 .friendListTitle {
     border-style: solid;
     border-width: 2px;
-    border-color: rgb(185, 185, 185);
+    border-color: rgb(129, 129, 166);
     /* border-radius: 3px; */
-
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(129, 129, 166);
     color: white;
+    text-align: center;
+    padding: 2px;
+    font-size: 20px;
 }
 
 .friendInput {
     background-color: rgb(246, 237, 237);
     border-style: solid;
     border-width: 5px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     border-color: rgb(129, 129, 166)
 }
 
@@ -120,6 +122,7 @@ body {
     min-height: 100vh;
     border-right: 2px solid #eeeeee;
     padding: 5px;
+    /* background-image: linear-gradient(to bottom, #e7266d74, rgba(255, 192, 203, 0.352)) */
 }
 
 .side .header {
@@ -201,8 +204,11 @@ body {
 }
 
 .side .menu ul li .nav-link {
-    color: black;
+    font-size: 30px;
+    color: #fd5068;
+    width: 150px;
 }
+
 .side .menu ul li {
     list-style: none;
 
@@ -228,8 +234,17 @@ body {
 }
 
 .user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex: 1;
+    flex-wrap: wrap;
+    text-shadow: 1px 1px 3px #444;
+    font-family: sans-serif;
+    /* font-weight: 2px; */
+    /* text-align: center; */
 }
+
 
 .side .messages .user {
     padding: 0 10px;
@@ -260,7 +275,8 @@ body {
 
 .friend {
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
+    justify-content: center;
     width: 100%;
 }
 
@@ -278,11 +294,13 @@ body {
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
+    /* background: rgba(255, 192, 203, 0.352); */
+    background-image: linear-gradient(to bottom, #2f96dc74, rgba(255, 192, 203, 0.352))
 }
 
 .content .card {
     position: relative;
-    height: auto;
+    height: fit-content;
     width: 500px;
 }
 
@@ -310,10 +328,17 @@ body {
     letter-spacing: 0.5px;
     text-shadow: 1px 1px 3px #444;
     position: relative;
-    top: 40px;
+    top: 25px;
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
 }
+.otherinfo_item{
+    margin:10px;
+}
+
+
 
 .content .card .user .name {
     color: #fff;
@@ -354,7 +379,7 @@ body {
 }
 
 .content .buttons {
-    margin-top: 10px;
+    /* margin-top: 10px; */
     display: flex;
     align-items: center;
 }
@@ -400,6 +425,11 @@ body {
 .content .buttons .star {
     width: 60px;
     height: 60px;
+}
+
+.user_otherinfo {
+    display: flex;
+    justify-content: space-between;
 }
 
 /*
@@ -632,6 +662,13 @@ img {
     width: 600px;
     max-width: 100%;
     max-height: 100%;
+}
+
+.user_info_nameNage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 

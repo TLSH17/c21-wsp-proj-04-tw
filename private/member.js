@@ -69,7 +69,7 @@ async function loadProfile(page) {
   const hobbyArr = result.hobby;
   let hobbyStr = "";
   for (let i of hobbyArr) {
-    hobbyStr += `<div>${i.content}</div>`;
+    hobbyStr += `<div class="otherinfo_item">${i.content}</div>`;
   }
   // console.log(hobbyStr);
 
@@ -132,17 +132,27 @@ async function loadProfile(page) {
   
   </div>
 
-  <div class="user">
+  <div class="user user_info_nameNage">
       <!--<img class="user" src="https://i.pinimg.com/564x/b4/4b/18/b44b18fc8ad2904b87d577ab4d957055.jpg"
           alt="Solar">-->
       <div class="profile"></div>
-      <div class="name">${result.user_info.username}</div></br>
+      <div class = "user_info_nameNage">
+            <div class="name">${result.user_info.username}</div></br>
+      </div>
       <div class="name profileAge">AGE : ${age}</div>
-      <div class = "hobby">${hobbyStr}</div>
+      <div class = "hobby name">${hobbyStr}</div>
+
+
+ 
+      
+
       <div class="local">
-          <i class="fas fa-map-marker-alt"></i>
       </div>
   </div>
+
+    <div class="user_otherinfo">
+         
+    </div>
 
 </div><!--card-->
 
@@ -256,6 +266,7 @@ async function loadProfile(page) {
 
   //console.log(result.friendlist.length);
   const friendListLength = result.friendlist.length;
+  // console.log(friendListLength);
 
 
   // Button (<3 ) : Click the heart icon, friendship_level  +1
@@ -263,9 +274,9 @@ async function loadProfile(page) {
     ele.addEventListener("click", async (e) => {
       e.preventDefault();
       // console.log(`Enter into like`)
-
+      console.log(friendListLength);
       if (friendListLength >= 4) {
-        window.alert("If you want to like more profiles, please subscribe for more features");
+        window.alert("Please donate for more features if you want to like more profiles. Many thanks!");
         return;
       }
 
@@ -347,7 +358,7 @@ async function loadProfile(page) {
   document.querySelector(".star").addEventListener("click", () => {
     //process page
     console.log("ohno")
-    window.alert("Please subscribe for more features.")
+    window.alert("Please donate for more features. Many thanks!")
   });
 
 

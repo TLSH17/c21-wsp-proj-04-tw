@@ -66,10 +66,10 @@ async function editMyProfile(req: Request, res: Response) {
     console.log(typeof id)
     console.log(gender)
 
-    await dbUser.query(`UPDATE users SET nick_name = $1, gender = $2, interested_in_gender = $3, date_of_birth = $4, description = $5, nationality = $6, email = $7, interested_in_type = $8, zodiac_signs = $9 WHERE id = $10`,[nickName, gender, interested_in_gender, date_of_birth, description, nationality, email, interestedType, zodiac_signs, id])
+    await dbUser.query(`UPDATE users SET nick_name = $1, gender = $2, interested_in_gender = $3, date_of_birth = $4, description = $5, nationality = $6, email = $7, interested_in_type = $8, zodiac_signs = $9 WHERE id = $10`, [nickName, gender, interested_in_gender, date_of_birth, description, nationality, email, interestedType, zodiac_signs, id])
 
     await dbUser.query(/*sql */`INSERT INTO user_photo (user_id, file_name) Values ($1, $2)`,
-        [id, image]);
+      [id, image]);
     //const { id, username, gender } = req.body
     //const result = (await dbUser.query('update users set username = $1, gender = $2 where id = $3', [username, gender, id]))
     //console.log(result)
@@ -139,23 +139,33 @@ async function filter(req: Request, res: Response) {
 
 async function getProfile(req: Request, res: Response) {
 
-  //const { username} = req.body;
-  //console.log(username)
-
 
   try {
-
-
     const user = req.session["user"]
     const userid = user.id;
 
+
     let page = parseInt(req.query.page as string, 10);
+
+
+    // Not friend yet userID
+    const notFriendYetID = await (await dbUser.query(`Select user_id_received from friendship_level where friendship_level != 0 and user_id_given = ${userid};`)).rows;
+
+
+    let notFriendArr = ""
+
+    for (let goodID of notFriendYetID) {
+      // console.log(goodID.user_id_received);
+      notFriendArr += " AND id != " + goodID.user_id_received + " ";
+    }
+
+
 
 
     if (isNaN(page)) {
       page = 1;
     }
-    const totalPageNum = (await dbUser.query(`select * from users WHERE id != '${userid}'`)).rows.length
+    const totalPageNum = (await dbUser.query(`select * from users WHERE id != '${userid}' ${notFriendArr}`)).rows.length
     if (page > totalPageNum) {
       page = 1;
     }
@@ -163,21 +173,21 @@ async function getProfile(req: Request, res: Response) {
       page = totalPageNum;
     }
 
+
     //Provide info
-    const userInfo = (await dbUser.query(`select * from users WHERE id != '${userid}'`)).rows[page - 1]
+    const userInfo = (await dbUser.query(`select * from users WHERE id != '${userid}' ${notFriendArr}`)).rows[page - 1]
     console.log(userInfo)
 
-    const result = (await dbUser.query(`select * from users WHERE id != '${userid}'`)).rows[page - 1].id
+    const result = (await dbUser.query(`select * from users WHERE id != '${userid}' ${notFriendArr}`)).rows[page - 1].id
 
     //Provide hobby
     const hobby_id = (await dbUser.query(`select hobby_id from user_hobby where user_id = '${result}'`)).rows;
     let hobbyArr: object[] = []
     for (let i of hobby_id) {
       let a = (await dbUser.query(`select * from hobby where id = ${i.hobby_id}`)).rows[0];
-      //console.log(a)
       hobbyArr.push(a)
     }
-    console.log(hobbyArr)
+    // console.log(hobbyArr)
 
     //Provide image
 

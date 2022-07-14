@@ -2,6 +2,7 @@
 window.onload = async () => {
     initLoginForm();
     registerForm();
+    // verificationPicFile(file);
     // upLoadPic();
     console.log("on load!")
 };
@@ -76,3 +77,28 @@ function registerForm() {
 
     });
 }
+
+
+// function verificationPicFile(file) {
+//     var filePath = file.value;
+//     if (filePath) {
+//         var filePic = file.files[0];
+//         var reader = new FileReader();
+//         reader.onload = function (e) {
+//             var image = new Image();
+//             image.onload = function () {
+//                 var width = image.width;
+//                 var height = image.height;
+//                 if (width >= 600 | height >= 600) {
+//                     alert("Sorry, The max dimensions is 600*600. Thanks ");
+//                     file.value = "";
+//                     return false;
+//                 }
+//             };
+//             image.src = data;
+//         };
+//         reader.readAsDataURL(filePic);
+//     } else {
+//         return false;
+//     }
+// }

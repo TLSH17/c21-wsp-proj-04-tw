@@ -81,10 +81,10 @@
                 <div class="modal-content">
                     <span class="close">&times;</span>
 
-                <div class="reg_header">
-                    <div class="reg_title" id="hey"></div>
-                    <div class="reg_title_1">Fields marked * are required</div>
-                </div>
+                    <div class="reg_header">
+                        <div class="reg_title" id="hey"></div>
+                        <div class="reg_title_1">Fields marked * are required</div>
+                    </div>
 
 
 
@@ -102,101 +102,105 @@
                                     class="inputbox" /><br />
                             </div>-->
 
-                            <div class="regItem col-sm-2">
-                                <label for="NewNickName">Nick Name: *</label><br />
-                                <input type="text" name="NewNickName" placeholder="Nick Name" id="nickname" class="inputbox"
-                                    required /><br />
-                            </div>
+                                <div class="regItem col-sm-2">
+                                    <label for="NewNickName">Nick Name: *</label><br />
+                                    <input type="text" name="NewNickName" placeholder="Nick Name" id="nickname"
+                                        class="inputbox" required /><br />
+                                </div>
 
-                          
 
-        
-
-                            <div class="regItem col-sm-2">
-                                <label for="gender">Gender: *</label><br />
-                                <select name="NewGender" id="gender" class="inputbox" required>
-                                    <option disabled selected value="">--Please choose an option--</option>
-                                    <option value="m">Male</option>
-                                    <option value="f">Female</option>
-                                    <option value="neutral">Neutral</option>
-                                </select>
-                            </div>
-
-                            <div class="regItem col-sm-2">
-                                <label for="NewInterestedGender">Interested in gender: *</label><br />
-                                <select name="NewInterestedGender" id="interested_gender" class="inputbox" required>
-                                    <option disabled selected value="">--Please choose an option--</option>
-                                    <option value="m">Male</option>
-                                    <option value="f">Female</option>
-                                    <option value="neutral">Neutral</option>
-                                </select>
-                                
 
 
 
                                 <div class="regItem col-sm-2">
-                                    <label for="NewBirth">Date of birth (yyyy-MM-dd)</label><br />: *</label><br />
-                                    <input type="date" name="NewBirth" class="inputbox" required /><br />
+                                    <label for="gender">Gender: *</label><br />
+                                    <select name="NewGender" id="gender" class="inputbox" required>
+                                        <option disabled selected value="">--Please choose an option--</option>
+                                        <option value="m">Male</option>
+                                        <option value="f">Female</option>
+                                        <option value="neutral">Neutral</option>
+                                    </select>
                                 </div>
 
                                 <div class="regItem col-sm-2">
-                                    <label for="NewDescription">Description: *</label><br />
-                                    <input type="text" placeholder="description" name="NewDescription" id="description" class="inputbox"
-                                        required /><br />
+                                    <label for="NewInterestedGender">Interested in gender: *</label><br />
+                                    <select name="NewInterestedGender" id="interested_gender" class="inputbox" required>
+                                        <option disabled selected value="">--Please choose an option--</option>
+                                        <option value="m">Male</option>
+                                        <option value="f">Female</option>
+                                        <option value="neutral">Neutral</option>
+                                    </select>
+
+
+
+
+                                    <div class="regItem col-sm-2">
+                                        <label for="NewBirth">Date of birth (yyyy-MM-dd)</label><br />: *</label><br />
+                                        <input type="date" name="NewBirth" class="inputbox" required /><br />
+                                    </div>
+
+                                    <div class="regItem col-sm-2">
+                                        <label for="NewDescription">Description: *</label><br />
+                                        <input type="text" placeholder="description" name="NewDescription"
+                                            id="description" class="inputbox" required /><br />
+                                    </div>
+
+
+
+
+                                    <div class="regItem col-sm-2">
+                                        <label for="NewNationality">Nationality *: </label><br />
+                                        <input type="text" placeholder="Nationality" name="NewNationality"
+                                            class="inputbox" id="nationality" required /><br />
+                                    </div>
+
+                                    <div class="regItem col-sm-2">
+                                        <label for="image">Select Photos:(gif / jpeg / jpg / png / svg) *</label><br />
+                                        <input type="file" name="image"
+                                            accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"
+                                            required /><br />
+                                    </div>
+
                                 </div>
 
-                                
+
+                                <div class="optional_items">
 
 
-                                <div class="regItem col-sm-2">
-                                    <label for="NewNationality">Nationality *: </label><br />
-                                    <input type="text" placeholder="Nationality" name="NewNationality" class="inputbox" id="nationality"
-                                        required /><br />
+                                    <div class="regItem col-sm-2"> <label for="NewUserEmail">Email:</label><br />
+                                        <input type="text" name="NewUserEmail" placeholder="Email" class="inputbox"
+                                            id="email" /><br />
+                                    </div>
+
+                                    <div class="regItem col-sm-2">
+                                        <label for="NewInterestedType">Interested in type:</label><br />
+                                        <input type="text" name="NewInterestedType" id="interestedInType"
+                                            class="inputbox" /><br />
+                                    </div>
+
+                                    <div class="regItem col-sm-2">
+                                        <label for="NewZodiac">Zodiac Signs: </label><br />
+                                        <input type="text" placeholder="Zodiac Signs" id="zodiacSigns" name="NewZodiac"
+                                            class="inputbox" /><br />
+                                    </div>
+
+
+
+
+
                                 </div>
 
-                                <div class="regItem col-sm-2">
-                                    <label for="image">Select Photos: *</label><br />
-                                    <input type="file" name="image" required /><br />
-                                </div>
 
-                            </div>
-
-
-                            <div class="optional_items">
-
-                            
-                                <div class="regItem col-sm-2"> <label for="NewUserEmail">Email:</label><br />
-                                    <input type="text" name="NewUserEmail" placeholder="Email" class="inputbox" id="email"/><br />
-                                </div>
-
-                                <div class="regItem col-sm-2">
-                                    <label for="NewInterestedType">Interested in type:</label><br />
-                                    <input type="text" name="NewInterestedType" id="interestedInType" class="inputbox" /><br />
-                                </div>
-
-                                <div class="regItem col-sm-2">
-                                    <label for="NewZodiac">Zodiac Signs: </label><br />
-                                    <input type="text" placeholder="Zodiac Signs" id="zodiacSigns" name="NewZodiac"
-                                        class="inputbox" /><br />
-                                </div>
-
-                            
-
-                           
-
-                        </div>
-
-
-                            <!--<div class="regItem col-sm-2">
+                                <!--<div class="regItem col-sm-2">
                                 <label for="NewHeight">Height (cm):</label><br />
                                 <input type="number" placeholder="Height (cm)" id="height" name="NewHeight"
                                     class="inputbox" /><br />
                             </div>-->
 
-                            
-                              
 
-                               
+
+
+
 
                             </div>
                         </div>
@@ -215,7 +219,7 @@
             <!--insert chatroom here-->
             <div class="list-group list-chat"></div>
 
-            <div class="friendListTitle">Friend List</div>
+            <div class="friendListTitle">Like List</div>
             <div class="friendInput">
 
 
@@ -228,14 +232,14 @@
 
 
 
-            <!-- MAP -->
-            <div id="map" style="width: 600px; height: 400px;"></div>
+            <!-- MAP developing.... -->
+            <!-- <div id="map" style="width: 600px; height: 400px;"></div>
             <div id="currentLocation"></div>
 
             <div class="GPS Board">
                 <p>Click the button to get your current location.</p>
                 <button id="getLocationButton">Try It</button>
-            </div>
+            </div> -->
 
             <!-- map -->
 

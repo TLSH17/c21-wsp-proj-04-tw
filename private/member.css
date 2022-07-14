@@ -30,12 +30,14 @@ body {
     background-color: #f5f7fa;
     font-family: 'Roboto', sans-serif;
     margin: 0;
+    padding-bottom: 50px;
 }
 
 .friendpic {
     width: 100px;
     height: 100px;
     box-shadow: 0 1px 8px 0 rgba(0, 20, 0.2);
+    border-radius: 4px
 }
 
 .bubbly-button {
@@ -92,13 +94,20 @@ body {
 }
 
 
-.container {
-    width: 100%;
-    display: flex;
 
-    /* border-style: solid; */
-    /* border-width: 5px;
-    border-color: black; */
+@media only screen and (min-width: 960px) {
+
+    .container {
+        width: 100%;
+        display: flex;
+
+
+        /* border-style: solid; */
+        /* border-width: 5px;
+        border-color: black; */
+    }
+
+
 }
 
 .side {
@@ -127,7 +136,7 @@ body {
     width: 100px;
     height: 100px;
     margin: 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     border: 2px solid #fff;
     box-shadow: 0 1px 8px 0 rgba(0, 20, 0.2);
 }
@@ -226,7 +235,10 @@ body {
     padding: 0 10px;
     font-weight: 500;
     letter-spacing: 0.5px;
-    font-size: 18px;
+    font-size: 35px;
+    font-family: sans;
+    text-align: center;
+
 }
 
 .side .messages .text {
@@ -249,6 +261,7 @@ body {
 .friend {
     display: flex;
     flex-direction: row;
+    width: 100%;
 }
 
 
@@ -269,16 +282,19 @@ body {
 
 .content .card {
     position: relative;
-    height: 500px;
+    height: auto;
+    width: 500px;
 }
 
 .card {
-    width: 500px;
-    height: 500px;
+    width: 450px;
+    height: 450px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 1px 20px 0 rgba(0, 20, 0.5);
-    padding: 20px;
+    padding: 10px;
+    margin-top: 150px;
+    margin-bottom: 50px;
 }
 
 .content .card .user .profile {
@@ -297,7 +313,6 @@ body {
     top: 20px;
     display: flex;
     justify-content: center;
-
 }
 
 .content .card .user .name span {
@@ -625,3 +640,17 @@ img {
     font-size: 50px;
     color: red;
 } */
+
+@media only screen and (max-width: 960px) {
+
+    .container {
+        width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+        /* border-style: solid; */
+        /* border-width: 5px;
+        border-color: black; */
+    }
+
+
+}

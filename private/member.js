@@ -57,7 +57,7 @@ async function loadProfile(page) {
 
   //process age
   const jsonDate = result.user_info.date_of_birth;
-  // console.log(jsonDate.getUTCHours())
+  // console.log(jsonDate)
   const age =
     parseInt(new Date().getFullYear()) -
     parseInt(new Date(jsonDate).getFullYear());
@@ -236,16 +236,14 @@ async function loadProfile(page) {
   const friendListLength = result.friendlist.length;
 
 
-  //list friend list//
-
-  // Click the heart icon, friendship_level  +1
+  // Button (<3 ) : Click the heart icon, friendship_level  +1
   document.querySelectorAll("#heart").forEach((ele) =>
     ele.addEventListener("click", async (e) => {
       e.preventDefault();
       // console.log(`Enter into like`)
 
       if (friendListLength >= 4) {
-        window.alert("已達4個朋友上限。早鳥休惠 $1000 HKD 即多100位朋友上限");
+        window.alert("If you want to like more profiles, please subscribe for more features");
         return;
       }
 
@@ -283,53 +281,68 @@ async function loadProfile(page) {
 
 
   //
-  // Click the cross icon, friendship_level  -1
-  document.querySelectorAll("#no").forEach((ele) =>
-    ele.addEventListener("click", async (e) => {
-      // e.preventDefault();
+  // // Click the cross icon, friendship_level  -1
+  // document.querySelectorAll("#no").forEach((ele) =>
+  //   ele.addEventListener("click", async (e) => {
+  //     // e.preventDefault();
 
-      const targetid = e.currentTarget.dataset["id"];
-      console.log(targetid);
+  //     const targetid = e.currentTarget.dataset["id"];
+  //     console.log(targetid);
 
-      const disLike = true;
-      // const resp = await fetch(`/member/likeProfile`, { method: "POST" });
-      const resp = await fetch(`/member/dislikeProfile`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", },
-        body: JSON.stringify({ disLike, targetid }),
-      })
-      // const result = await resp.json
+  //     const disLike = true;
+  //     // const resp = await fetch(`/member/likeProfile`, { method: "POST" });
+  //     const resp = await fetch(`/member/dislikeProfile`, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json", },
+  //       body: JSON.stringify({ disLike, targetid }),
+  //     })
+  //     // const result = await resp.json
 
-      if (resp.status === 400) {
-        const result = await resp.json();
-        alert(result.message);
-      }
-    })
-  )
+  //     if (resp.status === 400) {
+  //       const result = await resp.json();
+  //       alert(result.message);
+  //     }
+  //   })
+  // )
+
+  // Button (X)
+  document.querySelector("#no").addEventListener("click", () => {
+    //process page
+    const PAGE = result.current_page
+    // console.log("PAGE", PAGE)
+    const totalPage = result.total_page
+
+    if (PAGE === 1) {
+      counter = 1
+    }
+
+    counter += 1
+
+
+    console.log("counter: ", counter)
+    loadProfile(counter);
+  });
+
+  // Button (Star) - developing...
+  document.querySelector(".star").addEventListener("click", () => {
+    //process page
+    window.alert("Please subscribe for more features.")
+  });
+
+
 }
 
 async function loadfriendlist() {
   // console.log("enterfunctionhere!!! ");
   const resp = await fetch("/member/friendlsit", { method: "GET" });
-  // console.log("passthefetch");
-  // console.log("passthefetch");
+
   const friendlist = await resp.json();
-  // console.log(friendlist.friendphoto[0].file_name);
-  // console.log("hihi")
+
   const friendlistNum = (friendlist.friendlist).length;
-  // console.log(friendlistNum);
+
   console.log(friendlistNum);
 
-  // if (friendlistNum >= 4) {
-  //   console.log("Oh no!")
-  //   window.alert("已達4個朋友上限。早鳥休惠 $1000 HKD 即多100位朋友上限");
-  //   return;
-  //   // window.location.href = ("/index.html")
-  //   // loadfriendlist();
-  // }
 
-  // console.log(friendlist.friendlist[0].user_id_received);
-  // console.log("finish_friendlist");
   let htmlStr = "";
 
   for (let i = 0; i < friendlistNum; i++) {
@@ -346,17 +359,7 @@ async function loadfriendlist() {
   }
 
 
-
-  // let htmlStr = "";
-  // for (let friends in friendlistObj) {
-  // let htmlStr = "";
-  // console.log(friends);
-  // console.log(friend.id);
-  // console.log("Friendname" + friend.username);
-  // htmlStr += `<div>${friend.username}</div>`;
-  // }
 }
-
 
 async function loadmyProfile() {
   const resp = await fetch("/member", { method: "GET" });
@@ -371,7 +374,6 @@ async function loadmyProfile() {
   // console.log(myPicLocation);
 
   const myid = myinfo.result[0].id;
-
 
   //my name & id
   const myUserName = `

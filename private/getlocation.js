@@ -1,4 +1,4 @@
-//check location
+// // check location
 // var x = document.getElementById("currentLocation");
 
 // function getLocation() {
@@ -42,5 +42,5 @@
 //     .bindPopup('<b>You are here. Jason!</b>').openPopup();
 
 
-// Longdon
-// 51.52222456854957,-0.16241100651856133
+// // Longdon
+// // 51.52222456854957,-0.16241100651856133

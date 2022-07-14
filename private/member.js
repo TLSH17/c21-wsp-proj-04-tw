@@ -2,6 +2,9 @@
 import { loadChatroomArr } from "./chatroom.js";
 //import { filter } from "./filter.js"
 
+let counter = 1;
+let page = 1;
+
 window.onload = async () => {
   loadmyProfile();
   loadfriendlist();
@@ -33,14 +36,16 @@ window.onload = async () => {
   });
 };
 
-let page = 1;
-let counter = 1;
+
+
 
 async function loadProfile(page) {
+  console.log("page", page)
   const resp = await fetch(`/member/profiles?page=${page}`, {
     method: "GET",
   });
   const result = await resp.json();
+  console.log(result)
   //const age = new Date().getFullYear - result.user_info.date_of_birth.getFullYear()
   // console.log("showresult")
   // console.log(result);
@@ -100,42 +105,6 @@ async function loadProfile(page) {
   }
 
   let htmlStr = `
-  <form id="filter">
-  <div class="input_area">
-      <!-- <div class="regItem col-sm-2"> -->
-          <label for="age-select">Choose age:</label>
-          <!-- <input type="text" placeholder="Age" class="inputbox1" name="age-select" id ="age-select" required /> -->
-          <select id="age">
-          
-          <option value="17-27">17-27</option>
-          <option value="28-38">28-38</option>
-          <option value="39-49">39-49</option>
-          <option value="50-60">50-60</option>
-        </select>
-          
-          
-      <!-- </div> -->
-
-      <!-- <div class="regItem col-sm-2"> -->
-          <label for="hobby">Hobbies:   </label>
-          <!-- <input type="text" placeholder="Hobbies" class="inputbox2" required /> -->
-          <select id="hobby">
-              <option value="party">party</option>
-              <option value="outdoor">outdoor</option>
-              <option value="yoga">yoga</option>
-              <option value="dining">dining</option>
-              <option value="foodie">foodie</option>
-              <option value="tennis">tennis</option>
-              <option value="movie">movie</option>
-
-          </select>
-      <!-- </div> -->
-
-  </div>
-  <div class="submit_button col-sm-6">
-  <input type="submit" value="Submit" />
-</div>
-</form>
 
   <div class="card">
                 
@@ -160,14 +129,15 @@ async function loadProfile(page) {
   <div class = "hobby">${hobbyStr}</div>
   </div>
 
-  <div class="user">
+  <div class="user user_info_nameNage">
       <!--<img class="user" src="https://i.pinimg.com/564x/b4/4b/18/b44b18fc8ad2904b87d577ab4d957055.jpg"
           alt="Solar">-->
       <div class="profile"></div>
-      <div class="name">${result.user_info.username}</div></br>
+      <div class = "user_info_nameNage">
+            <div class="name">${result.user_info.username}</div></br>
+      </div>
       <div class="name profileAge">AGE : ${age}</div>
       <div class="local">
-          <i class="fas fa-map-marker-alt"></i>
       </div>
   </div>
 
@@ -216,28 +186,37 @@ async function loadProfile(page) {
   });
 
 
-  document.querySelector("#filter").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    console.log("Register!");
-    const form = e.target;
-    const formData = new FormData();
+  // document.querySelector("#filter").addEventListener("submit", async (e) => {
+  //   e.preventDefault();
+  //   console.log("Register!");
+  //   const form = e.target;
+  //   const formData = new FormData();
 
-    console.log(form["age"]["value"]);
-    console.log(form["age"]["value"]);
 
-    formData.append("age", form["age"]["value"]);
-    formData.append("hobby", form["hobby"]["value"]);
 
-    const resp = await fetch("/member/filter", {
-      method: "POST",
-      body: formData,
+  //   formData.append("sex", form["sex"]["value"]);
+  //   formData.append("hobby", form["hobby"]["value"]);
 
-    });
+  //   const resp = await fetch("/member/filter", {
+  //     method: "POST",
+  //     body: formData,
 
-    const result = await resp.json();
+  //   });
 
-  });
-  // >>>>>>> 76d8dcbb0484fdcf6a569d4b5b8641697d1f3128
+
+
+  //   const result = await resp.json();
+  //   console.log(result);
+  //   if (!result.message) {
+
+  //     window.alert("Please subscribe our channel to view more profiles!!")
+  //     window.location.href = "/member.html"
+  //   } else {
+  //     window.alert("Not found in current database!!");
+  //     window.location.href = "/member.html";
+  //   }
+
+  // });
 
   document
     .querySelector(".carousel-control-next")
@@ -274,6 +253,7 @@ async function loadProfile(page) {
 
   //console.log(result.friendlist.length);
   const friendListLength = result.friendlist.length;
+  // console.log(friendListLength);
 
 
   // Button (<3 ) : Click the heart icon, friendship_level  +1
@@ -281,9 +261,9 @@ async function loadProfile(page) {
     ele.addEventListener("click", async (e) => {
       e.preventDefault();
       // console.log(`Enter into like`)
-
+      console.log(friendListLength);
       if (friendListLength >= 4) {
-        window.alert("If you want to like more profiles, please subscribe for more features");
+        window.alert("Please donate for more features if you want to like more profiles. Many thanks!");
         return;
       }
 
@@ -365,7 +345,7 @@ async function loadProfile(page) {
   document.querySelector(".star").addEventListener("click", () => {
     //process page
     console.log("ohno")
-    window.alert("Please subscribe for more features.")
+    window.alert("Please donate for more features. Many thanks!")
   });
 
 

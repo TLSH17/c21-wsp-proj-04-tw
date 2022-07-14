@@ -1,11 +1,13 @@
 -- SELECT *
 -- FROM user_photo;
-SELECT *
-FROM users;
+-- SELECT *
+-- FROM users;
 -- SELECT *
 -- FROM user_hobby;
--- SELECT *
--- FROM friendship_level;
+SELECT *
+FROM chatroom;
+-- drop table message;
+-- insert into chatroom (name, user_id_left, user_id_right) VALUES ('chat001',229,230);
 -- delete from users;
 -- select * from users WHERE id != 210 AND id != 211 AND id != 212;
 -- Select user_id_received from friendship_level where friendship_level != 0 and user_id_given = 210;
@@ -25,13 +27,15 @@ FROM users;
 -- WHERE id IN (SELECT user_id_received FROM friendship_level
 -- WHERE user_id_given = 201
 -- - -
-
--- AND friendship_level > 0 -- );
+-- - -
+- -
+AND friendship_level > 0 -- );
 -- SELECT user_id_received FROM friendship_level
 -- - -
 -- WHERE user_id_given = 201
-
--- AND friendship_level > 0;
+-- - -
+- -
+AND friendship_level > 0;
 -- SELECT user_id_given,
 --     user_id_received
 -- FROM friendship_level

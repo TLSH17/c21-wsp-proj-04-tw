@@ -1,7 +1,7 @@
 -- SELECT *
 -- FROM user_photo;
--- SELECT *
--- FROM users;
+SELECT *
+FROM users;
 -- SELECT *
 -- FROM user_hobby;
 -- SELECT *
@@ -25,13 +25,13 @@
 -- WHERE id IN (SELECT user_id_received FROM friendship_level
 -- WHERE user_id_given = 201
 -- - -
-- -
-AND friendship_level > 0 -- );
+
+-- AND friendship_level > 0 -- );
 -- SELECT user_id_received FROM friendship_level
 -- - -
 -- WHERE user_id_given = 201
-- -
-AND friendship_level > 0;
+
+-- AND friendship_level > 0;
 -- SELECT user_id_given,
 --     user_id_received
 -- FROM friendship_level

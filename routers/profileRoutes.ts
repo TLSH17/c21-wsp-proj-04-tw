@@ -93,10 +93,10 @@ async function filter(req: Request, res: Response) {
     console.log(age)
     console.log(hobby)
 
-    
+
     //let page = parseInt(req.query.page as string, 10);
-//
-//
+    //
+    //
     //if (isNaN(page)) {
     //  page = 1;
     //}
@@ -107,13 +107,13 @@ async function filter(req: Request, res: Response) {
     //if (page === 0) {
     //  page = totalPageNum;
     //}
-//
+    //
     ////Provide info
     //const userInfo = (await dbUser.query('select * from users where gender = $1', [`${gender}`])).rows[page - 1]
     //console.log(userInfo)
-//
+    //
     //const result = (await dbUser.query('select * from users where gender = $1', [`${gender}`])).rows[page - 1].id
-//
+    //
     ////Provide hobby
     //const hobby_id = (await dbUser.query(`select hobby_id from user_hobby where user_id = '${result}'`)).rows;
     //let hobbyArr: object[] = []
@@ -123,15 +123,15 @@ async function filter(req: Request, res: Response) {
     //  hobbyArr.push(a)
     //}
     //console.log(hobbyArr)
-//
-//
+    //
+    //
     ////Provide image
-//
-//
+    //
+    //
     ////const result = (await dbUser.query(`select id from users where username = '${page}'`)).rows[0].id;
     //const image_arr = (await dbUser.query(`select file_name from user_photo where user_id = '${result}'`)).rows;
     //console.log(image_arr)
-//
+    //
     //res.json({ current_page: page, total_page: totalPageNum, image: image_arr, user_info: userInfo, hobby: hobbyArr })
     res.json(true)
 
@@ -145,11 +145,12 @@ async function filter(req: Request, res: Response) {
 //dbUser.connect()
 
 async function getProfile(req: Request, res: Response) {
-
+  const user = req.session["user"]
+  const userid = user.id;
 
   try {
-    const user = req.session["user"]
-    const userid = user.id;
+    // const user = req.session["user"]
+    // const userid = user.id;
 
 
     let page = parseInt(req.query.page as string, 10);

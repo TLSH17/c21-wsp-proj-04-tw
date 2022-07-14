@@ -45,4 +45,6 @@
 -- INSERT INTO user_photo (user_id, file_name)
 -- values (1, '2.jpeg');
 -- INSERT INTO friendship_level (user_id_given, user_id_received, friendship_level) Values (203, 202, 1);
--- INSERT INTO friendship_level (user_id_given, user_id_received) Values (203, 202);
+-- INSERT INTO friendship_level (user_id_given, user_id_received) Values (203, 202)
+
+SELECT * FROM user

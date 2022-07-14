@@ -61,7 +61,7 @@ io.on("connection", function (socket) {
 ///////////
 
 app.use((req, res, next) => {
-  console.log(`req path: ${req.path}, method: ${req.method}`);
+  // console.log(`req path: ${req.path}, method: ${req.method}`);
   next();
 });
 

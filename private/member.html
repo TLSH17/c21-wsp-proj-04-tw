@@ -57,38 +57,38 @@
 
 
             <div class="menu">
-                <ul>
-                    <li class="active">Matches</li>
-                    <li class="active">Massages</li>
-                </ul>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <!--<li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Home</button>
+                      </li>-->
+                   
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Chatroom</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Liked List</button>
+                    </li>
+                   
+                  </ul>
+                
             </div>
 
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <!--<li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Home</button>
-                  </li>-->
-               
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Profile</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
-                </li>
-               
-              </ul>
+
+           
 
              
 
+
             <button class="bubbly-button" style="font-family: 'Indie Flower', cursive;" id="home">Home Page</button>
-
-
-
-
+            
+            <!--<button class="bubbly-button" style="font-family: 'Indie Flower', cursive;" id="home">Home Page</button>-->
 
             <!-- Trigger/Open The Modal -->
             <button id="myBtn" style="margin: 0; font-size: 25px; border-radius:3px;"
-                class="bubbly-button editProfile">Edit my
+                class="bubbly-button editProfile" style="font-family: 'Indie Flower', cursive;">Edit my
                 profile</button>
+
+                <button class="bubbly-button" id="logout">logout</button>
 
                 <div class="tab-content" id="myTabContent">
                     <!--<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">a</div>-->
@@ -108,10 +108,10 @@
                 <div class="modal-content">
                     <span class="close">&times;</span>
 
-                <div class="reg_header">
-                    <div class="reg_title" id="hey"></div>
-                    <div class="reg_title_1">Fields marked * are required</div>
-                </div>
+                    <div class="reg_header">
+                        <div class="reg_title" id="hey"></div>
+                        <div class="reg_title_1">Fields marked * are required</div>
+                    </div>
 
 
 
@@ -129,101 +129,105 @@
                                     class="inputbox" /><br />
                             </div>-->
 
-                            <div class="regItem col-sm-2">
-                                <label for="NewNickName">Nick Name: *</label><br />
-                                <input type="text" name="NewNickName" placeholder="Nick Name" id="nickname" class="inputbox"
-                                    required /><br />
-                            </div>
+                                <div class="regItem col-sm-2">
+                                    <label for="NewNickName">Nick Name: *</label><br />
+                                    <input type="text" name="NewNickName" placeholder="Nick Name" id="nickname"
+                                        class="inputbox" required /><br />
+                                </div>
 
-                          
 
-        
-
-                            <div class="regItem col-sm-2">
-                                <label for="gender">Gender: *</label><br />
-                                <select name="NewGender" id="gender" class="inputbox" required>
-                                    <option disabled selected value="">--Please choose an option--</option>
-                                    <option value="m">Male</option>
-                                    <option value="f">Female</option>
-                                    <option value="neutral">Neutral</option>
-                                </select>
-                            </div>
-
-                            <div class="regItem col-sm-2">
-                                <label for="NewInterestedGender">Interested in gender: *</label><br />
-                                <select name="NewInterestedGender" id="interested_gender" class="inputbox" required>
-                                    <option disabled selected value="">--Please choose an option--</option>
-                                    <option value="m">Male</option>
-                                    <option value="f">Female</option>
-                                    <option value="neutral">Neutral</option>
-                                </select>
-                                
 
 
 
                                 <div class="regItem col-sm-2">
-                                    <label for="NewBirth">Date of birth (yyyy-MM-dd)</label><br />: *</label><br />
-                                    <input type="date" name="NewBirth" class="inputbox" required /><br />
+                                    <label for="gender">Gender: *</label><br />
+                                    <select name="NewGender" id="gender" class="inputbox" required>
+                                        <option disabled selected value="">--Please choose an option--</option>
+                                        <option value="m">Male</option>
+                                        <option value="f">Female</option>
+                                        <option value="neutral">Neutral</option>
+                                    </select>
                                 </div>
 
                                 <div class="regItem col-sm-2">
-                                    <label for="NewDescription">Description: *</label><br />
-                                    <input type="text" placeholder="description" name="NewDescription" id="description" class="inputbox"
-                                        required /><br />
+                                    <label for="NewInterestedGender">Interested in gender: *</label><br />
+                                    <select name="NewInterestedGender" id="interested_gender" class="inputbox" required>
+                                        <option disabled selected value="">--Please choose an option--</option>
+                                        <option value="m">Male</option>
+                                        <option value="f">Female</option>
+                                        <option value="neutral">Neutral</option>
+                                    </select>
+
+
+
+
+                                    <div class="regItem col-sm-2">
+                                        <label for="NewBirth">Date of birth (yyyy-MM-dd)</label><br />: *</label><br />
+                                        <input type="date" name="NewBirth" class="inputbox" required /><br />
+                                    </div>
+
+                                    <div class="regItem col-sm-2">
+                                        <label for="NewDescription">Description: *</label><br />
+                                        <input type="text" placeholder="description" name="NewDescription"
+                                            id="description" class="inputbox" required /><br />
+                                    </div>
+
+
+
+
+                                    <div class="regItem col-sm-2">
+                                        <label for="NewNationality">Nationality *: </label><br />
+                                        <input type="text" placeholder="Nationality" name="NewNationality"
+                                            class="inputbox" id="nationality" required /><br />
+                                    </div>
+
+                                    <div class="regItem col-sm-2">
+                                        <label for="image">Select Photos:(gif / jpeg / jpg / png / svg) *</label><br />
+                                        <input type="file" name="image"
+                                            accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"
+                                            required /><br />
+                                    </div>
+
                                 </div>
 
-                                
+
+                                <div class="optional_items">
 
 
-                                <div class="regItem col-sm-2">
-                                    <label for="NewNationality">Nationality *: </label><br />
-                                    <input type="text" placeholder="Nationality" name="NewNationality" class="inputbox" id="nationality"
-                                        required /><br />
+                                    <div class="regItem col-sm-2"> <label for="NewUserEmail">Email:</label><br />
+                                        <input type="text" name="NewUserEmail" placeholder="Email" class="inputbox"
+                                            id="email" /><br />
+                                    </div>
+
+                                    <div class="regItem col-sm-2">
+                                        <label for="NewInterestedType">Interested in type:</label><br />
+                                        <input type="text" name="NewInterestedType" id="interestedInType"
+                                            class="inputbox" /><br />
+                                    </div>
+
+                                    <div class="regItem col-sm-2">
+                                        <label for="NewZodiac">Zodiac Signs: </label><br />
+                                        <input type="text" placeholder="Zodiac Signs" id="zodiacSigns" name="NewZodiac"
+                                            class="inputbox" /><br />
+                                    </div>
+
+
+
+
+
                                 </div>
 
-                                <div class="regItem col-sm-2">
-                                    <label for="image">Select Photos: *</label><br />
-                                    <input type="file" name="image" required /><br />
-                                </div>
 
-                            </div>
-
-
-                            <div class="optional_items">
-
-                            
-                                <div class="regItem col-sm-2"> <label for="NewUserEmail">Email:</label><br />
-                                    <input type="text" name="NewUserEmail" placeholder="Email" class="inputbox" id="email"/><br />
-                                </div>
-
-                                <div class="regItem col-sm-2">
-                                    <label for="NewInterestedType">Interested in type:</label><br />
-                                    <input type="text" name="NewInterestedType" id="interestedInType" class="inputbox" /><br />
-                                </div>
-
-                                <div class="regItem col-sm-2">
-                                    <label for="NewZodiac">Zodiac Signs: </label><br />
-                                    <input type="text" placeholder="Zodiac Signs" id="zodiacSigns" name="NewZodiac"
-                                        class="inputbox" /><br />
-                                </div>
-
-                            
-
-                           
-
-                        </div>
-
-
-                            <!--<div class="regItem col-sm-2">
+                                <!--<div class="regItem col-sm-2">
                                 <label for="NewHeight">Height (cm):</label><br />
                                 <input type="number" placeholder="Height (cm)" id="height" name="NewHeight"
                                     class="inputbox" /><br />
                             </div>-->
 
-                            
-                              
 
-                               
+
+
+
 
                             </div>
                         </div>
@@ -243,6 +247,8 @@
             
 
             
+           <!-- <div class="friendListTitle">Like List</div>
+            <div class="friendInput"></div>-->
             <!-- <div class="messages">
                 <div class="friend">
                 </div>
@@ -250,8 +256,8 @@
 
 
 
-            <!-- MAP -->
-            <div id="map" style="width: 600px; height: 400px;"></div>
+            <!-- MAP developing.... -->
+             <div id="map" style="width: 600px; height: 400px;"></div>
             <div id="currentLocation"></div>
 
             <div class="GPS Board">

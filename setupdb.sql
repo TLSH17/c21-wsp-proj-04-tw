@@ -6,6 +6,12 @@
 -- FROM user_hobby;
 -- SELECT *
 -- FROM friendship_level;
+-- delete from users;
+-- select * from users WHERE id != 210 AND id != 211 AND id != 212;
+-- Select user_id_received from friendship_level where friendship_level != 0 and user_id_given = 210;
+-- select * from users JOIN friendship_level ON friendship_level.user_id_received = users.id
+-- WHERE
+-- select * from users WHERE id 
 -- DELETE FROM friendship_level;
 -- SELECT file_name FROM user_photo WHERE user_id IN (SELECT id FROM users WHERE id = 209);
 -- select users.id as id, users.username as username, user_photo.file_name as file_name 
@@ -18,12 +24,14 @@
 -- SELECT username from users
 -- WHERE id IN (SELECT user_id_received FROM friendship_level
 -- WHERE user_id_given = 201
+-- - -
 - -
 AND friendship_level > 0 -- );
 -- SELECT user_id_received FROM friendship_level
+-- - -
+-- WHERE user_id_given = 201
 - -
-WHERE user_id_given = 201
-    AND friendship_level > 0;
+AND friendship_level > 0;
 -- SELECT user_id_given,
 --     user_id_received
 -- FROM friendship_level

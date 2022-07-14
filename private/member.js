@@ -104,14 +104,14 @@ async function loadProfile(page) {
   <form id="filter">
   <div class="input_area">
       <!-- <div class="regItem col-sm-2"> -->
-          <label for="age-select">Choose age:</label>
+          <label for="age-select">Choose sex:</label>
           <!-- <input type="text" placeholder="Age" class="inputbox1" name="age-select" id ="age-select" required /> -->
-          <select id="age">
+          <select id="sex">
           
-          <option value="17-27">17-27</option>
-          <option value="28-38">28-38</option>
-          <option value="39-49">39-49</option>
-          <option value="50-60">50-60</option>
+          <option value="M">M</option>
+          <option value="F">F</option>
+          <option value="All" selected>All</option>
+          
         </select>
           
           
@@ -128,6 +128,7 @@ async function loadProfile(page) {
               <option value="foodie">foodie</option>
               <option value="tennis">tennis</option>
               <option value="movie">movie</option>
+              <option value="all">all</option>
 
           </select>
       <!-- </div> -->
@@ -207,10 +208,9 @@ async function loadProfile(page) {
     const form = e.target;
     const formData = new FormData();
 
-    console.log(form["age"]["value"]);
-    console.log(form["age"]["value"]);
+   
 
-    formData.append("age", form["age"]["value"]);
+    formData.append("sex", form["sex"]["value"]);
     formData.append("hobby", form["hobby"]["value"]);
 
     const resp = await fetch("/member/filter", {
@@ -220,6 +220,14 @@ async function loadProfile(page) {
   });
 
   const result = await resp.json();
+  console.log(result);
+  if(!result.message){
+    
+    window.alert("Please subscribe our channel to view more profiles!!")
+    window.location.href = "/member.html"
+  } else { 
+    window.alert("Not found in current database!!");
+    window.location.href = "/member.html";}
     
   });
 

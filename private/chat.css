@@ -68,7 +68,7 @@ background-color: #fd2670;
 }
 .xmsg-page
 {
-    height: 516px;
+    height: 81vh;
     overflow-y: auto;
 }
 .xreceived-chats-img
@@ -95,7 +95,7 @@ background-color: #fd2670;
     color: #646464;
     font-size: 14px;
     margin: 0;
-    padding: 5pc 10px 5px 12px;
+    padding: 5px 10px 5px 12px;
     width: 100%;
 }
 .xtime
@@ -115,19 +115,19 @@ background-color: #fd2670;
     display: block;
     font-size: 12px;
     margin: 8px 0 0;
-    text-align: end;
+    margin-right: 6%;
 }
 
 .xoutgoing-msg-inbox p
 {
     background: #fd2670 none repeat scroll 0 0;
-    color: #777;
+    color: white;
     border-radius: 10px;
     font-size: 14px;
-    margin: 0;
+    margin-right: 10px;
     font-size: 14px;
     margin: 0;
-    color: #777;
+    
     padding: 5px 10px 5px 12px;
     width: 100%;
 }
@@ -137,6 +137,7 @@ background-color: #fd2670;
     float: right;
     width: 46%;
     margin-left: 47%;
+    margin-right:6%;
 }
 .xoutgoing-chats-msg
 {
@@ -164,8 +165,9 @@ background-color: #fd2670;
     margin-top: 13px;
     margin-right: 20px;*/
     outline: none !important;
-    border-radius: 20px;
-    width: 100% !important;
+    
+    height: 50px;
+    width: 55vw !important;
     background-color: #fd2670;
     position: absolute;
     bottom: 0;

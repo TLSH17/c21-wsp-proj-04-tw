@@ -109,7 +109,7 @@ export async function loadChatroomArr() {
                 
                 <div class="xinput-group">
                 <form id="form" action="">
-                    <input type="text" id = "input" class="xform-control" placeholder="write message...">
+                    <input type="text" id = "input" class="xform-control" size="100" placeholder="write message...">
                     <button class="xinput-group-append">
                         <span class="xinput-group-text"><i class="fa fa-paper-plane"></i></span>
                     </button>
@@ -151,13 +151,18 @@ export async function loadChatroomArr() {
            <div class="xoutgoing-msg-inbox">
                <p>${a}</p>
                
-           </div>
-           <div class="xoutgoing-time">
+           
+           
    
-               <span class="xoutgoing-time">${b}</span>
-           </div>
+               
+               </div>
+               <br><span class="xoutgoing-time">${b}</span>
+           
        </div>
    </div>`}
+
+   //<div class="xoutgoing-time">
+   //</div>
   
        //load chatroom message
        const result = await load(room);

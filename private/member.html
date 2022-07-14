@@ -63,6 +63,22 @@
                 </ul>
             </div>
 
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <!--<li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Home</button>
+                  </li>-->
+               
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Profile</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
+                </li>
+               
+              </ul>
+
+             
+
             <button class="bubbly-button" style="font-family: 'Indie Flower', cursive;" id="home">Home Page</button>
 
 
@@ -73,6 +89,17 @@
             <button id="myBtn" style="margin: 0; font-size: 25px; border-radius:3px;"
                 class="bubbly-button editProfile">Edit my
                 profile</button>
+
+                <div class="tab-content" id="myTabContent">
+                    <!--<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">a</div>-->
+                    <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0"><div class="list-group list-chat"></div></div>
+                    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0"><div class="friendListTitle">Friend List</div>
+                    <div class="friendInput"></div></div>
+                    
+                  </div>
+
+                  
+                  
 
             <!-- The Modal -->
             <div id="myModal" class="modal">
@@ -213,14 +240,9 @@
 
 
             <!--insert chatroom here-->
-            <div class="list-group list-chat"></div>
+            
 
-            <div class="friendListTitle">Friend List</div>
-            <div class="friendInput">
-
-
-
-            </div>
+            
             <!-- <div class="messages">
                 <div class="friend">
                 </div>

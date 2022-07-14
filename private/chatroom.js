@@ -46,8 +46,8 @@ export async function loadChatroomArr() {
       </div>
      
       <div class="friend">
-          <div class="user">${chatroom.name}</div><div id="item-${chatroom.id}" class="list-group-item d-flex justify-content-between align-items-start"></div>
-          <div class="text"></div>
+          <div class="user">${chatroom.name}</div><div id="item-${chatroom.id}" class="list-group-item d-flex justify-content-between align-items-center"></div>
+          
       </div>
   </div>`
 
@@ -108,8 +108,8 @@ export async function loadChatroomArr() {
 
                 
                 <div class="xinput-group">
-                <form id="form" action="">
-                    <input type="text" id = "input" class="xform-control" size="100" placeholder="write message...">
+                <form id="formInput" action="">
+                    <input type="text" id = "input" class="xform-control" size="60" placeholder="write message...">
                     <button class="xinput-group-append">
                         <span class="xinput-group-text"><i class="fa fa-paper-plane"></i></span>
                     </button>

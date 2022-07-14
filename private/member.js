@@ -32,6 +32,8 @@ window.onload = async () => {
     } else {
       const count = parseInt(ele.textContent, 10);
       ele.innerHTML = String(count + 1);
+      document.querySelectorAll(".messages").forEach((element) => 
+    element.addEventListener(("click"), ele.innerHTML = "123"))
     }
   });
 };
@@ -105,43 +107,7 @@ async function loadProfile(page) {
   }
 
   let htmlStr = `
-  <form id="filter">
-  <div class="input_area">
-      <!-- <div class="regItem col-sm-2"> -->
-          <label for="age-select">Choose sex:</label>
-          <!-- <input type="text" placeholder="Age" class="inputbox1" name="age-select" id ="age-select" required /> -->
-          <select id="sex">
-          
-          <option value="M">M</option>
-          <option value="F">F</option>
-          <option value="All" selected>All</option>
-          
-        </select>
-          
-          
-      <!-- </div> -->
-
-      <!-- <div class="regItem col-sm-2"> -->
-          <label for="hobby">Hobbies:   </label>
-          <!-- <input type="text" placeholder="Hobbies" class="inputbox2" required /> -->
-          <select id="hobby">
-              <option value="party">party</option>
-              <option value="outdoor">outdoor</option>
-              <option value="yoga">yoga</option>
-              <option value="dining">dining</option>
-              <option value="foodie">foodie</option>
-              <option value="tennis">tennis</option>
-              <option value="movie">movie</option>
-              <option value="all">all</option>
-
-          </select>
-      <!-- </div> -->
-
-  </div>
-  <div class="submit_button col-sm-6">
-  <input type="submit" value="Submit" />
-</div>
-</form>
+ 
 
   <div class="card">
                 
@@ -163,7 +129,7 @@ async function loadProfile(page) {
   </button>
   </div>
   <div id = "info${page}"></div>
-  <div class = "hobby">${hobbyStr}</div>
+  
   </div>
 
   <div class="user">
@@ -172,6 +138,7 @@ async function loadProfile(page) {
       <div class="profile"></div>
       <div class="name">${result.user_info.username}</div></br>
       <div class="name profileAge">AGE : ${age}</div>
+      <div class = "hobby">${hobbyStr}</div>
       <div class="local">
           <i class="fas fa-map-marker-alt"></i>
       </div>
@@ -222,36 +189,36 @@ async function loadProfile(page) {
   });
 
 
-  document.querySelector("#filter").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    console.log("Register!");
-    const form = e.target;
-    const formData = new FormData();
-
-   
-
-    formData.append("sex", form["sex"]["value"]);
-    formData.append("hobby", form["hobby"]["value"]);
-
-    const resp = await fetch("/member/filter", {
-      method: "POST",
-      body: formData,
-
-    });
-
-   
-
-  const result = await resp.json();
-  console.log(result);
-  if(!result.message){
-    
-    window.alert("Please subscribe our channel to view more profiles!!")
-    window.location.href = "/member.html"
-  } else { 
-    window.alert("Not found in current database!!");
-    window.location.href = "/member.html";}
-    
-  });
+  //document.querySelector("#filter").addEventListener("submit", async (e) => {
+  //  e.preventDefault();
+  //  console.log("Register!");
+  //  const form = e.target;
+  //  const formData = new FormData();
+//
+  // 
+//
+  //  formData.append("sex", form["sex"]["value"]);
+  //  formData.append("hobby", form["hobby"]["value"]);
+//
+  //  const resp = await fetch("/member/filter", {
+  //    method: "POST",
+  //    body: formData,
+//
+  //  });
+//
+  // 
+//
+  //const result = await resp.json();
+  //console.log(result);
+  //if(!result.message){
+  //  
+  //  window.alert("Please subscribe our channel to view more profiles!!")
+  //  window.location.href = "/member.html"
+  //} else { 
+  //  window.alert("Not found in current database!!");
+  //  window.location.href = "/member.html";}
+  //  
+  //});
   // >>>>>>> 76d8dcbb0484fdcf6a569d4b5b8641697d1f3128
 
   document

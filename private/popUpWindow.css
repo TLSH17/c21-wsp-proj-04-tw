@@ -125,7 +125,7 @@
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
-    z-index: 1;
+    z-index: 100;
     /* Sit on top */
     left: 0;
     top: 0;
@@ -143,12 +143,13 @@
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: rgba(225, 255, 2, 0.909);
+    background-color: #fd5068;
     margin: 15% auto;
     /* 15% from the top and centered */
     padding: 20px;
     border: 10px solid rgb(0, 0, 0);
     width: 75%;
+    z-index: 10;
     /* Could be more or less, depending on screen size */
 }
 

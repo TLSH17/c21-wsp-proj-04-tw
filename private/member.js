@@ -75,8 +75,8 @@ async function loadProfile(page) {
 
   const imageArr = result.image;
   const imageResult = imageArr[0].file_name;
-  // console.log("REsult!!:" + imageResult);
-  // console.log("heheheheh :" + imageArr);
+  console.log("REsult!!:" + imageResult);
+  console.log("heheheheh :" + imageArr);
 
   let imageStr = `<div class="carousel-item active">
     <img src="./image/${imageResult}" class="d-block w-100" alt="..."/>
@@ -206,6 +206,8 @@ async function loadProfile(page) {
     loadProfile(counter);
     // <<<<<<< HEAD
   })
+
+
   document.querySelector("#logout").addEventListener(("click"), async () => {
     // window.location.href = "/index.html";
     console.log("hihi")
@@ -217,10 +219,8 @@ async function loadProfile(page) {
     if (resp.ok === true) {
       window.location.href = "/"
     }
-  }
+  });
 
-  )
-    ;
 
   document.querySelector("#filter").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -379,6 +379,7 @@ async function loadProfile(page) {
   // Button (Star) - developing...
   document.querySelector(".star").addEventListener("click", () => {
     //process page
+    console.log("ohno")
     window.alert("Please subscribe for more features.")
   });
 
@@ -433,7 +434,8 @@ async function loadmyProfile() {
   const resp = await fetch("/member", { method: "GET" });
   // console.log("passthefetch");
   const myinfo = await resp.json();
-  // console.log(myinfo);
+  console.log(myinfo);
+  console.log("=========")
 
   const myname = myinfo.result[0].username;
   console.log("My username is : " + myname);

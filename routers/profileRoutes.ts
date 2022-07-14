@@ -146,11 +146,12 @@ async function filter(req: Request, res: Response) {
 //dbUser.connect()
 
 async function getProfile(req: Request, res: Response) {
-
+  const user = req.session["user"]
+  const userid = user.id;
 
   try {
-    const user = req.session["user"]
-    const userid = user.id;
+    // const user = req.session["user"]
+    // const userid = user.id;
 
 
     let page = parseInt(req.query.page as string, 10);

@@ -81,7 +81,14 @@
 
             <button class="bubbly-button" style="font-family: 'Indie Flower', cursive;" id="home">Home Page</button>
             
-            <!--<button class="bubbly-button" style="font-family: 'Indie Flower', cursive;" id="home">Home Page</button>-->
+            <!--<button class="bubbly-button" style="font-family: 'Indie Flower', cursive;" id="home">Home Page</button>
+            <button class="bubbly-button" id="home">home</button>
+
+            <button class="bubbly-button" id="logout">logout</button>
+
+            <button class="bubbly-button" style="font-family: 'Indie Flower', cursive;" id="home">Home Page</button>-->
+
+
 
             <!-- Trigger/Open The Modal -->
             <button id="myBtn" style="margin: 0; font-size: 25px; border-radius:3px;"
@@ -132,7 +139,7 @@
                                 <div class="regItem col-sm-2">
                                     <label for="NewNickName">Nick Name: *</label><br />
                                     <input type="text" name="NewNickName" placeholder="Nick Name" id="nickname"
-                                        class="inputbox" required /><br />
+                                        class="inputbox" /><br />
                                 </div>
 
 
@@ -141,7 +148,7 @@
 
                                 <div class="regItem col-sm-2">
                                     <label for="gender">Gender: *</label><br />
-                                    <select name="NewGender" id="gender" class="inputbox" required>
+                                    <select name="NewGender" id="gender" class="inputbox">
                                         <option disabled selected value="">--Please choose an option--</option>
                                         <option value="m">Male</option>
                                         <option value="f">Female</option>
@@ -151,7 +158,7 @@
 
                                 <div class="regItem col-sm-2">
                                     <label for="NewInterestedGender">Interested in gender: *</label><br />
-                                    <select name="NewInterestedGender" id="interested_gender" class="inputbox" required>
+                                    <select name="NewInterestedGender" id="interested_gender" class="inputbox">
                                         <option disabled selected value="">--Please choose an option--</option>
                                         <option value="m">Male</option>
                                         <option value="f">Female</option>
@@ -163,13 +170,13 @@
 
                                     <div class="regItem col-sm-2">
                                         <label for="NewBirth">Date of birth (yyyy-MM-dd)</label><br />: *</label><br />
-                                        <input type="date" name="NewBirth" class="inputbox" required /><br />
+                                        <input type="date" name="NewBirth" class="inputbox" /><br />
                                     </div>
 
                                     <div class="regItem col-sm-2">
                                         <label for="NewDescription">Description: *</label><br />
                                         <input type="text" placeholder="description" name="NewDescription"
-                                            id="description" class="inputbox" required /><br />
+                                            id="description" class="inputbox" /><br />
                                     </div>
 
 
@@ -178,14 +185,12 @@
                                     <div class="regItem col-sm-2">
                                         <label for="NewNationality">Nationality *: </label><br />
                                         <input type="text" placeholder="Nationality" name="NewNationality"
-                                            class="inputbox" id="nationality" required /><br />
+                                            class="inputbox" id="nationality" /><br />
                                     </div>
 
                                     <div class="regItem col-sm-2">
                                         <label for="image">Select Photos:(gif / jpeg / jpg / png / svg) *</label><br />
-                                        <input type="file" name="image"
-                                            accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"
-                                            required /><br />
+                                        <input type="file" name="image" accept="image/*" /><br />
                                     </div>
 
                                 </div>
@@ -293,9 +298,9 @@
     <script src="/socket.io/socket.io.js"></script>
     <script type="module" src="popup.js"></script>
     <script type="module" src="member.js"></script>
-    
-    
-    
+
+
+
     <script type="module" src="getlocation.js"></script>
 </body>
 

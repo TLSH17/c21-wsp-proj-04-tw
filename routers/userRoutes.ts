@@ -73,7 +73,7 @@ async function newUser(req: Request, res: Response, next: NextFunction) {
   const nationality = form.fields.nationality as String;
   const email = form.fields.email as String;
   const interestedType = form.fields.interestedType as String;
-  const height = form.fields.height as String;
+  const height = form.fields.height as String || null;
   const zodiac_signs = form.fields.zodiac_signs as String;
   const image = (form.files.image as formidable.File)?.["newFilename"];
 
@@ -91,6 +91,7 @@ async function newUser(req: Request, res: Response, next: NextFunction) {
 
 
   // console.log(checkUserExist);
+  console.log("hihi")
 
   await dbUser.query(/*sql */`INSERT INTO users (username, password, nick_name, gender, interested_in_gender, date_of_birth, description, nationality, email, interested_in_type, height, zodiac_signs) Values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) RETURNING id`,
     [username, hashedPassword, nickName, gender, interested_in_gender, date_of_birth, description, nationality, email, interestedType, height, zodiac_signs], function (err, result) {

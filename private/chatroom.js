@@ -108,7 +108,7 @@ export async function loadChatroomArr() {
 
                 
                 <div class="xinput-group">
-                <form id="formInput" action="">
+                <form id="form" action="">
                     <input type="text" id = "input" class="xform-control" size="60" placeholder="write message...">
                     <button class="xinput-group-append">
                         <span class="xinput-group-text"><i class="fa fa-paper-plane"></i></span>
@@ -225,7 +225,7 @@ export async function loadChatroomArr() {
             //mine.classList.add("myself");
             //mine.textContent = i.content
             messages.appendChild(mine);
-            window.scrollTo(0, document.body.scrollHeight)
+            window.scrollTo(-10, document.body.scrollHeight)
 
             if (input.value) {
               //socket.emit('message', input.value);
@@ -278,7 +278,7 @@ export async function loadChatroomArr() {
             // others.classList.add("others");
             // others.textContent = i.content
             messages.appendChild(others);
-            window.scrollTo(0, document.body.scrollHeight)
+            window.scrollTo(-10, document.body.scrollHeight)
 
             //const others = document.createElement('div');
             //others.classList.add("others");

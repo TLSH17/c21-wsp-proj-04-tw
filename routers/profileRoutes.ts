@@ -17,6 +17,7 @@ profileRoutes.get("/profiles", getProfile);
 // profileRoutes.post("/filter", formidableMiddleware, filter);
 profileRoutes.get("/", getMyProfile);
 profileRoutes.get("/friendlsit", getfriendList);
+console.log("hihi")
 profileRoutes.post("/edit", formidableMiddleware, editMyProfile);
 
 
@@ -45,6 +46,7 @@ async function getMyProfile(req: Request, res: Response) {
 //need further develop
 async function editMyProfile(req: Request, res: Response) {
   try {
+    
     const form = req.form!;
     const id = parseInt(req.session["user"].id)
     const stringId = form.fields.id as String;

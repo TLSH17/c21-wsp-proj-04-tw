@@ -33,7 +33,7 @@ window.onload = async () => {
       const count = parseInt(ele.textContent, 10);
       ele.innerHTML = String(count + 1);
       document.querySelectorAll(".messages").forEach((element) => 
-    element.addEventListener(("click"), ele.innerHTML = "123"))
+    element.addEventListener(("click"), ele.innerHTML = ""))
     }
   });
 };
